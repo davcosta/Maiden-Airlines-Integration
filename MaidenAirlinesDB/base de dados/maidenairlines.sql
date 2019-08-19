@@ -1,10 +1,19 @@
 
 CREATE TABLE `airplane` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `model` varchar(100) NOT NULL,
   `cargo_hold_capacity` int(11) NOT NULL,
   `number_seats` int(11) NOT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `airport` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `city` varchar(100) NOT NULL,
+  `country` varchar(100) NOT NULL,
+  `short_name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `airport_un` (`short_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `booking_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -37,13 +46,6 @@ CREATE TABLE `passenger` (
   `contact_type` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `city` varchar(100) NOT NULL,
-  `country` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-CREATE TABLE `airport` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `city` varchar(100) NOT NULL,
@@ -96,9 +98,9 @@ CREATE TABLE `flight` (
   `flight_number` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `flight_un` (`departure_date`,`departure_airport`,`arrival_airport`,`flight_number`),
-  KEY `flight_fk` (`id_airplane`),
   KEY `flight_fk_1` (`departure_airport`),
   KEY `flight_fk_2` (`arrival_airport`),
+  KEY `flight_fk` (`id_airplane`),
   CONSTRAINT `flight_fk` FOREIGN KEY (`id_airplane`) REFERENCES `airplane` (`id`) ON DELETE CASCADE,
   CONSTRAINT `flight_fk_1` FOREIGN KEY (`departure_airport`) REFERENCES `airport` (`id`) ON DELETE CASCADE,
   CONSTRAINT `flight_fk_2` FOREIGN KEY (`arrival_airport`) REFERENCES `airport` (`id`) ON DELETE CASCADE
