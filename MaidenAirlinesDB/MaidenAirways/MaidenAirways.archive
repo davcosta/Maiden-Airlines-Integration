@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Repository:repository xmlns:Repository="http://www.tibco.com/xmlns/repo/types/2002">
+    <enterpriseArchive>
+        <sharedArchive name="Shared Archive">
+            <resourceType>shared.archive.resource</resourceType>
+            <authorProperty>david.costa</authorProperty>
+        </sharedArchive>
+        <processArchive name="Process Archive">
+            <resourceType>process.archive.resource</resourceType>
+            <authorProperty>david.costa</authorProperty>
+            <processProperty>/SOAP Process/ServiceAirport.serviceagent,/Core Process/Delete Airport.process,/Core Process/Insert Airplane.process,/Core Process/Insert Airport.process,/Core Process/Read Airplane By ID.process,/Core Process/Read Airport By ID.process,/Core Process/Read Airport By Search Token.process,/Core Process/Read All Airplanes.process,/Core Process/Read All Airports.process,/Core Process/Update Airplane.process,/Core Process/Update Airport.process</processProperty>
+        </processArchive>
+        <versionProperty>2</versionProperty>
+        <authorProperty>david.costa</authorProperty>
+        <addServiceSettableGvars>true</addServiceSettableGvars>
+        <name>MaidenAirways</name>
+        <designer/>
+        <fileLocationProperty>C:\tibco\designer\5.10\MaidenAirways\EAR\MaidenAirways.ear</fileLocationProperty>
+    </enterpriseArchive>
+</Repository:repository>
