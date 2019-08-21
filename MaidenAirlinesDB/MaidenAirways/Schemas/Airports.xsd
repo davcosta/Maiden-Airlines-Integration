@@ -33,4 +33,16 @@
 			<xs:attribute name="Value" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
+	<xs:element name="Status">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Success"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Success">
+		<xs:complexType>
+			<xs:attribute name="Value" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

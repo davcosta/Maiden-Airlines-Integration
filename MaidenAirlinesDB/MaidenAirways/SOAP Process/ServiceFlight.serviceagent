@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<serviceResource xmlns:wsdl="http://xmlns.example.com/1566221666966">
-    <ns0:import xmlns:ns0="http://schemas.xmlsoap.org/wsdl/" namespace="http://xmlns.example.com/1566221666966" location="/SOAP Messages/Airport.wsdl"/>
+<serviceResource xmlns:wsdl="http://xmlns.example.com/1566403154489">
+    <ns0:import xmlns:ns0="http://schemas.xmlsoap.org/wsdl/" namespace="http://xmlns.example.com/1566403154489" location="/SOAP Messages/Flight.wsdl"/>
     <config>
-        <wsdl namespace="http://xmlns.example.com/1566394341185" embedWsdlComponents="true" embedSchemaComponents="true" embedJndiProperties="false"/>
+        <wsdl namespace="http://xmlns.example.com/1566403284561" embedWsdlComponents="true" embedSchemaComponents="true" embedJndiProperties="false"/>
         <class>com.tibco.bw.service.serviceAgent.ServiceServiceAgent</class>
         <implType>bw</implType>
         <groups>
             <row isDefault="true" groupName="Default"/>
         </groups>
-        <serviceChange>Wed Aug 21 15:02:09 BST 2019</serviceChange>
+        <serviceChange>Wed Aug 21 17:28:16 BST 2019</serviceChange>
         <interfaceImpl>
             <tab>
-                <tabName>PortTypeAirport</tabName>
+                <tabName>PortTypeFlight</tabName>
                 <tabType>bw</tabType>
                 <config>
-                    <wsdlDetail location="/SOAP Messages/Airport.wsdl" portType="PortTypeAirport" ns="http://xmlns.example.com/1566221666966"/>
+                    <wsdlDetail location="/SOAP Messages/Flight.wsdl" portType="PortTypeFlight" ns="http://xmlns.example.com/1566403154489"/>
                     <detail>
                         <tab>
                             <tabName>service.definition.impl.tab.label</tabName>
                             <tabType>impl</tabType>
                             <config>
                                 <operations>
-                                    <row opName="InsertAirport" opImpl="/SOAP Process/Airport/InsertAirport.process"/>
-                                    <row opName="UpdateAirport" opImpl="/SOAP Process/Airport/UpdateAirport.process"/>
-                                    <row opName="DeleteAirport" opImpl="/SOAP Process/Airport/DeleteAirport.process"/>
-                                    <row opName="GetAllAirports" opImpl="/SOAP Process/Airport/GetAllAirports.process"/>
-                                    <row opName="GetAirportBySearchToken" opImpl="/SOAP Process/Airport/GetAirportBySearchToken.process"/>
-                                    <row opName="GetAirportByID" opImpl="/SOAP Process/Airport/GetAirportByID.process"/>
+                                    <row opName="InsertFlight" opImpl="/SOAP Process/Flight/InsertFlight.process"/>
+                                    <row opName="UpdateFlight" opImpl="/SOAP Process/Flight/UpdateFlight.process"/>
+                                    <row opName="DeleteFlight" opImpl="/SOAP Process/Flight/DeleteFlight.process"/>
+                                    <row opName="GetAllFlights" opImpl="/SOAP Process/Flight/GetAllFlights.process"/>
+                                    <row opName="GetFlightByID" opImpl="/SOAP Process/Flight/GetFlightByID.process"/>
+                                    <row opName="GetFlightByDateAndLocal" opImpl="/SOAP Process/Flight/GetFlightByDateAndLocal.process"/>
                                 </operations>
                             </config>
                         </tab>
@@ -35,18 +35,18 @@
                             <tabType>ep</tabType>
                             <config>
                                 <epBindings>
-                                    <row epName="Airport" epType="soap">
+                                    <row epName="Flight" epType="soap">
                                         <config>
                                             <epDetail>
                                                 <tab>
                                                     <tabName>soap.service.transport.ui.transport.tab.label</tabName>
                                                     <tabType>transport</tabType>
                                                     <config>
-                                                        <sharedChannel>/Connections/HTTP Connection Airport.sharedhttp</sharedChannel>
+                                                        <sharedChannel>/Connections/HTTP-Connection-Flight.sharedhttp</sharedChannel>
                                                         <transport>
                                                             <config>
                                                                 <useBasicAuthentication>false</useBasicAuthentication>
-                                                                <httpURI>/SOAP%20Process/ServiceAirport.serviceagent/Airport</httpURI>
+                                                                <httpURI>/SOAP%20Process/ServiceFlight.serviceagent/Flight</httpURI>
                                                             </config>
                                                         </transport>
                                                     </config>
@@ -58,10 +58,10 @@
                                                         <operationStyle>document</operationStyle>
                                                         <soapVersion>SOAP 1.1</soapVersion>
                                                         <soap>
-                                                            <operation name="InsertAirport">
+                                                            <operation name="InsertFlight">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/PortTypeAirportEndpoint1/InsertAirport</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceFlight.serviceagent/Flight/InsertFlight</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                         <inputNamespace/>
@@ -71,46 +71,46 @@
                                                                     </config>
                                                                 </general>
                                                             </operation>
-                                                            <operation name="UpdateAirport">
+                                                            <operation name="UpdateFlight">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/PortTypeAirportEndpoint1/UpdateAirport</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceFlight.serviceagent//UpdateFlight</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                     </config>
                                                                 </general>
                                                             </operation>
-                                                            <operation name="DeleteAirport">
+                                                            <operation name="DeleteFlight">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/PortTypeAirportEndpoint1/DeleteAirport</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceFlight.serviceagent//DeleteFlight</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                     </config>
                                                                 </general>
                                                             </operation>
-                                                            <operation name="GetAllAirports">
+                                                            <operation name="GetAllFlights">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/PortTypeAirportEndpoint1/GetAllAirports</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceFlight.serviceagent//GetAllFlights</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                     </config>
                                                                 </general>
                                                             </operation>
-                                                            <operation name="GetAirportBySearchToken">
+                                                            <operation name="GetFlightByID">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/PortTypeAirportEndpoint1/GetAirportBySearchToken</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceFlight.serviceagent//GetFlightByID</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                     </config>
                                                                 </general>
                                                             </operation>
-                                                            <operation name="GetAirportByID">
+                                                            <operation name="GetFlightByDateAndLocal">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent//GetAirportByID</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceFlight.serviceagent//GetFlightByDateAndLocal</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                     </config>

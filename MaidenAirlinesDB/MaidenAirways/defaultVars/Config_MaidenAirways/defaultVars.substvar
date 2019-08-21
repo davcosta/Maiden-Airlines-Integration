@@ -2,12 +2,36 @@
 <repository xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xmlns = "http://www.tibco.com/xmlns/repo/types/2002">
 	<globalVariables>
 		<globalVariable>
+			<name>HTTPHost_Airplane</name>
+			<value>192.168.56.1</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566397602192</modTime>
+		</globalVariable>
+		<globalVariable>
 			<name>HTTPHost_Airport</name>
 			<value>192.168.56.1</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566319670140</modTime>
+			<modTime>1566394771296</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>HTTPHost_Flight</name>
+			<value>192.168.56.1</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566400067436</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>HTTPPort_Airplane</name>
+			<value>8082</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566397602177</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Airport</name>
@@ -16,6 +40,14 @@
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<modTime>1566222550719</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>HTTPPort_Flight</name>
+			<value>8083</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566400067448</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>JDBCDBName</name>

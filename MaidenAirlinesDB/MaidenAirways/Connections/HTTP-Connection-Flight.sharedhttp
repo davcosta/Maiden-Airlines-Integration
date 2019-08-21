@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ns0:httpSharedResource xmlns:ns0="www.tibco.com/shared/HTTPConnection">
     <config>
-        <Host>%%Config_MaidenAirways/HTTPHost_Airport%%</Host>
+        <Host>%%Config_MaidenAirways/HTTPHost_Flight%%</Host>
         <serverType>HttpComponent</serverType>
-        <Port>%%Config_MaidenAirways/HTTPPort_Airport%%</Port>
+        <Port>%%Config_MaidenAirways/HTTPPort_Flight%%</Port>
         <HttpConnectionProperties>
             <row>
                 <PropertyName>uriEncoding</PropertyName>
