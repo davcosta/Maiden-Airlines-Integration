@@ -8,7 +8,9 @@
         <groups>
             <row isDefault="true" groupName="Default"/>
         </groups>
-        <serviceChange>Wed Aug 21 15:02:09 BST 2019</serviceChange>
+        <serviceChange>Thu Aug 22 17:29:46 BST 2019</serviceChange>
+        <name>ServiceAirport</name>
+        <resourceType>service.definition</resourceType>
         <interfaceImpl>
             <tab>
                 <tabName>PortTypeAirport</tabName>
@@ -61,7 +63,7 @@
                                                             <operation name="InsertAirport">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/PortTypeAirportEndpoint1/InsertAirport</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/Airport/InsertAirport</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                         <inputNamespace/>
@@ -74,45 +76,65 @@
                                                             <operation name="UpdateAirport">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/PortTypeAirportEndpoint1/UpdateAirport</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/Airport/UpdateAirport</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
                                                                     </config>
                                                                 </general>
                                                             </operation>
                                                             <operation name="DeleteAirport">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/PortTypeAirportEndpoint1/DeleteAirport</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/Airport/DeleteAirport</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
                                                                     </config>
                                                                 </general>
                                                             </operation>
                                                             <operation name="GetAllAirports">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/PortTypeAirportEndpoint1/GetAllAirports</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/Airport/GetAllAirports</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
                                                                     </config>
                                                                 </general>
                                                             </operation>
                                                             <operation name="GetAirportBySearchToken">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/PortTypeAirportEndpoint1/GetAirportBySearchToken</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/Airport/GetAirportBySearchToken</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
                                                                     </config>
                                                                 </general>
                                                             </operation>
                                                             <operation name="GetAirportByID">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent//GetAirportByID</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirport.serviceagent/Airport/GetAirportByID</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
                                                                     </config>
                                                                 </general>
                                                             </operation>

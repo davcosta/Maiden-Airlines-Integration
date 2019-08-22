@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" xmlns:tns="http://xmlns.example.com/1566396604474" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" targetNamespace="http://xmlns.example.com/1566396604474">
     <import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" location="../Exported WSDL/WSDLAirport.wsdl"/>
-    <import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" location="../Schemas/Airplane.xsd"/>
+    <import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" location="../Schemas/Airplanes.xsd"/>
     <message name="InInsertAirplane">
         <part name="Airplane" element="ns:Airplane"/>
     </message>

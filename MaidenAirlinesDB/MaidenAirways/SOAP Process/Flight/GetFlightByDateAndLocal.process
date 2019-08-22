@@ -4,7 +4,7 @@
     <pd:name>SOAP Process/Flight/GetFlightByDateAndLocal.process</pd:name>
     <pd:startName>Start</pd:startName>
     <pd:startType wsMsgRef="pfx:InGetFlightByDateAndLocal"/>
-    <pd:startX>150</pd:startX>
+    <pd:startX>151</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
         <pfx:OutGetFlightByDateAndLocal>
@@ -31,7 +31,7 @@
             <processName>/Core Process/Flight/Read Flight By Dates And Location.process</processName>
         </config>
         <pd:inputBindings>
-            <xsl:copy-of select="$Start/pfx:InGetFlightByDateAndLocal/Flight/ns:Flight"/>
+            <ns:Flight/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

@@ -3,27 +3,35 @@
 	<globalVariables>
 		<globalVariable>
 			<name>HTTPHost_Airplane</name>
-			<value>192.168.56.1</value>
+			<value>localhost</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566397602192</modTime>
+			<modTime>1566479628026</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPHost_Airport</name>
-			<value>192.168.56.1</value>
+			<value>localhost</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566394771296</modTime>
+			<modTime>1566479628040</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>HTTPHost_Client</name>
+			<value>localhost</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566487751474</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPHost_Flight</name>
-			<value>192.168.56.1</value>
+			<value>localhost</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566400067436</modTime>
+			<modTime>1566479628053</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Airplane</name>
@@ -40,6 +48,14 @@
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<modTime>1566222550719</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>HTTPPort_Client</name>
+			<value>8084</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566487751482</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Flight</name>

@@ -39,13 +39,13 @@
     <pd:activity name="Call Insert Airport">
         <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
         <pd:resourceType>ae.process.subprocess</pd:resourceType>
-        <pd:x>298</pd:x>
+        <pd:x>297</pd:x>
         <pd:y>70</pd:y>
         <config>
             <processName>/Core Process/Airport/Insert Airport.process</processName>
         </config>
         <pd:inputBindings>
-            <xsl:copy-of select="$Start/pfx:inInsertAirport/Airport/ns:Airport"/>
+            <xsl:copy-of select="$Start/pfx:inInsertAirport/Airport/ns:Airports/ns:Airport"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

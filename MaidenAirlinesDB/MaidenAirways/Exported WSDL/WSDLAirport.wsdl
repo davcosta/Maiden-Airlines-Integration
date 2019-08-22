@@ -59,6 +59,10 @@
             <wsdl:input message="tns:inInsertAirport"/>
             <wsdl:output message="tns:OutInsertAirport"/>
         </wsdl:operation>
+        <wsdl:operation name="GetAirportByID">
+            <wsdl:input message="tns:InGetAirportByID"/>
+            <wsdl:output message="tns:OutGetAirportByID"/>
+        </wsdl:operation>
         <wsdl:operation name="GetAirportBySearchToken">
             <wsdl:input message="tns:InGetAirportBySearchToken"/>
             <wsdl:output message="tns:OutGetAirportBySearchToken"/>
@@ -90,6 +94,15 @@
             </wsdl:input>
             <wsdl:output>
                 <soap:body use="literal" parts="Status"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAirportByID">
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirport.serviceagent//GetAirportByID"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Airport"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Airport"/>
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="GetAirportBySearchToken">
@@ -125,10 +138,16 @@
         <wsdl:part name="Airports" element="ns0:Airports"/>
     </wsdl:message>
     <wsdl:message name="inInsertAirport">
-        <wsdl:part name="Airport" element="ns0:Airport"/>
+        <wsdl:part name="Airport" element="ns0:Airports"/>
     </wsdl:message>
     <wsdl:message name="OutInsertAirport">
         <wsdl:part name="Status" element="ns0:Status"/>
+    </wsdl:message>
+    <wsdl:message name="InGetAirportByID">
+        <wsdl:part name="Airport" element="ns0:Airport"/>
+    </wsdl:message>
+    <wsdl:message name="OutGetAirportByID">
+        <wsdl:part name="Airport" element="ns0:Airport"/>
     </wsdl:message>
     <wsdl:message name="InGetAirportBySearchToken">
         <wsdl:part name="Word" element="ns0:SearchToken"/>

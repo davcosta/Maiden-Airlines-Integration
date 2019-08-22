@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:tns="http://xmlns.example.com/1566221666966" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" xmlns:ns3="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd4" targetNamespace="http://xmlns.example.com/1566221666966">
-    <import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" location="../Schemas/Airplane.xsd"/>
+    <import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" location="../Schemas/Airplanes.xsd"/>
     <import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" location="../Schemas/Airports.xsd"/>
     <message name="inInsertAirport">
-        <part element="ns:Airport" name="Airport"/>
+        <part name="Airport" element="ns:Airports"/>
     </message>
     <message name="OutInsertAirport">
         <part name="Status" element="ns:Status"/>

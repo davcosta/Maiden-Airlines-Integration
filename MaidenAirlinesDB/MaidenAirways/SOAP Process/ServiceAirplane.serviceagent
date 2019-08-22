@@ -8,7 +8,7 @@
         <groups>
             <row isDefault="true" groupName="Default"/>
         </groups>
-        <serviceChange>Wed Aug 21 16:02:55 BST 2019</serviceChange>
+        <serviceChange>Thu Aug 22 17:31:03 BST 2019</serviceChange>
         <name>ServiceAirplane</name>
         <resourceType>service.definition</resourceType>
         <interfaceImpl>
@@ -62,7 +62,7 @@
                                                             <operation name="InsertAirplane">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent/PortTypeAirplaneEndpoint1/InsertAirplane</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/InsertAirplane</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                         <inputNamespace/>
@@ -75,36 +75,52 @@
                                                             <operation name="UpdateAirplane">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent//UpdateAirplane</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/UpdateAirplane</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
                                                                     </config>
                                                                 </general>
                                                             </operation>
                                                             <operation name="DeleteAirplane">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent//DeleteAirplane</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/DeleteAirplane</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
                                                                     </config>
                                                                 </general>
                                                             </operation>
                                                             <operation name="GetAllAirplanes">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent//GetAllAirplanes</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/GetAllAirplanes</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
                                                                     </config>
                                                                 </general>
                                                             </operation>
                                                             <operation name="GetAirportByID">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent//GetAirportByID</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/GetAirportByID</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
+                                                                        <inputNamespace/>
+                                                                        <outputNamespace/>
+                                                                        <faultNamespace/>
+                                                                        <portAddressPrefix/>
                                                                     </config>
                                                                 </general>
                                                             </operation>

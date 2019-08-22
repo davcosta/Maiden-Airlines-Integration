@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd3" xmlns:tns="http://xmlns.example.com/1566403154489" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xmlns.example.com/1566403154489">
-    <import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd3" location="../Schemas/Flight.xsd"/>
+    <import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd3" location="../Schemas/Flights.xsd"/>
     <message name="InInsertFlight">
         <part name="Flight" element="ns:Flight"/>
     </message>

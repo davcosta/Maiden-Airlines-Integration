@@ -1,33 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd5" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" schemaLocation="/Schemas/Airports.xsd"/>
-    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" schemaLocation="/Schemas/Airplanes.xsd"/>
-    <pd:name>Core Process/Airplane/Read All Airplanes.process</pd:name>
+    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd5" schemaLocation="/Schemas/Backoffice.xsd"/>
+    <pd:name>Core Process/Backoffice/Read BackOffice By Username.process</pd:name>
     <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx2:Backoffice"/>
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
-        <pfx2:Airplanes>
-            <xsl:for-each select="$Query-All/resultSet/Record">
-                <pfx2:Airplane>
+        <pfx2:Backoffices>
+            <xsl:for-each select="$Query-By-Username/resultSet/Record">
+                <pfx2:Backoffice>
                     <xsl:attribute name="ID">
                         <xsl:value-of select="id"/>
                     </xsl:attribute>
-                    <xsl:attribute name="Model">
-                        <xsl:value-of select="model"/>
+                    <xsl:attribute name="Name">
+                        <xsl:value-of select="name"/>
                     </xsl:attribute>
-                    <xsl:attribute name="Cargo_Hold_Capacity">
-                        <xsl:value-of select="cargo_hold_capacity"/>
+                    <xsl:attribute name="Username">
+                        <xsl:value-of select="username"/>
                     </xsl:attribute>
-                    <xsl:attribute name="Number_Seats">
-                        <xsl:value-of select="number_seats"/>
+                    <xsl:attribute name="Password">
+                        <xsl:value-of select="password"/>
                     </xsl:attribute>
-                </pfx2:Airplane>
+                    <xsl:attribute name="Id_Role">
+                        <xsl:value-of select="id_role"/>
+                    </xsl:attribute>
+                </pfx2:Backoffice>
             </xsl:for-each>
-        </pfx2:Airplanes>
+        </pfx2:Backoffices>
     </pd:returnBindings>
     <pd:endName>End</pd:endName>
-    <pd:endType ref="pfx2:Airplanes"/>
+    <pd:endType ref="pfx2:Backoffices"/>
     <pd:endX>440</pd:endX>
     <pd:endY>261</pd:endY>
     <pd:errorSchemas/>
@@ -43,7 +47,7 @@
         </Status>
     </pd:processVariables>
     <pd:targetNamespace>http://xmlns.example.com/1565970135118</pd:targetNamespace>
-    <pd:activity name="Query All">
+    <pd:activity name="Query By Username">
         <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
         <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
         <pd:x>287</pd:x>
@@ -54,29 +58,49 @@
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT * FROM Airplane</statement>
-            <Prepared_Param_DataType/>
+            <statement>SELECT * FROM Backoffice WHERE Username = ?</statement>
+            <Prepared_Param_DataType>
+                <parameter>
+                    <parameterName>Username</parameterName>
+                    <dataType>VARCHAR</dataType>
+                </parameter>
+            </Prepared_Param_DataType>
             <oraObjects/>
             <oraTables/>
             <QueryOutputCachedSchemaColumns>id</QueryOutputCachedSchemaColumns>
             <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>model</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaColumns>name</QueryOutputCachedSchemaColumns>
             <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>cargo_hold_capacity</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaColumns>username</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>number_seats</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaColumns>password</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>id_role</QueryOutputCachedSchemaColumns>
             <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
         </config>
         <pd:inputBindings>
-            <jdbcQueryActivityInput/>
+            <jdbcQueryActivityInput>
+                <Username>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx2:Backoffice/@Username)">
+                            <xsl:value-of select="$Start/pfx2:Backoffice/@Username"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </Username>
+            </jdbcQueryActivityInput>
         </pd:inputBindings>
     </pd:activity>
     <pd:activity name="Null">
@@ -89,20 +113,20 @@
     </pd:activity>
     <pd:transition>
         <pd:from>Start</pd:from>
-        <pd:to>Query All</pd:to>
+        <pd:to>Query By Username</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>Query All</pd:from>
+        <pd:from>Query By Username</pd:from>
         <pd:to>End</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>Query All</pd:from>
+        <pd:from>Query By Username</pd:from>
         <pd:to>Null</pd:to>
         <pd:xpathDescription>Error</pd:xpathDescription>
         <pd:lineType>Default</pd:lineType>

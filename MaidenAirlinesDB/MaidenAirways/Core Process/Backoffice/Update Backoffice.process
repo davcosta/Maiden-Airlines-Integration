@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd5" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" schemaLocation="/Schemas/Airports.xsd"/>
-    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" schemaLocation="/Schemas/Airplanes.xsd"/>
-    <pd:name>Core Process/Airplane/Update Airplane.process</pd:name>
+    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd5" schemaLocation="/Schemas/Backoffice.xsd"/>
+    <pd:name>Core Process/Backoffice/Update Backoffice.process</pd:name>
     <pd:startName>Start</pd:startName>
-    <pd:startType ref="pfx2:Airplane"/>
-    <pd:startX>149</pd:startX>
-    <pd:startY>63</pd:startY>
+    <pd:startType ref="pfx2:Backoffice"/>
+    <pd:startX>150</pd:startX>
+    <pd:startY>64</pd:startY>
     <pd:returnBindings>
         <Status>
             <xsl:choose>
@@ -37,7 +37,7 @@
     <pd:endY>255</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables>
-        <AirplaneData ref="pfx2:Airplane"/>
+        <BackofficeData ref="pfx2:Backoffice"/>
     </pd:processVariables>
     <pd:targetNamespace>http://xmlns.example.com/1565970135118</pd:targetNamespace>
     <pd:activity name="Query ID">
@@ -51,7 +51,7 @@
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT * FROM Airplane WHERE ID = ?</statement>
+            <statement>SELECT * FROM Backoffice WHERE ID = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
                     <parameterName>ID</parameterName>
@@ -64,15 +64,19 @@
             <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>model</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaColumns>name</QueryOutputCachedSchemaColumns>
             <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>cargo_hold_capacity</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaColumns>username</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>number_seats</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaColumns>password</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>id_role</QueryOutputCachedSchemaColumns>
             <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
@@ -81,8 +85,8 @@
             <jdbcQueryActivityInput>
                 <ID>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx2:Airplane/@ID)">
-                            <xsl:value-of select="$Start/pfx2:Airplane/@ID"/>
+                        <xsl:when test="exists($Start/pfx2:Backoffice/@ID)">
+                            <xsl:value-of select="$Start/pfx2:Backoffice/@ID"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
@@ -102,22 +106,26 @@
             <commit>false</commit>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>UPDATE  Airplane SET  Model = ?, Cargo_Hold_Capacity = ?, Number_Seats = ? WHERE ID = ?</statement>
+            <statement>UPDATE  Backoffice SET Name = ?, Username = ?, Password = ?, Id_Role = ? WHERE ID = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
-                    <parameterName>ID</parameterName>
-                    <dataType>INTEGER</dataType>
-                </parameter>
-                <parameter>
-                    <parameterName>Model</parameterName>
+                    <parameterName>Name</parameterName>
                     <dataType>VARCHAR</dataType>
                 </parameter>
                 <parameter>
-                    <parameterName>Cargo_Hold_Capacity</parameterName>
-                    <dataType>INTEGER</dataType>
+                    <parameterName>Username</parameterName>
+                    <dataType>VARCHAR</dataType>
                 </parameter>
                 <parameter>
-                    <parameterName>Number_Seats</parameterName>
+                    <parameterName>Password</parameterName>
+                    <dataType>VARCHAR</dataType>
+                </parameter>
+                <parameter>
+                    <parameterName>Id_Role</parameterName>
+                    <dataType>VARCHAR</dataType>
+                </parameter>
+                <parameter>
+                    <parameterName>ID</parameterName>
                     <dataType>INTEGER</dataType>
                 </parameter>
             </Prepared_Param_DataType>
@@ -125,109 +133,119 @@
         <pd:inputBindings>
             <jdbcUpdateActivityInput>
                 <xsl:choose>
-                    <xsl:when test="$AirplaneData/pfx2:Airplane/@ID !=&quot;&quot;">
-                        <ID>
+                    <xsl:when test="$Start/pfx2:Backoffice/@Name !=&quot;&quot;">
+                        <Name>
                             <xsl:choose>
-                                <xsl:when test="exists($Start/pfx2:Airplane/@ID)">
-                                    <xsl:value-of select="$Start/pfx2:Airplane/@ID"/>
+                                <xsl:when test="exists($Start/pfx2:Backoffice/@Name)">
+                                    <xsl:value-of select="$Start/pfx2:Backoffice/@Name"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:attribute name="xsi:nil">true</xsl:attribute>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </ID>
+                        </Name>
                     </xsl:when>
                     <xsl:otherwise>
-                        <ID>
+                        <Name>
                             <xsl:choose>
-                                <xsl:when test="exists($AirplaneData/pfx2:Airplane/@ID)">
-                                    <xsl:value-of select="$AirplaneData/pfx2:Airplane/@ID"/>
+                                <xsl:when test="exists($BackofficeData/pfx2:Backoffice/@Name)">
+                                    <xsl:value-of select="$BackofficeData/pfx2:Backoffice/@Name"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:attribute name="xsi:nil">true</xsl:attribute>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </ID>
+                        </Name>
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="$Start/pfx2:Airplane/@Model !=&quot;&quot;">
-                        <Model>
+                    <xsl:when test="$Start/pfx2:Backoffice/@Username !=&quot;&quot;">
+                        <Username>
                             <xsl:choose>
-                                <xsl:when test="exists($Start/pfx2:Airplane/@Model)">
-                                    <xsl:value-of select="$Start/pfx2:Airplane/@Model"/>
+                                <xsl:when test="exists($Start/pfx2:Backoffice/@Username)">
+                                    <xsl:value-of select="$Start/pfx2:Backoffice/@Username"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:attribute name="xsi:nil">true</xsl:attribute>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </Model>
+                        </Username>
                     </xsl:when>
                     <xsl:otherwise>
-                        <Model>
+                        <Username>
                             <xsl:choose>
-                                <xsl:when test="exists($AirplaneData/pfx2:Airplane/@Model)">
-                                    <xsl:value-of select="$AirplaneData/pfx2:Airplane/@Model"/>
+                                <xsl:when test="exists($BackofficeData/pfx2:Backoffice/@Username)">
+                                    <xsl:value-of select="$BackofficeData/pfx2:Backoffice/@Username"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:attribute name="xsi:nil">true</xsl:attribute>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </Model>
+                        </Username>
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="$Start/pfx2:Airplane/@Cargo_Hold_Capacity !=&quot;&quot;">
-                        <Cargo_Hold_Capacity>
+                    <xsl:when test="$Start/pfx2:Backoffice/@Password !=&quot;&quot;">
+                        <Password>
                             <xsl:choose>
-                                <xsl:when test="exists($Start/pfx2:Airplane/@Cargo_Hold_Capacity)">
-                                    <xsl:value-of select="$Start/pfx2:Airplane/@Cargo_Hold_Capacity"/>
+                                <xsl:when test="exists($Start/pfx2:Backoffice/@Password)">
+                                    <xsl:value-of select="$Start/pfx2:Backoffice/@Password"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:attribute name="xsi:nil">true</xsl:attribute>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </Cargo_Hold_Capacity>
+                        </Password>
                     </xsl:when>
                     <xsl:otherwise>
-                        <Cargo_Hold_Capacity>
+                        <Password>
                             <xsl:choose>
-                                <xsl:when test="exists($AirplaneData/pfx2:Airplane/@Cargo_Hold_Capacity)">
-                                    <xsl:value-of select="$AirplaneData/pfx2:Airplane/@Cargo_Hold_Capacity"/>
+                                <xsl:when test="exists($BackofficeData/pfx2:Backoffice/@Password)">
+                                    <xsl:value-of select="$BackofficeData/pfx2:Backoffice/@Password"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:attribute name="xsi:nil">true</xsl:attribute>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </Cargo_Hold_Capacity>
+                        </Password>
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="$Start/pfx2:Airplane/@Number_Seats !=&quot;&quot;">
-                        <Number_Seats>
+                    <xsl:when test="$Start/pfx2:Backoffice/@Id_Role > 0">
+                        <Id_Role>
                             <xsl:choose>
-                                <xsl:when test="exists($Start/pfx2:Airplane/@Number_Seats)">
-                                    <xsl:value-of select="$Start/pfx2:Airplane/@Number_Seats"/>
+                                <xsl:when test="exists($Start/pfx2:Backoffice/@Id_Role)">
+                                    <xsl:value-of select="$Start/pfx2:Backoffice/@Id_Role"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:attribute name="xsi:nil">true</xsl:attribute>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </Number_Seats>
+                        </Id_Role>
                     </xsl:when>
                     <xsl:otherwise>
-                        <Number_Seats>
+                        <Id_Role>
                             <xsl:choose>
-                                <xsl:when test="exists($AirplaneData/pfx2:Airplane/@Number_Seats)">
-                                    <xsl:value-of select="$AirplaneData/pfx2:Airplane/@Number_Seats"/>
+                                <xsl:when test="exists($BackofficeData/pfx2:Backoffice/@Id_Role)">
+                                    <xsl:value-of select="$BackofficeData/pfx2:Backoffice/@Id_Role"/>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <xsl:attribute name="xsi:nil">true</xsl:attribute>
                                 </xsl:otherwise>
                             </xsl:choose>
-                        </Number_Seats>
+                        </Id_Role>
                     </xsl:otherwise>
                 </xsl:choose>
+                <ID>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx2:Backoffice/@ID)">
+                            <xsl:value-of select="$Start/pfx2:Backoffice/@ID"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </ID>
             </jdbcUpdateActivityInput>
         </pd:inputBindings>
     </pd:activity>
@@ -245,31 +263,28 @@
         <pd:x>534</pd:x>
         <pd:y>74</pd:y>
         <config>
-            <variableName>AirplaneData</variableName>
+            <variableName>BackofficeData</variableName>
         </config>
         <pd:inputBindings>
-            <pfx2:Airplane>
-                <xsl:if test="$Query-ID/resultSet/Record[1]/id">
+            <xsl:for-each select="$Query-ID/resultSet/Record[1]">
+                <pfx2:Backoffice>
                     <xsl:attribute name="ID">
-                        <xsl:value-of select="$Query-ID/resultSet/Record[1]/id"/>
+                        <xsl:value-of select="id"/>
                     </xsl:attribute>
-                </xsl:if>
-                <xsl:if test="$Query-ID/resultSet/Record[1]/model">
-                    <xsl:attribute name="Model">
-                        <xsl:value-of select="$Query-ID/resultSet/Record[1]/model"/>
+                    <xsl:attribute name="Name">
+                        <xsl:value-of select="name"/>
                     </xsl:attribute>
-                </xsl:if>
-                <xsl:if test="$Query-ID/resultSet/Record[1]/cargo_hold_capacity">
-                    <xsl:attribute name="Cargo_Hold_Capacity">
-                        <xsl:value-of select="$Query-ID/resultSet/Record[1]/cargo_hold_capacity"/>
+                    <xsl:attribute name="Username">
+                        <xsl:value-of select="username"/>
                     </xsl:attribute>
-                </xsl:if>
-                <xsl:if test="$Query-ID/resultSet/Record[1]/number_seats">
-                    <xsl:attribute name="Number_Seats">
-                        <xsl:value-of select="$Query-ID/resultSet/Record[1]/number_seats"/>
+                    <xsl:attribute name="Password">
+                        <xsl:value-of select="password"/>
                     </xsl:attribute>
-                </xsl:if>
-            </pfx2:Airplane>
+                    <xsl:attribute name="Id_Role">
+                        <xsl:value-of select="id_role"/>
+                    </xsl:attribute>
+                </pfx2:Backoffice>
+            </xsl:for-each>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>
