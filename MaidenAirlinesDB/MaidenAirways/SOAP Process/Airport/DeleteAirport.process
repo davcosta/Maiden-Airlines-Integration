@@ -9,7 +9,13 @@
     <pd:returnBindings>
         <pfx:OutDeleteAirport>
             <Status>
-                <xsl:value-of select="$Call-Delete-Airport/Status/Value"/>
+                <ns:Status>
+                    <ns:Success>
+                        <xsl:attribute name="Value">
+                            <xsl:value-of select="$Call-Delete-Airport/Status/Value"/>
+                        </xsl:attribute>
+                    </ns:Success>
+                </ns:Status>
             </Status>
         </pfx:OutDeleteAirport>
     </pd:returnBindings>
@@ -29,11 +35,7 @@
             <processName>/Core Process/Airport/Delete Airport.process</processName>
         </config>
         <pd:inputBindings>
-            <ns:Airport>
-                <xsl:attribute name="ID">
-                    <xsl:value-of select="$Start/pfx:InDeleteAirport/ID"/>
-                </xsl:attribute>
-            </ns:Airport>
+            <xsl:copy-of select="$Start/pfx:InDeleteAirport/ID/ns:Airports/ns:Airport"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

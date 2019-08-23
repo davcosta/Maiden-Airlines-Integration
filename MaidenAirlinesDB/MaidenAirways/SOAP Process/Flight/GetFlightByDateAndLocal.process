@@ -25,13 +25,13 @@
     <pd:activity name="Call Read Flight By Date And Local">
         <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
         <pd:resourceType>ae.process.subprocess</pd:resourceType>
-        <pd:x>300</pd:x>
-        <pd:y>71</pd:y>
+        <pd:x>299</pd:x>
+        <pd:y>72</pd:y>
         <config>
             <processName>/Core Process/Flight/Read Flight By Dates And Location.process</processName>
         </config>
         <pd:inputBindings>
-            <ns:Flight/>
+            <xsl:copy-of select="$Start/pfx:InGetFlightByDateAndLocal/Flight/ns:Flights/ns:Flight"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

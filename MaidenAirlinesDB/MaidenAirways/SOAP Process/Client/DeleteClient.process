@@ -35,7 +35,7 @@
             <processName>/Core Process/Client/Delete Client.process</processName>
         </config>
         <pd:inputBindings>
-            <xsl:copy-of select="$Start/pfx:InDeleteClient/Client/ns:Client"/>
+            <xsl:copy-of select="$Start/pfx:InDeleteClient/Client/ns:Clients/ns:Client"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

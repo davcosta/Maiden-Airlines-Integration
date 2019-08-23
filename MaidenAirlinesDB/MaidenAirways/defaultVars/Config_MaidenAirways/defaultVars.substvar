@@ -18,6 +18,14 @@
 			<modTime>1566479628040</modTime>
 		</globalVariable>
 		<globalVariable>
+			<name>HTTPHost_Backoffice</name>
+			<value>localhost</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566568525063</modTime>
+		</globalVariable>
+		<globalVariable>
 			<name>HTTPHost_Client</name>
 			<value>localhost</value>
 			<deploymentSettable>true</deploymentSettable>
@@ -32,6 +40,14 @@
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<modTime>1566479628053</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>HTTPHost_Role</name>
+			<value>localhost</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566573772867</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Airplane</name>
@@ -50,6 +66,14 @@
 			<modTime>1566222550719</modTime>
 		</globalVariable>
 		<globalVariable>
+			<name>HTTPPort_Backoffice</name>
+			<value>8085</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566568525073</modTime>
+		</globalVariable>
+		<globalVariable>
 			<name>HTTPPort_Client</name>
 			<value>8084</value>
 			<deploymentSettable>true</deploymentSettable>
@@ -64,6 +88,14 @@
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<modTime>1566400067448</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>HTTPPort_Role</name>
+			<value>8086</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566573772883</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>JDBCDBName</name>

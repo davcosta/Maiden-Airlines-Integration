@@ -3,19 +3,19 @@
     <import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" location="../Exported WSDL/WSDLAirport.wsdl"/>
     <import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" location="../Schemas/Airplanes.xsd"/>
     <message name="InInsertAirplane">
-        <part name="Airplane" element="ns:Airplane"/>
+        <part name="Airplane" element="ns:Airplanes"/>
     </message>
     <message name="OutInsertAirplane">
         <part name="Status" element="ns:Status"/>
     </message>
     <message name="InUpdateAirplane">
-        <part name="Airplane" element="ns:Airplane"/>
+        <part name="Airplane" element="ns:Airplanes"/>
     </message>
     <message name="OutUpdateAirplane">
         <part name="Status" element="ns:Status"/>
     </message>
     <message name="InDeleteAirplane">
-        <part name="Airplane" element="ns:Airplane"/>
+        <part name="Airplane" element="ns:Airplanes"/>
     </message>
     <message name="OutDeleteAirplane">
         <part name="Status" element="ns:Status"/>
@@ -25,7 +25,7 @@
         <part name="Airplanes" element="ns:Airplanes"/>
     </message>
     <message name="InGetAirplaneByID">
-        <part name="Airplane" element="ns:Airplane"/>
+        <part name="Airplane" element="ns:Airplanes"/>
     </message>
     <message name="OutGetAirplaneByID">
         <part name="Airplane" element="ns:Airplanes"/>

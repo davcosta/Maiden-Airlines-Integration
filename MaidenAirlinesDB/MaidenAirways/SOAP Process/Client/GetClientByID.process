@@ -29,7 +29,7 @@
             <processName>/Core Process/Client/Read Client By ID.process</processName>
         </config>
         <pd:inputBindings>
-            <xsl:copy-of select="$Start/pfx:InGetClientByID/Client/ns:Client"/>
+            <xsl:copy-of select="$Start/pfx:InGetClientByID/Client/ns:Clients/ns:Client"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

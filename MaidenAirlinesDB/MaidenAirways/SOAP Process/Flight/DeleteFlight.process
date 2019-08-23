@@ -35,9 +35,7 @@
             <processName>/Core Process/Flight/Delete Flight.process</processName>
         </config>
         <pd:inputBindings>
-            <xsl:for-each select="$Start/pfx:InDeleteFlight/Flight">
-                <ns2:Flight/>
-            </xsl:for-each>
+            <xsl:copy-of select="$Start/pfx:InDeleteFlight/Flight/ns2:Flights/ns2:Flight"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

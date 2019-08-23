@@ -7,24 +7,46 @@
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
-        <pfx2:Airplanes>
-            <xsl:for-each select="$Query-All/resultSet/Record">
-                <pfx2:Airplane>
-                    <xsl:attribute name="ID">
-                        <xsl:value-of select="id"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Model">
-                        <xsl:value-of select="model"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Cargo_Hold_Capacity">
-                        <xsl:value-of select="cargo_hold_capacity"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Number_Seats">
-                        <xsl:value-of select="number_seats"/>
-                    </xsl:attribute>
-                </pfx2:Airplane>
-            </xsl:for-each>
-        </pfx2:Airplanes>
+        <xsl:choose>
+            <xsl:when test="$Query-All/resultSet/Record">
+                <pfx2:Airplanes>
+                    <xsl:for-each select="$Query-All/resultSet/Record">
+                        <pfx2:Airplane>
+                            <xsl:attribute name="ID">
+                                <xsl:value-of select="id"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Model">
+                                <xsl:value-of select="model"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Cargo_Hold_Capacity">
+                                <xsl:value-of select="cargo_hold_capacity"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Number_Seats">
+                                <xsl:value-of select="number_seats"/>
+                            </xsl:attribute>
+                        </pfx2:Airplane>
+                    </xsl:for-each>
+                </pfx2:Airplanes>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx2:Airplanes>
+                    <pfx2:Airplane>
+                        <xsl:attribute name="ID">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Model">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Cargo_Hold_Capacity">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Number_Seats">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                    </pfx2:Airplane>
+                </pfx2:Airplanes>
+            </xsl:otherwise>
+        </xsl:choose>
     </pd:returnBindings>
     <pd:endName>End</pd:endName>
     <pd:endType ref="pfx2:Airplanes"/>

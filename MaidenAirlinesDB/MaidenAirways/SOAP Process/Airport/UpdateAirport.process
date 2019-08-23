@@ -9,7 +9,13 @@
     <pd:returnBindings>
         <pfx:OutUpdateAirport>
             <Status>
-                <xsl:value-of select="$Call-Update-Airport/Status/Value"/>
+                <ns:Status>
+                    <ns:Success>
+                        <xsl:attribute name="Value">
+                            <xsl:value-of select="$Call-Update-Airport/Status/Value"/>
+                        </xsl:attribute>
+                    </ns:Success>
+                </ns:Status>
             </Status>
         </pfx:OutUpdateAirport>
     </pd:returnBindings>
@@ -29,7 +35,7 @@
             <processName>/Core Process/Airport/Update Airport.process</processName>
         </config>
         <pd:inputBindings>
-            <xsl:copy-of select="$Start/pfx:InUpdateAirport/Airport/ns:Airport"/>
+            <xsl:copy-of select="$Start/pfx:InUpdateAirport/Airport/ns:Airports/ns:Airport"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

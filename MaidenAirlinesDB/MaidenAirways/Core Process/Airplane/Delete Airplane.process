@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" schemaLocation="/Schemas/Airports.xsd"/>
+    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd2" schemaLocation="/Schemas/Airplanes.xsd"/>
     <pd:name>Core Process/Airplane/Delete Airplane.process</pd:name>
     <pd:startName>Start</pd:startName>
-    <pd:startType ref="pfx:Airport"/>
+    <pd:startType ref="pfx2:Airplane"/>
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
@@ -78,8 +79,8 @@
             <jdbcQueryActivityInput>
                 <ID>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx:Airport/@ID)">
-                            <xsl:value-of select="$Start/pfx:Airport/@ID"/>
+                        <xsl:when test="exists($Start/pfx2:Airplane/@ID)">
+                            <xsl:value-of select="$Start/pfx2:Airplane/@ID"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
@@ -111,8 +112,8 @@
             <jdbcUpdateActivityInput>
                 <ID>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx:Airport/@ID)">
-                            <xsl:value-of select="$Start/pfx:Airport/@ID"/>
+                        <xsl:when test="exists($Start/pfx2:Airplane/@ID)">
+                            <xsl:value-of select="$Start/pfx2:Airplane/@ID"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>

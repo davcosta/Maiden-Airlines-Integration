@@ -7,27 +7,52 @@
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
-        <pfx:Airports>
-            <xsl:for-each select="$Query-By-ID/resultSet/Record">
-                <pfx:Airport>
-                    <xsl:attribute name="ID">
-                        <xsl:value-of select="id"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Name">
-                        <xsl:value-of select="name"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="City">
-                        <xsl:value-of select="city"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Country">
-                        <xsl:value-of select="country"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Short_Name">
-                        <xsl:value-of select="short_name"/>
-                    </xsl:attribute>
-                </pfx:Airport>
-            </xsl:for-each>
-        </pfx:Airports>
+        <xsl:choose>
+            <xsl:when test="$Query-By-ID/resultSet/Record">
+                <pfx:Airports>
+                    <xsl:for-each select="$Query-By-ID/resultSet/Record">
+                        <pfx:Airport>
+                            <xsl:attribute name="ID">
+                                <xsl:value-of select="id"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Name">
+                                <xsl:value-of select="name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="City">
+                                <xsl:value-of select="city"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Country">
+                                <xsl:value-of select="country"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Short_Name">
+                                <xsl:value-of select="short_name"/>
+                            </xsl:attribute>
+                        </pfx:Airport>
+                    </xsl:for-each>
+                </pfx:Airports>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx:Airports>
+                    <pfx:Airport>
+                        <xsl:attribute name="ID">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Name">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="City">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Country">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Short_Name">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                    </pfx:Airport>
+                </pfx:Airports>
+            </xsl:otherwise>
+        </xsl:choose>
     </pd:returnBindings>
     <pd:endName>End</pd:endName>
     <pd:endType ref="pfx:Airports"/>

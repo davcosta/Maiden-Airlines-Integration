@@ -9,16 +9,16 @@
         <part name="Status" element="ns:Status"/>
     </message>
     <message name="InUpdateAirport">
-        <part element="ns:Airport" name="Airport"/>
+        <part name="Airport" element="ns:Airports"/>
     </message>
     <message name="OutUpdateAirport">
-        <part name="Status" type="xsd:string"/>
+        <part name="Status" element="ns:Status"/>
     </message>
     <message name="InDeleteAirport">
-        <part name="ID" type="xsd:string"/>
+        <part name="ID" element="ns:Airports"/>
     </message>
     <message name="OutDeleteAirport">
-        <part name="Status" type="xsd:string"/>
+        <part name="Status" element="ns:Status"/>
     </message>
     <message name="InGetAllAirports"/>
     <message name="OutGetAllAirports">
@@ -31,7 +31,7 @@
         <part element="ns:Airports" name="part1"/>
     </message>
     <message name="InGetAirportByID">
-        <part name="Airport" element="ns:Airport"/>
+        <part name="Airport" element="ns:Airports"/>
     </message>
     <message name="OutGetAirportByID">
         <part name="Airport" element="ns:Airport"/>

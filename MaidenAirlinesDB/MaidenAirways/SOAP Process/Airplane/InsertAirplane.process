@@ -35,7 +35,7 @@
             <processName>/Core Process/Airplane/Insert Airplane.process</processName>
         </config>
         <pd:inputBindings>
-            <xsl:copy-of select="$Start/pfx:InInsertAirplane/Airplane/ns:Airplane"/>
+            <xsl:copy-of select="$Start/pfx:InInsertAirplane/Airplane/ns:Airplanes/ns:Airplane"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

@@ -7,50 +7,99 @@
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
-        <pfx2:Clients>
-            <xsl:for-each select="$Query-All/resultSet/Record">
-                <pfx2:Client>
-                    <xsl:attribute name="ID">
-                        <xsl:value-of select="id"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="First_Name">
-                        <xsl:value-of select="first_name"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Last_Name">
-                        <xsl:value-of select="last_name"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Date_Of_Birth">
-                        <xsl:value-of select="date_of_birth"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Gender">
-                        <xsl:value-of select="gender"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Address">
-                        <xsl:value-of select="address"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Contact_Number">
-                        <xsl:value-of select="contact_number"/>
-                    </xsl:attribute>
-                    <xsl:if test="photo">
-                        <xsl:attribute name="Photo">
-                            <xsl:value-of select="photo"/>
+        <xsl:choose>
+            <xsl:when test="$Query-All/resultSet/Record">
+                <pfx2:Clients>
+                    <xsl:for-each select="$Query-All/resultSet/Record">
+                        <pfx2:Client>
+                            <xsl:attribute name="ID">
+                                <xsl:value-of select="id"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="First_Name">
+                                <xsl:value-of select="first_name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Last_Name">
+                                <xsl:value-of select="last_name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Date_Of_Birth">
+                                <xsl:value-of select="date_of_birth"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Gender">
+                                <xsl:value-of select="gender"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Address">
+                                <xsl:value-of select="address"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Contact_Number">
+                                <xsl:value-of select="contact_number"/>
+                            </xsl:attribute>
+                            <xsl:if test="photo">
+                                <xsl:attribute name="Photo">
+                                    <xsl:value-of select="photo"/>
+                                </xsl:attribute>
+                            </xsl:if>
+                            <xsl:attribute name="Number_Miles">
+                                <xsl:value-of select="number_miles"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Id_Type_Client">
+                                <xsl:value-of select="id_type_client"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Email">
+                                <xsl:value-of select="email"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Password">
+                                <xsl:value-of select="password"/>
+                            </xsl:attribute>
+                        </pfx2:Client>
+                    </xsl:for-each>
+                </pfx2:Clients>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx2:Clients>
+                    <pfx2:Client>
+                        <xsl:attribute name="ID">
+                            <xsl:value-of select="&quot;&quot;"/>
                         </xsl:attribute>
-                    </xsl:if>
-                    <xsl:attribute name="Number_Miles">
-                        <xsl:value-of select="number_miles"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Id_Type_Client">
-                        <xsl:value-of select="id_type_client"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Email">
-                        <xsl:value-of select="email"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Password">
-                        <xsl:value-of select="password"/>
-                    </xsl:attribute>
-                </pfx2:Client>
-            </xsl:for-each>
-        </pfx2:Clients>
+                        <xsl:attribute name="First_Name">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Last_Name">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Date_Of_Birth">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Gender">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Id_Number">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Address">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Contact_Number">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Photo">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Number_Miles">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Id_Type_Client">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Email">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Password">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                    </pfx2:Client>
+                </pfx2:Clients>
+            </xsl:otherwise>
+        </xsl:choose>
     </pd:returnBindings>
     <pd:endName>End</pd:endName>
     <pd:endType ref="pfx2:Clients"/>

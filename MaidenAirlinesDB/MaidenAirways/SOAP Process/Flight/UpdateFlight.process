@@ -35,9 +35,7 @@
             <processName>/Core Process/Flight/Update Flight.process</processName>
         </config>
         <pd:inputBindings>
-            <xsl:for-each select="$Start/pfx:InUpdateFlight/Flight">
-                <ns:Flight/>
-            </xsl:for-each>
+            <xsl:copy-of select="$Start/pfx:InUpdateFlight/Flight/ns:Flights/ns:Flight"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

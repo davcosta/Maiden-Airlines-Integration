@@ -8,43 +8,80 @@
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
-        <pfx2:Flights>
-            <xsl:for-each select="$Query-By-Name-City-or-Country/resultSet/Record">
-                <pfx2:Flight>
-                    <xsl:attribute name="ID">
-                        <xsl:value-of select="id"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Departure_Date">
-                        <xsl:value-of select="departure_date"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Arrival_Date">
-                        <xsl:value-of select="arrival_date"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Departure_Airport">
-                        <xsl:value-of select="departure_airport"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Arrival_Airport">
-                        <xsl:value-of select="arrival_airport"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="ID_Airplane">
-                        <xsl:value-of select="id_airplane"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Flight_Number">
-                        <xsl:value-of select="flight_number"/>
-                    </xsl:attribute>
-                    <xsl:if test="gate">
+        <xsl:choose>
+            <xsl:when test="$Query-By-Name-City-or-Country/resultSet/Record">
+                <pfx2:Flights>
+                    <xsl:for-each select="$Query-By-Name-City-or-Country/resultSet/Record">
+                        <pfx2:Flight>
+                            <xsl:attribute name="ID">
+                                <xsl:value-of select="id"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Departure_Date">
+                                <xsl:value-of select="departure_date"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Arrival_Date">
+                                <xsl:value-of select="arrival_date"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Departure_Airport">
+                                <xsl:value-of select="departure_airport"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Arrival_Airport">
+                                <xsl:value-of select="arrival_airport"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="ID_Airplane">
+                                <xsl:value-of select="id_airplane"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Flight_Number">
+                                <xsl:value-of select="flight_number"/>
+                            </xsl:attribute>
+                            <xsl:if test="gate">
+                                <xsl:attribute name="Gate">
+                                    <xsl:value-of select="gate"/>
+                                </xsl:attribute>
+                            </xsl:if>
+                            <xsl:if test="status">
+                                <xsl:attribute name="Status">
+                                    <xsl:value-of select="status"/>
+                                </xsl:attribute>
+                            </xsl:if>
+                        </pfx2:Flight>
+                    </xsl:for-each>
+                </pfx2:Flights>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx2:Flights>
+                    <pfx2:Flight>
+                        <xsl:attribute name="ID">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Departure_Date">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Arrival_Date">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Departure_Airport">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Arrival_Airport">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="ID_Airplane">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Flight_Number">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
                         <xsl:attribute name="Gate">
-                            <xsl:value-of select="gate"/>
+                            <xsl:value-of select="&quot;&quot;"/>
                         </xsl:attribute>
-                    </xsl:if>
-                    <xsl:if test="status">
                         <xsl:attribute name="Status">
-                            <xsl:value-of select="status"/>
+                            <xsl:value-of select="&quot;&quot;"/>
                         </xsl:attribute>
-                    </xsl:if>
-                </pfx2:Flight>
-            </xsl:for-each>
-        </pfx2:Flights>
+                    </pfx2:Flight>
+                </pfx2:Flights>
+            </xsl:otherwise>
+        </xsl:choose>
     </pd:returnBindings>
     <pd:endName>End</pd:endName>
     <pd:endType ref="pfx2:Flights"/>

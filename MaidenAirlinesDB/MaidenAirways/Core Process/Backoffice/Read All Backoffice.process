@@ -7,27 +7,52 @@
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
-        <pfx2:Backoffices>
-            <xsl:for-each select="$Query-All/resultSet/Record">
-                <pfx2:Backoffice>
-                    <xsl:attribute name="ID">
-                        <xsl:value-of select="id"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Name">
-                        <xsl:value-of select="name"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Username">
-                        <xsl:value-of select="username"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Password">
-                        <xsl:value-of select="password"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Id_Role">
-                        <xsl:value-of select="id_role"/>
-                    </xsl:attribute>
-                </pfx2:Backoffice>
-            </xsl:for-each>
-        </pfx2:Backoffices>
+        <xsl:choose>
+            <xsl:when test="$Query-All/resultSet/Record">
+                <pfx2:Backoffices>
+                    <xsl:for-each select="$Query-All/resultSet/Record">
+                        <pfx2:Backoffice>
+                            <xsl:attribute name="ID">
+                                <xsl:value-of select="id"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Name">
+                                <xsl:value-of select="name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Username">
+                                <xsl:value-of select="username"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Password">
+                                <xsl:value-of select="password"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Id_Role">
+                                <xsl:value-of select="id_role"/>
+                            </xsl:attribute>
+                        </pfx2:Backoffice>
+                    </xsl:for-each>
+                </pfx2:Backoffices>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx2:Backoffices>
+                    <pfx2:Backoffice>
+                        <xsl:attribute name="ID">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Name">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Username">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Password">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Id_Role">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                    </pfx2:Backoffice>
+                </pfx2:Backoffices>
+            </xsl:otherwise>
+        </xsl:choose>
     </pd:returnBindings>
     <pd:endName>End</pd:endName>
     <pd:endType ref="pfx2:Backoffices"/>
