@@ -14,7 +14,7 @@ CREATE TABLE `airport` (
   `short_name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `airport_un` (`short_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 CREATE TABLE `booking_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -23,7 +23,8 @@ CREATE TABLE `booking_type` (
   `change_date` tinyint(1) NOT NULL,
   `cancel_booking` tinyint(1) NOT NULL,
   `cost` float NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `booking_type_un` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `client_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -48,9 +49,8 @@ CREATE TABLE `passenger` (
 CREATE TABLE `role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `city` varchar(100) NOT NULL,
-  `country` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `role_un` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 CREATE TABLE `backoffice` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -59,6 +59,7 @@ CREATE TABLE `backoffice` (
   `password` varchar(100) NOT NULL,
   `id_role` int(11) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `backoffice_un` (`username`),
   KEY `backoffice_fk` (`id_role`),
   CONSTRAINT `backoffice_fk` FOREIGN KEY (`id_role`) REFERENCES `role` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -76,7 +77,7 @@ CREATE TABLE `client` (
   `last_name` varchar(100) NOT NULL,
   `date_of_birth` date NOT NULL,
   `gender` varchar(100) NOT NULL,
-  `vat` int(11) NOT NULL,
+  `Id_Number` int(11) NOT NULL,
   `address` varchar(100) NOT NULL,
   `contact_number` int(11) NOT NULL,
   `photo` varchar(100) DEFAULT NULL,
@@ -85,6 +86,7 @@ CREATE TABLE `client` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `client_un` (`Id_Number`),
   KEY `client_fk` (`id_type_client`),
   CONSTRAINT `client_fk` FOREIGN KEY (`id_type_client`) REFERENCES `client_type` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -96,6 +98,8 @@ CREATE TABLE `flight` (
   `arrival_airport` int(11) NOT NULL,
   `id_airplane` int(11) NOT NULL,
   `flight_number` varchar(100) NOT NULL,
+  `gate` int(11) DEFAULT NULL,
+  `status` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `flight_un` (`departure_date`,`departure_airport`,`arrival_airport`,`flight_number`),
   KEY `flight_fk_1` (`departure_airport`),
