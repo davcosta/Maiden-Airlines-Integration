@@ -35,9 +35,7 @@
             <processName>/Core Process/Client/Insert Client.process</processName>
         </config>
         <pd:inputBindings>
-            <xsl:for-each select="$Start/pfx:InInsertClient/Client">
-                <ns:Client/>
-            </xsl:for-each>
+            <xsl:copy-of select="$Start/pfx:InInsertClient/Client/ns:Clients/ns:Client"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>

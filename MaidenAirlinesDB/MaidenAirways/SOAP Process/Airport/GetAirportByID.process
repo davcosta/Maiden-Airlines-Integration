@@ -9,7 +9,9 @@
     <pd:returnBindings>
         <pfx:OutGetAirportByID>
             <Airport>
-                <xsl:copy-of select="$Call-Read-Airport-By-ID/ns:Airports/ns:Airport"/>
+                <ns:Airports>
+                    <xsl:copy-of select="$Call-Read-Airport-By-ID/ns:Airports/ns:Airport"/>
+                </ns:Airports>
             </Airport>
         </pfx:OutGetAirportByID>
     </pd:returnBindings>

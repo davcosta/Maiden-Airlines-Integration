@@ -105,10 +105,6 @@
             <statement>UPDATE  Airplane SET  Model = ?, Cargo_Hold_Capacity = ?, Number_Seats = ? WHERE ID = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
-                    <parameterName>ID</parameterName>
-                    <dataType>INTEGER</dataType>
-                </parameter>
-                <parameter>
                     <parameterName>Model</parameterName>
                     <dataType>VARCHAR</dataType>
                 </parameter>
@@ -120,36 +116,14 @@
                     <parameterName>Number_Seats</parameterName>
                     <dataType>INTEGER</dataType>
                 </parameter>
+                <parameter>
+                    <parameterName>ID</parameterName>
+                    <dataType>INTEGER</dataType>
+                </parameter>
             </Prepared_Param_DataType>
         </config>
         <pd:inputBindings>
             <jdbcUpdateActivityInput>
-                <xsl:choose>
-                    <xsl:when test="$AirplaneData/pfx2:Airplane/@ID !=&quot;&quot;">
-                        <ID>
-                            <xsl:choose>
-                                <xsl:when test="exists($Start/pfx2:Airplane/@ID)">
-                                    <xsl:value-of select="$Start/pfx2:Airplane/@ID"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:attribute name="xsi:nil">true</xsl:attribute>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </ID>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <ID>
-                            <xsl:choose>
-                                <xsl:when test="exists($AirplaneData/pfx2:Airplane/@ID)">
-                                    <xsl:value-of select="$AirplaneData/pfx2:Airplane/@ID"/>
-                                </xsl:when>
-                                <xsl:otherwise>
-                                    <xsl:attribute name="xsi:nil">true</xsl:attribute>
-                                </xsl:otherwise>
-                            </xsl:choose>
-                        </ID>
-                    </xsl:otherwise>
-                </xsl:choose>
                 <xsl:choose>
                     <xsl:when test="$Start/pfx2:Airplane/@Model !=&quot;&quot;">
                         <Model>
@@ -177,7 +151,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="$Start/pfx2:Airplane/@Cargo_Hold_Capacity !=&quot;&quot;">
+                    <xsl:when test="$Start/pfx2:Airplane/@Cargo_Hold_Capacity > 0">
                         <Cargo_Hold_Capacity>
                             <xsl:choose>
                                 <xsl:when test="exists($Start/pfx2:Airplane/@Cargo_Hold_Capacity)">
@@ -203,7 +177,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="$Start/pfx2:Airplane/@Number_Seats !=&quot;&quot;">
+                    <xsl:when test="$Start/pfx2:Airplane/@Number_Seats > 0">
                         <Number_Seats>
                             <xsl:choose>
                                 <xsl:when test="exists($Start/pfx2:Airplane/@Number_Seats)">
@@ -228,6 +202,16 @@
                         </Number_Seats>
                     </xsl:otherwise>
                 </xsl:choose>
+                <ID>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx2:Airplane/@ID)">
+                            <xsl:value-of select="$Start/pfx2:Airplane/@ID"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </ID>
             </jdbcUpdateActivityInput>
         </pd:inputBindings>
     </pd:activity>

@@ -8,7 +8,9 @@
         <groups>
             <row isDefault="true" groupName="Default"/>
         </groups>
-        <serviceChange>Fri Aug 23 16:44:34 BST 2019</serviceChange>
+        <serviceChange>Mon Aug 26 17:29:50 BST 2019</serviceChange>
+        <name>ServiceRole</name>
+        <resourceType>service.definition</resourceType>
         <interfaceImpl>
             <tab>
                 <tabName>PortTypeRole</tabName>
@@ -25,7 +27,7 @@
                                     <row opName="UpdateRole" opImpl="/SOAP Process/Role/UpdateRole.process"/>
                                     <row opName="DeleteRole" opImpl="/SOAP Process/Role/DeleteRole.process"/>
                                     <row opName="GetAllRoles" opImpl="/SOAP Process/Role/GetAllRoles.process"/>
-                                    <row opName="GetRoleByID" opImpl="/SOAP Process/Role/GetRoleByID.process"/>
+                                    <row opName="GetRoleByName" opImpl=""/>
                                 </operations>
                             </config>
                         </tab>
@@ -93,10 +95,10 @@
                                                                     </config>
                                                                 </general>
                                                             </operation>
-                                                            <operation name="GetRoleByID">
+                                                            <operation name="GetRoleByName">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceRole.serviceagent//GetRoleByID</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceRole.serviceagent//GetRoleByName</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                     </config>

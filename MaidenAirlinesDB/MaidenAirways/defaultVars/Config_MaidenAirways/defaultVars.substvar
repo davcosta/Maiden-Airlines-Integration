@@ -51,51 +51,51 @@
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Airplane</name>
-			<value>8082</value>
+			<value>9080</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566397602177</modTime>
+			<modTime>1566829218862</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Airport</name>
-			<value>8081</value>
+			<value>9081</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566222550719</modTime>
+			<modTime>1566829218881</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Backoffice</name>
-			<value>8085</value>
+			<value>9082</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566568525073</modTime>
+			<modTime>1566829218898</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Client</name>
-			<value>8084</value>
+			<value>9083</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566487751482</modTime>
+			<modTime>1566829218914</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Flight</name>
-			<value>8083</value>
+			<value>9084</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566400067448</modTime>
+			<modTime>1566829218935</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Role</name>
-			<value>8086</value>
+			<value>9085</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566573772883</modTime>
+			<modTime>1566829218954</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>JDBCDBName</name>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd5" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd7" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" schemaLocation="/Schemas/Airports.xsd"/>
-    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd5" schemaLocation="/Schemas/Backoffice.xsd"/>
-    <pd:name>Core Process/Backoffice/Insert Backoffice.process</pd:name>
+    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd7" schemaLocation="/Schemas/Booking_Type.xsd"/>
+    <pd:name>Core Process/Booking_Role/Insert Booking_Type.process</pd:name>
     <pd:startName>Start</pd:startName>
-    <pd:startType ref="pfx2:Backoffice"/>
+    <pd:startType ref="pfx2:Booking_Type"/>
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
@@ -48,7 +48,7 @@
         </Status>
     </pd:processVariables>
     <pd:targetNamespace>http://xmlns.example.com/1565970135118</pd:targetNamespace>
-    <pd:activity name="Query Username">
+    <pd:activity name="Query Name">
         <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
         <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
         <pd:x>287</pd:x>
@@ -59,7 +59,13 @@
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT * FROM Backoffice WHERE Username = ?</statement>
+            <statement>SELECT * FROM Booking_Type WHERE Name = ?</statement>
+            <Prepared_Param_DataType>
+                <parameter>
+                    <parameterName>Name</parameterName>
+                    <dataType>VARCHAR</dataType>
+                </parameter>
+            </Prepared_Param_DataType>
             <oraObjects/>
             <oraTables/>
             <QueryOutputCachedSchemaColumns>id</QueryOutputCachedSchemaColumns>
@@ -70,37 +76,39 @@
             <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>username</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaColumns>hand_baggage</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>-7</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>TINYINT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>password</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaColumns>checked_baggage</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>-7</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>TINYINT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>id_role</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaColumns>change_date</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>-7</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>TINYINT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <Prepared_Param_DataType>
-                <parameter>
-                    <parameterName>Username</parameterName>
-                    <dataType>VARCHAR</dataType>
-                </parameter>
-            </Prepared_Param_DataType>
+            <QueryOutputCachedSchemaColumns>cancel_booking</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>-7</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>TINYINT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>cost</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>7</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>FLOAT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
         </config>
         <pd:inputBindings>
             <jdbcQueryActivityInput>
-                <Username>
+                <Name>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx2:Backoffice/@Username)">
-                            <xsl:value-of select="$Start/pfx2:Backoffice/@Username"/>
+                        <xsl:when test="exists($Start/pfx2:Booking_Type/@Name)">
+                            <xsl:value-of select="$Start/pfx2:Booking_Type/@Name"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                </Username>
+                </Name>
             </jdbcQueryActivityInput>
         </pd:inputBindings>
     </pd:activity>
@@ -114,23 +122,31 @@
             <commit>false</commit>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>INSERT INTO Backoffice(Name,Username,Password,Id_Role) VALUES(?,?,?,?)</statement>
+            <statement>INSERT INTO Booking_Type(Name,Hand_Baggage,Checked_Baggage,Change_Date,Cancel_Booking,Cost) VALUES(?,?,?,?,?,?)</statement>
             <Prepared_Param_DataType>
                 <parameter>
                     <parameterName>Name</parameterName>
                     <dataType>VARCHAR</dataType>
                 </parameter>
                 <parameter>
-                    <parameterName>Username</parameterName>
-                    <dataType>VARCHAR</dataType>
+                    <parameterName>Hand_Baggage</parameterName>
+                    <dataType>TINYINT</dataType>
                 </parameter>
                 <parameter>
-                    <parameterName>Password</parameterName>
-                    <dataType>VARCHAR</dataType>
+                    <parameterName>Checked_Baggage</parameterName>
+                    <dataType>TINYINT</dataType>
                 </parameter>
                 <parameter>
-                    <parameterName>Id_Role</parameterName>
-                    <dataType>INTEGER</dataType>
+                    <parameterName>Change_Date</parameterName>
+                    <dataType>TINYINT</dataType>
+                </parameter>
+                <parameter>
+                    <parameterName>Cancel_Booking</parameterName>
+                    <dataType>TINYINT</dataType>
+                </parameter>
+                <parameter>
+                    <parameterName>Cost</parameterName>
+                    <dataType>TINYINT</dataType>
                 </parameter>
             </Prepared_Param_DataType>
         </config>
@@ -138,44 +154,64 @@
             <jdbcUpdateActivityInput>
                 <Name>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx2:Backoffice/@Name)">
-                            <xsl:value-of select="$Start/pfx2:Backoffice/@Name"/>
+                        <xsl:when test="exists($Start/pfx2:Booking_Type/@Name)">
+                            <xsl:value-of select="$Start/pfx2:Booking_Type/@Name"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
                 </Name>
-                <Username>
+                <Hand_Baggage>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx2:Backoffice/@Username)">
-                            <xsl:value-of select="$Start/pfx2:Backoffice/@Username"/>
+                        <xsl:when test="exists($Start/pfx2:Booking_Type/@Hand_Baggage)">
+                            <xsl:value-of select="$Start/pfx2:Booking_Type/@Hand_Baggage"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                </Username>
-                <Password>
+                </Hand_Baggage>
+                <Checked_Baggage>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx2:Backoffice/@Password)">
-                            <xsl:value-of select="$Start/pfx2:Backoffice/@Password"/>
+                        <xsl:when test="exists($Start/pfx2:Booking_Type/@Checked_Baggage)">
+                            <xsl:value-of select="$Start/pfx2:Booking_Type/@Checked_Baggage"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                </Password>
-                <Id_Role>
+                </Checked_Baggage>
+                <Change_Date>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx2:Backoffice/@Id_Role)">
-                            <xsl:value-of select="$Start/pfx2:Backoffice/@Id_Role"/>
+                        <xsl:when test="exists($Start/pfx2:Booking_Type/@Change_Date)">
+                            <xsl:value-of select="$Start/pfx2:Booking_Type/@Change_Date"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                </Id_Role>
+                </Change_Date>
+                <Cancel_Booking>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx2:Booking_Type/@Cancel_Booking)">
+                            <xsl:value-of select="$Start/pfx2:Booking_Type/@Cancel_Booking"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </Cancel_Booking>
+                <Cost>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx2:Booking_Type/@Cost)">
+                            <xsl:value-of select="$Start/pfx2:Booking_Type/@Cost"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </Cost>
             </jdbcUpdateActivityInput>
         </pd:inputBindings>
     </pd:activity>
@@ -197,22 +233,22 @@
     </pd:activity>
     <pd:transition>
         <pd:from>Start</pd:from>
-        <pd:to>Query Username</pd:to>
+        <pd:to>Query Name</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>Query Username</pd:from>
+        <pd:from>Query Name</pd:from>
         <pd:to>Already Exists</pd:to>
         <pd:xpathDescription>Exists</pd:xpathDescription>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>xpath</pd:conditionType>
-        <pd:xpath>$Query-Username/resultSet/Record/id &gt; 0</pd:xpath>
+        <pd:xpath>$Query-Name/resultSet/Record/id &gt; 0</pd:xpath>
     </pd:transition>
     <pd:transition>
-        <pd:from>Query Username</pd:from>
+        <pd:from>Query Name</pd:from>
         <pd:to>Exceptions</pd:to>
         <pd:xpathDescription>Error</pd:xpathDescription>
         <pd:lineType>Default</pd:lineType>
@@ -220,7 +256,7 @@
         <pd:conditionType>error</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>Query Username</pd:from>
+        <pd:from>Query Name</pd:from>
         <pd:to>Insert</pd:to>
         <pd:xpathDescription>!Exists</pd:xpathDescription>
         <pd:lineType>Default</pd:lineType>

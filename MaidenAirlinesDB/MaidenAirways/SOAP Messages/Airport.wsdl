@@ -34,7 +34,7 @@
         <part name="Airport" element="ns:Airports"/>
     </message>
     <message name="OutGetAirportByID">
-        <part name="Airport" element="ns:Airport"/>
+        <part name="Airport" element="ns:Airports"/>
     </message>
     <portType name="PortTypeAirport">
         <operation name="InsertAirport">

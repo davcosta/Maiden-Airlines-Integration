@@ -34,7 +34,7 @@
     </wsdl:types>
     <wsdl:service name="ServiceAirplane">
         <wsdl:port name="Airplane" binding="tns:AirplaneBinding">
-            <soap:address location="http://192.168.56.1:8082/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane"/>
+            <soap:address location="http://localhost:9080/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane"/>
         </wsdl:port>
     </wsdl:service>
     <wsdl:portType name="PortTypeAirplane">
@@ -62,7 +62,7 @@
     <wsdl:binding name="AirplaneBinding" type="tns:PortTypeAirplane">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="UpdateAirplane">
-            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirplane.serviceagent//UpdateAirplane"/>
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/UpdateAirplane"/>
             <wsdl:input>
                 <soap:body use="literal" parts="Airplane"/>
             </wsdl:input>
@@ -71,7 +71,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="InsertAirplane">
-            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirplane.serviceagent/PortTypeAirplaneEndpoint1/InsertAirplane"/>
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/InsertAirplane"/>
             <wsdl:input>
                 <soap:body use="literal" parts="Airplane"/>
             </wsdl:input>
@@ -80,7 +80,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="DeleteAirplane">
-            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirplane.serviceagent//DeleteAirplane"/>
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/DeleteAirplane"/>
             <wsdl:input>
                 <soap:body use="literal" parts="Airplane"/>
             </wsdl:input>
@@ -89,7 +89,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="GetAirportByID">
-            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirplane.serviceagent//GetAirportByID"/>
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/GetAirportByID"/>
             <wsdl:input>
                 <soap:body use="literal" parts="Airplane"/>
             </wsdl:input>
@@ -98,7 +98,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="GetAllAirplanes">
-            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirplane.serviceagent//GetAllAirplanes"/>
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/GetAllAirplanes"/>
             <wsdl:input>
                 <soap:body use="literal" parts=""/>
             </wsdl:input>
@@ -108,25 +108,25 @@
         </wsdl:operation>
     </wsdl:binding>
     <wsdl:message name="InUpdateAirplane">
-        <wsdl:part name="Airplane" element="ns0:Airplane"/>
+        <wsdl:part name="Airplane" element="ns0:Airplanes"/>
     </wsdl:message>
     <wsdl:message name="OutUpdateAirplane">
         <wsdl:part name="Status" element="ns0:Status"/>
     </wsdl:message>
     <wsdl:message name="InInsertAirplane">
-        <wsdl:part name="Airplane" element="ns0:Airplane"/>
+        <wsdl:part name="Airplane" element="ns0:Airplanes"/>
     </wsdl:message>
     <wsdl:message name="OutInsertAirplane">
         <wsdl:part name="Status" element="ns0:Status"/>
     </wsdl:message>
     <wsdl:message name="InDeleteAirplane">
-        <wsdl:part name="Airplane" element="ns0:Airplane"/>
+        <wsdl:part name="Airplane" element="ns0:Airplanes"/>
     </wsdl:message>
     <wsdl:message name="OutDeleteAirplane">
         <wsdl:part name="Status" element="ns0:Status"/>
     </wsdl:message>
     <wsdl:message name="InGetAirplaneByID">
-        <wsdl:part name="Airplane" element="ns0:Airplane"/>
+        <wsdl:part name="Airplane" element="ns0:Airplanes"/>
     </wsdl:message>
     <wsdl:message name="OutGetAirplaneByID">
         <wsdl:part name="Airplane" element="ns0:Airplanes"/>

@@ -8,7 +8,7 @@
         <groups>
             <row isDefault="true" groupName="Default"/>
         </groups>
-        <serviceChange>Thu Aug 22 17:31:03 BST 2019</serviceChange>
+        <serviceChange>Mon Aug 26 17:23:44 BST 2019</serviceChange>
         <name>ServiceAirplane</name>
         <resourceType>service.definition</resourceType>
         <interfaceImpl>
@@ -27,7 +27,7 @@
                                     <row opName="UpdateAirplane" opImpl="/SOAP Process/Airplane/UpdateAirplane.process"/>
                                     <row opName="DeleteAirplane" opImpl="/SOAP Process/Airplane/DeleteAirplane.process"/>
                                     <row opName="GetAllAirplanes" opImpl="/SOAP Process/Airplane/GetAllAirplanes.process"/>
-                                    <row opName="GetAirportByID" opImpl="/SOAP Process/Airplane/GetAirplaneByID.process"/>
+                                    <row opName="GetAirplaneByID" opImpl="/SOAP Process/Airplane/GetAirplaneByID.process"/>
                                 </operations>
                             </config>
                         </tab>
@@ -111,16 +111,12 @@
                                                                     </config>
                                                                 </general>
                                                             </operation>
-                                                            <operation name="GetAirportByID">
+                                                            <operation name="GetAirplaneByID">
                                                                 <general>
                                                                     <config>
-                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent/Airplane/GetAirportByID</soapAction>
+                                                                        <soapAction>/SOAP%2520Process/ServiceAirplane.serviceagent//GetAirplaneByID</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
-                                                                        <inputNamespace/>
-                                                                        <outputNamespace/>
-                                                                        <faultNamespace/>
-                                                                        <portAddressPrefix/>
                                                                     </config>
                                                                 </general>
                                                             </operation>

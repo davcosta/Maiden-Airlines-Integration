@@ -26,7 +26,7 @@
                 <PropertyDefaultValue>60000</PropertyDefaultValue>
             </row>
         </HttpConnectionProperties>
-        <useSsl>true</useSsl>
+        <useSsl>false</useSsl>
         <ns1:ssl xmlns:ns1="http://www.tibco.com/xmlns/aemeta/services/2002"/>
     </config>
 </ns0:httpSharedResource>

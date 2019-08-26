@@ -47,7 +47,7 @@
             <input message="tns:InGetAllAirplanes"/>
             <output message="tns:OutGetAllAirplanes"/>
         </operation>
-        <operation name="GetAirportByID">
+        <operation name="GetAirplaneByID">
             <input message="tns:InGetAirplaneByID"/>
             <output message="tns:OutGetAirplaneByID"/>
         </operation>

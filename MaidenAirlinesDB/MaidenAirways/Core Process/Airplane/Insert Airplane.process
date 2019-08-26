@@ -134,8 +134,8 @@
             <jdbcUpdateActivityInput>
                 <ID>
                     <xsl:choose>
-                        <xsl:when test="exists($Query-ID/resultSet/Record[1]/id)">
-                            <xsl:value-of select="$Query-ID/resultSet/Record[1]/id"/>
+                        <xsl:when test="exists($Start/pfx2:Airplane/@ID)">
+                            <xsl:value-of select="$Start/pfx2:Airplane/@ID"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
@@ -144,8 +144,8 @@
                 </ID>
                 <Model>
                     <xsl:choose>
-                        <xsl:when test="exists($Query-ID/resultSet/Record[1]/model)">
-                            <xsl:value-of select="$Query-ID/resultSet/Record[1]/model"/>
+                        <xsl:when test="exists($Start/pfx2:Airplane/@Model)">
+                            <xsl:value-of select="$Start/pfx2:Airplane/@Model"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
@@ -154,8 +154,8 @@
                 </Model>
                 <Cargo_Hold_Capacity>
                     <xsl:choose>
-                        <xsl:when test="exists($Query-ID/resultSet/Record[1]/cargo_hold_capacity)">
-                            <xsl:value-of select="$Query-ID/resultSet/Record[1]/cargo_hold_capacity"/>
+                        <xsl:when test="exists($Start/pfx2:Airplane/@Cargo_Hold_Capacity)">
+                            <xsl:value-of select="$Start/pfx2:Airplane/@Cargo_Hold_Capacity"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
@@ -164,8 +164,8 @@
                 </Cargo_Hold_Capacity>
                 <Number_Seats>
                     <xsl:choose>
-                        <xsl:when test="exists($Query-ID/resultSet/Record[1]/number_seats)">
-                            <xsl:value-of select="$Query-ID/resultSet/Record[1]/number_seats"/>
+                        <xsl:when test="exists($Start/pfx2:Airplane/@Number_Seats)">
+                            <xsl:value-of select="$Start/pfx2:Airplane/@Number_Seats"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
