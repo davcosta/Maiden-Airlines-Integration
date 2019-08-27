@@ -21,14 +21,14 @@
 			<xs:attribute name="Id_Role" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Status">
+	<xs:element name="StatusBackoffice">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="Success"/>
+				<xs:element ref="SuccessBackoffice"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Success">
+	<xs:element name="SuccessBackoffice">
 		<xs:complexType>
 			<xs:attribute name="Value" type="xs:string"/>
 		</xs:complexType>

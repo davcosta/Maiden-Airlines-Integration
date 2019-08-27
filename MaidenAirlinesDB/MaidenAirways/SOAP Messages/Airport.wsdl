@@ -6,19 +6,19 @@
         <part name="Airport" element="ns:Airports"/>
     </message>
     <message name="OutInsertAirport">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusAirport"/>
     </message>
     <message name="InUpdateAirport">
         <part name="Airport" element="ns:Airports"/>
     </message>
     <message name="OutUpdateAirport">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusAirport"/>
     </message>
     <message name="InDeleteAirport">
         <part name="ID" element="ns:Airports"/>
     </message>
     <message name="OutDeleteAirport">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusAirport"/>
     </message>
     <message name="InGetAllAirports"/>
     <message name="OutGetAllAirports">

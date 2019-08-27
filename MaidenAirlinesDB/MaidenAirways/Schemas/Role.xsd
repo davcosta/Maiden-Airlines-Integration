@@ -18,14 +18,14 @@
 			<xs:attribute name="Name" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Status">
+	<xs:element name="StatusRole">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="Success"/>
+				<xs:element ref="SuccessRole"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Success">
+	<xs:element name="SuccessRole">
 		<xs:complexType>
 			<xs:attribute name="Value" type="xs:string"/>
 		</xs:complexType>

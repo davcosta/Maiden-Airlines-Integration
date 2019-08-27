@@ -8,9 +8,9 @@
         <processArchive name="Process Archive">
             <resourceType>process.archive.resource</resourceType>
             <authorProperty>david.costa</authorProperty>
-            <processProperty>/SOAP Process/ServiceAirport.serviceagent,/SOAP Process/ServiceAirplane.serviceagent,/SOAP Process/ServiceBackoffice.serviceagent,/SOAP Process/ServiceClient.serviceagent,/SOAP Process/ServiceFlight.serviceagent,/SOAP Process/ServiceRole.serviceagent</processProperty>
+            <processProperty>/SOAP Process/ServiceAirplane.serviceagent,/SOAP Process/ServiceAirport.serviceagent,/SOAP Process/ServiceBackoffice.serviceagent,/SOAP Process/ServiceClient.serviceagent,/SOAP Process/ServiceFlight.serviceagent,/SOAP Process/ServiceRole.serviceagent,/SOAP Process/ServiceBooking_Type.serviceagent</processProperty>
         </processArchive>
-        <versionProperty>6</versionProperty>
+        <versionProperty>9</versionProperty>
         <authorProperty>david.costa</authorProperty>
         <addServiceSettableGvars>true</addServiceSettableGvars>
         <name>MaidenAirways</name>

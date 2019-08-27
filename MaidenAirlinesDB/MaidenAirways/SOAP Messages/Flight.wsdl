@@ -6,19 +6,19 @@
         <part name="Flight" element="ns:Flights"/>
     </message>
     <message name="OutInsertFlight">
-        <part name="part1" element="ns:Status"/>
+        <part name="part1" element="ns:StatusFlight"/>
     </message>
     <message name="InUpdateFlight">
         <part name="Flight" element="ns:Flights"/>
     </message>
     <message name="OutUpdateFlight">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusFlight"/>
     </message>
     <message name="InDeleteFlight">
         <part name="Flight" element="ns:Flights"/>
     </message>
     <message name="OutDeleteFlight">
-        <part name="part1" element="ns:Status"/>
+        <part name="part1" element="ns:StatusFlight"/>
     </message>
     <message name="InGetAllFlights"/>
     <message name="OutGetAllFlights">

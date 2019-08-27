@@ -29,14 +29,14 @@
 			<xs:attribute name="Password" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Status">
+	<xs:element name="StatusClient">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="Success"/>
+				<xs:element ref="SuccessClient"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Success">
+	<xs:element name="SuccessClient">
 		<xs:complexType>
 			<xs:attribute name="Value" type="xs:string"/>
 		</xs:complexType>

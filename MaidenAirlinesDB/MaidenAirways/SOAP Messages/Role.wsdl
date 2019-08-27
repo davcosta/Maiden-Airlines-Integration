@@ -5,19 +5,19 @@
         <part name="Role" element="ns:Roles"/>
     </message>
     <message name="OutInsertRole">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusRole"/>
     </message>
     <message name="InUpdateRole">
         <part name="Role" element="ns:Roles"/>
     </message>
     <message name="OutUpdateRole">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusRole"/>
     </message>
     <message name="InDeleteRole">
         <part name="Role" element="ns:Roles"/>
     </message>
     <message name="OutDeleteRole">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusRole"/>
     </message>
     <message name="InGetAllRoles"/>
     <message name="OutGetAllRoles">

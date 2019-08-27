@@ -23,14 +23,14 @@
 			<xs:attribute name="Cost" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Status">
+	<xs:element name="StatusBooking_Type">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="Success"/>
+				<xs:element ref="SuccessBooking_Type"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Success">
+	<xs:element name="SuccessBooking_Type">
 		<xs:complexType>
 			<xs:attribute name="Value" type="xs:string"/>
 		</xs:complexType>

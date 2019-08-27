@@ -9,13 +9,13 @@
     <pd:returnBindings>
         <pfx:OutInsertRole>
             <Status>
-                <ns:Status>
-                    <ns:Success>
+                <ns:StatusRole>
+                    <ns:SuccessRole>
                         <xsl:attribute name="Value">
                             <xsl:value-of select="$Call-Insert-Role/Status/Value"/>
                         </xsl:attribute>
-                    </ns:Success>
-                </ns:Status>
+                    </ns:SuccessRole>
+                </ns:StatusRole>
             </Status>
         </pfx:OutInsertRole>
     </pd:returnBindings>

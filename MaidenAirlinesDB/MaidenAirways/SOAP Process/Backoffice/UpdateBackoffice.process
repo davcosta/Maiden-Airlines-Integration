@@ -9,13 +9,13 @@
     <pd:returnBindings>
         <pfx:OutUpdateBackoffice>
             <Status>
-                <ns:Status>
-                    <ns:Success>
+                <ns:StatusBackoffice>
+                    <ns:SuccessBackoffice>
                         <xsl:attribute name="Value">
                             <xsl:value-of select="$Call-Update-Backoffice/Status/Value"/>
                         </xsl:attribute>
-                    </ns:Success>
-                </ns:Status>
+                    </ns:SuccessBackoffice>
+                </ns:StatusBackoffice>
             </Status>
         </pfx:OutUpdateBackoffice>
     </pd:returnBindings>

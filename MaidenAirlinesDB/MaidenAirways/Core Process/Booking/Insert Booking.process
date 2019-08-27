@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd8" xmlns:ns="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd4" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" schemaLocation="/Schemas/Airports.xsd"/>
+    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd8" schemaLocation="/Schemas/Booking.xsd"/>
+    <pd:name>Core Process/Booking/Insert Booking.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx2:Bookings"/>
+    <pd:startX>47</pd:startX>
+    <pd:startY>423</pd:startY>
+    <pd:returnBindings>
+        <Status>
+            <xsl:choose>
+                <xsl:when test="$Insert-Booking/jdbcUpdateActivityOutput/noOfUpdates or $Insert-Booking/jdbcUpdateActivityOutput/noOfUpdates > 0">
+                    <Value>
+                        <xsl:value-of select="0"/>
+                    </Value>
+                </xsl:when>
+                <xsl:otherwise>
+                    <Value>
+                        <xsl:value-of select="-1"/>
+                    </Value>
+                </xsl:otherwise>
+            </xsl:choose>
+        </Status>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType>
+        <xsd:element name="Status">
+            <xsd:complexType>
+                <xsd:sequence>
+                    <xsd:element name="Value" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:element>
+    </pd:endType>
+    <pd:endX>1347</pd:endX>
+    <pd:endY>428</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables>
+        <lastBookingID>
+            <xsd:element name="ID">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="value" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </lastBookingID>
+    </pd:processVariables>
+    <pd:targetNamespace>http://xmlns.example.com/1565970135118</pd:targetNamespace>
+    <pd:group name="Group">
+        <pd:type>com.tibco.pe.core.TransactionGroup</pd:type>
+        <pd:resourceType>ae.process.group</pd:resourceType>
+        <pd:x>140</pd:x>
+        <pd:y>5</pd:y>
+        <pd:width>1104</pd:width>
+        <pd:height>830</pd:height>
+        <pd:collapsedWidth>52</pd:collapsedWidth>
+        <pd:collapsedHeight>69</pd:collapsedHeight>
+        <pd:groupVariables/>
+        <config>
+            <pd:groupType>transactionGroup</pd:groupType>
+            <pd:serializable>false</pd:serializable>
+            <pd:transactionType>JDBCTransaction</pd:transactionType>
+            <pd:includeCheckpoint>false</pd:includeCheckpoint>
+        </config>
+        <pd:inputBindings/>
+        <pd:expanded>true</pd:expanded>
+        <pd:transition>
+            <pd:from>start</pd:from>
+            <pd:to>Call Read All Bookings</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>Iterate Passengers</pd:from>
+            <pd:to>end</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>Exceptions</pd:from>
+            <pd:to>end</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>Insert Booking</pd:from>
+            <pd:to>Exceptions</pd:to>
+            <pd:xpathDescription>Error</pd:xpathDescription>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>error</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>Call Read All Bookings</pd:from>
+            <pd:to>Assign Booking ID</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>Assign Booking ID</pd:from>
+            <pd:to>Insert Booking</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>Insert Booking</pd:from>
+            <pd:to>Iterate Passengers</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:activity name="Insert Booking">
+            <pd:type>com.tibco.plugin.jdbc.JDBCUpdateActivity</pd:type>
+            <pd:resourceType>ae.activities.JDBCUpdateActivity</pd:resourceType>
+            <pd:x>598</pd:x>
+            <pd:y>71</pd:y>
+            <config>
+                <timeout>10</timeout>
+                <commit>false</commit>
+                <emptyStrAsNil>false</emptyStrAsNil>
+                <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+                <statement>INSERT INTO Booking(Date, Id_Booking_Type) VALUES(?,?)</statement>
+                <Prepared_Param_DataType>
+                    <parameter>
+                        <parameterName>Date</parameterName>
+                        <dataType>TIME</dataType>
+                    </parameter>
+                    <parameter>
+                        <parameterName>Id_Booking_Type</parameterName>
+                        <dataType>INTEGER</dataType>
+                    </parameter>
+                </Prepared_Param_DataType>
+            </config>
+            <pd:inputBindings>
+                <jdbcUpdateActivityInput>
+                    <Date>
+                        <xsl:choose>
+                            <xsl:when test="exists($Start/pfx2:Bookings/pfx2:Booking[1]/@Date)">
+                                <xsl:value-of select="$Start/pfx2:Bookings/pfx2:Booking[1]/@Date"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </Date>
+                    <Id_Booking_Type>
+                        <xsl:choose>
+                            <xsl:when test="exists($Start/pfx2:Bookings/pfx2:Booking[1]/@Booking_Type)">
+                                <xsl:value-of select="$Start/pfx2:Bookings/pfx2:Booking[1]/@Booking_Type"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </Id_Booking_Type>
+                </jdbcUpdateActivityInput>
+            </pd:inputBindings>
+        </pd:activity>
+        <pd:activity name="Exceptions">
+            <pd:type>com.tibco.plugin.timer.NullActivity</pd:type>
+            <pd:resourceType>ae.activities.null</pd:resourceType>
+            <pd:x>1130</pd:x>
+            <pd:y>74</pd:y>
+            <config/>
+            <pd:inputBindings/>
+        </pd:activity>
+        <pd:activity name="Call Read All Bookings">
+            <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+            <pd:resourceType>ae.process.subprocess</pd:resourceType>
+            <pd:x>229</pd:x>
+            <pd:y>80</pd:y>
+            <config>
+                <processName>/Core Process/Booking/Read All Bookings.process</processName>
+            </config>
+            <pd:inputBindings/>
+        </pd:activity>
+        <pd:activity name="Assign Booking ID">
+            <pd:type>com.tibco.pe.core.AssignActivity</pd:type>
+            <pd:resourceType>ae.activities.assignActivity</pd:resourceType>
+            <pd:x>418</pd:x>
+            <pd:y>71</pd:y>
+            <config>
+                <variableName>lastBookingID</variableName>
+            </config>
+            <pd:inputBindings>
+                <ID>
+                    <value>
+                        <xsl:value-of select="$Call-Read-All-Bookings/pfx2:Bookings/pfx2:Booking[count($Call-Read-All-Bookings/pfx2:Bookings/pfx2:Booking)]/@ID+1"/>
+                    </value>
+                </ID>
+            </pd:inputBindings>
+        </pd:activity>
+        <pd:group name="Iterate Passengers">
+            <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
+            <pd:resourceType>ae.process.group</pd:resourceType>
+            <pd:x>208</pd:x>
+            <pd:y>217</pd:y>
+            <pd:width>921</pd:width>
+            <pd:height>374</pd:height>
+            <pd:collapsedWidth>52</pd:collapsedWidth>
+            <pd:collapsedHeight>69</pd:collapsedHeight>
+            <pd:groupVariables/>
+            <config>
+                <pd:groupType>inputLoop</pd:groupType>
+                <pd:serializable>false</pd:serializable>
+                <pd:over>$Start/pfx2:Bookings/pfx2:Booking/pfx2:Passengers</pd:over>
+                <pd:iterationElementSlot>Passenger</pd:iterationElementSlot>
+                <pd:indexSlot>index</pd:indexSlot>
+                <pd:activityOutputName/>
+                <pd:accumulateOutput>false</pd:accumulateOutput>
+            </config>
+            <pd:inputBindings/>
+            <pd:expanded>true</pd:expanded>
+            <pd:transition>
+                <pd:from>start</pd:from>
+                <pd:to>Call Insert Client</pd:to>
+                <pd:lineType>Default</pd:lineType>
+                <pd:lineColor>-16777216</pd:lineColor>
+                <pd:conditionType>always</pd:conditionType>
+            </pd:transition>
+            <pd:transition>
+                <pd:from>Iterate Flights</pd:from>
+                <pd:to>end</pd:to>
+                <pd:lineType>Default</pd:lineType>
+                <pd:lineColor>-16777216</pd:lineColor>
+                <pd:conditionType>always</pd:conditionType>
+            </pd:transition>
+            <pd:transition>
+                <pd:from>Error1</pd:from>
+                <pd:to>end</pd:to>
+                <pd:lineType>Default</pd:lineType>
+                <pd:lineColor>-16777216</pd:lineColor>
+                <pd:conditionType>always</pd:conditionType>
+            </pd:transition>
+            <pd:transition>
+                <pd:from>Call Insert Client</pd:from>
+                <pd:to>Call Get Client By ID_Number</pd:to>
+                <pd:xpathDescription>Success</pd:xpathDescription>
+                <pd:lineType>Default</pd:lineType>
+                <pd:lineColor>-16777216</pd:lineColor>
+                <pd:conditionType>xpath</pd:conditionType>
+                <pd:xpath>$Call-Insert-Client/Status/Value = 0</pd:xpath>
+            </pd:transition>
+            <pd:transition>
+                <pd:from>Call Get Client By ID_Number</pd:from>
+                <pd:to>Iterate Flights</pd:to>
+                <pd:lineType>Default</pd:lineType>
+                <pd:lineColor>-16777216</pd:lineColor>
+                <pd:conditionType>always</pd:conditionType>
+            </pd:transition>
+            <pd:transition>
+                <pd:from>Call Insert Client</pd:from>
+                <pd:to>Error</pd:to>
+                <pd:xpathDescription>Failed to Insert</pd:xpathDescription>
+                <pd:lineType>Default</pd:lineType>
+                <pd:lineColor>-16777216</pd:lineColor>
+                <pd:conditionType>otherwise</pd:conditionType>
+            </pd:transition>
+            <pd:transition>
+                <pd:from>Error</pd:from>
+                <pd:to>Error1</pd:to>
+                <pd:lineType>Default</pd:lineType>
+                <pd:lineColor>-16777216</pd:lineColor>
+                <pd:conditionType>always</pd:conditionType>
+            </pd:transition>
+            <pd:activity name="Call Insert Client">
+                <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+                <pd:resourceType>ae.process.subprocess</pd:resourceType>
+                <pd:x>510</pd:x>
+                <pd:y>408</pd:y>
+                <config>
+                    <processName>/Core Process/Client/Insert Client.process</processName>
+                </config>
+                <pd:inputBindings>
+                    <ns:Client>
+                        <xsl:copy-of select="$Passenger/pfx2:Passengers/ancestor-or-self::*/namespace::node()"/>
+                        <xsl:copy-of select="$Passenger/pfx2:Passengers/@*"/>
+                        <xsl:copy-of select="$Passenger/pfx2:Passengers/node()"/>
+                    </ns:Client>
+                </pd:inputBindings>
+            </pd:activity>
+            <pd:activity name="Call Get Client By ID_Number">
+                <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
+                <pd:resourceType>ae.process.subprocess</pd:resourceType>
+                <pd:x>663</pd:x>
+                <pd:y>416</pd:y>
+                <config>
+                    <processName>/Core Process/Client/Read Client By ID_Number.process</processName>
+                </config>
+                <pd:inputBindings>
+                    <ns:Client>
+                        <xsl:if test="$Passenger/pfx2:Passengers/@Id_Number">
+                            <xsl:attribute name="Id_Number">
+                                <xsl:value-of select="$Passenger/pfx2:Passengers/@Id_Number"/>
+                            </xsl:attribute>
+                        </xsl:if>
+                    </ns:Client>
+                </pd:inputBindings>
+            </pd:activity>
+            <pd:group name="Iterate Flights">
+                <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
+                <pd:resourceType>ae.process.group</pd:resourceType>
+                <pd:x>802</pd:x>
+                <pd:y>325</pd:y>
+                <pd:width>174</pd:width>
+                <pd:height>155</pd:height>
+                <pd:collapsedWidth>52</pd:collapsedWidth>
+                <pd:collapsedHeight>69</pd:collapsedHeight>
+                <pd:groupVariables/>
+                <config>
+                    <pd:groupType>inputLoop</pd:groupType>
+                    <pd:serializable>false</pd:serializable>
+                    <pd:over>$Start/pfx2:Bookings/pfx2:Booking/pfx2:SelectedFlights</pd:over>
+                    <pd:iterationElementSlot>Flight</pd:iterationElementSlot>
+                    <pd:indexSlot>Index</pd:indexSlot>
+                    <pd:activityOutputName/>
+                    <pd:accumulateOutput>false</pd:accumulateOutput>
+                </config>
+                <pd:inputBindings/>
+                <pd:expanded>true</pd:expanded>
+                <pd:transition>
+                    <pd:from>start</pd:from>
+                    <pd:to>Insert Booking_Client_Flight</pd:to>
+                    <pd:lineType>Default</pd:lineType>
+                    <pd:lineColor>-16777216</pd:lineColor>
+                    <pd:conditionType>always</pd:conditionType>
+                </pd:transition>
+                <pd:transition>
+                    <pd:from>Insert Booking_Client_Flight</pd:from>
+                    <pd:to>end</pd:to>
+                    <pd:lineType>Default</pd:lineType>
+                    <pd:lineColor>-16777216</pd:lineColor>
+                    <pd:conditionType>always</pd:conditionType>
+                </pd:transition>
+                <pd:activity name="Insert Booking_Client_Flight">
+                    <pd:type>com.tibco.plugin.jdbc.JDBCUpdateActivity</pd:type>
+                    <pd:resourceType>ae.activities.JDBCUpdateActivity</pd:resourceType>
+                    <pd:x>882</pd:x>
+                    <pd:y>417</pd:y>
+                    <config>
+                        <timeout>10</timeout>
+                        <commit>false</commit>
+                        <emptyStrAsNil>false</emptyStrAsNil>
+                        <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+                        <statement>INSERT INTO Booking_Client_Flight(Id_Booking,Id_Client, Id_Flight) VALUES (?,?,?)</statement>
+                        <Prepared_Param_DataType>
+                            <parameter>
+                                <parameterName>Id_Booking</parameterName>
+                                <dataType>INTEGER</dataType>
+                            </parameter>
+                            <parameter>
+                                <parameterName>Id_Client</parameterName>
+                                <dataType>INTEGER</dataType>
+                            </parameter>
+                            <parameter>
+                                <parameterName>Id_Flight</parameterName>
+                                <dataType>INTEGER</dataType>
+                            </parameter>
+                        </Prepared_Param_DataType>
+                    </config>
+                    <pd:inputBindings>
+                        <jdbcUpdateActivityInput>
+                            <Id_Booking>
+                                <xsl:value-of select="$lastBookingID/ID/value"/>
+                            </Id_Booking>
+                            <Id_Client>
+                                <xsl:choose>
+                                    <xsl:when test="exists($Call-Get-Client-By-ID_Number/ns:Clients/ns:Client[1]/@ID)">
+                                        <xsl:value-of select="$Call-Get-Client-By-ID_Number/ns:Clients/ns:Client[1]/@ID"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </Id_Client>
+                            <Id_Flight>
+                                <xsl:choose>
+                                    <xsl:when test="exists($Flight/pfx2:SelectedFlights/@ID)">
+                                        <xsl:value-of select="$Flight/pfx2:SelectedFlights/@ID"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                                    </xsl:otherwise>
+                                </xsl:choose>
+                            </Id_Flight>
+                        </jdbcUpdateActivityInput>
+                    </pd:inputBindings>
+                </pd:activity>
+            </pd:group>
+            <pd:activity name="Error">
+                <pd:type>com.tibco.plugin.timer.NullActivity</pd:type>
+                <pd:resourceType>ae.activities.null</pd:resourceType>
+                <pd:x>510</pd:x>
+                <pd:y>524</pd:y>
+                <config/>
+                <pd:inputBindings/>
+            </pd:activity>
+            <pd:activity name="Error1">
+                <pd:type>com.tibco.plugin.timer.NullActivity</pd:type>
+                <pd:resourceType>ae.activities.null</pd:resourceType>
+                <pd:x>1013</pd:x>
+                <pd:y>525</pd:y>
+                <config/>
+                <pd:inputBindings/>
+            </pd:activity>
+        </pd:group>
+    </pd:group>
+    <pd:transition>
+        <pd:from>Group</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>Group</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

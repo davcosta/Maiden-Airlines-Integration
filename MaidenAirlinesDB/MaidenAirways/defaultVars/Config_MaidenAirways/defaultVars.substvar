@@ -26,6 +26,14 @@
 			<modTime>1566568525063</modTime>
 		</globalVariable>
 		<globalVariable>
+			<name>HTTPHost_Booking_Type</name>
+			<value>localhost</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566917752563</modTime>
+		</globalVariable>
+		<globalVariable>
 			<name>HTTPHost_Client</name>
 			<value>localhost</value>
 			<deploymentSettable>true</deploymentSettable>
@@ -72,6 +80,14 @@
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<modTime>1566829218898</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>HTTPPort_Booking_Type</name>
+			<value>9086</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1566910969815</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Client</name>

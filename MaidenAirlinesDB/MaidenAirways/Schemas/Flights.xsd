@@ -25,14 +25,14 @@
 			<xs:attribute name="Status" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Status">
+	<xs:element name="StatusFlight">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element ref="Success"/>
+				<xs:element ref="SuccessFlight"/>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:element name="Success">
+	<xs:element name="SuccessFlight">
 		<xs:complexType>
 			<xs:attribute name="Value" type="xs:string"/>
 		</xs:complexType>

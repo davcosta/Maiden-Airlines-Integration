@@ -9,13 +9,13 @@
     <pd:returnBindings>
         <pfx:OutDeleteClient>
             <Status>
-                <ns:Status>
-                    <ns:Success>
+                <ns:StatusClient>
+                    <ns:SuccessClient>
                         <xsl:attribute name="Value">
                             <xsl:value-of select="$Call-Delete-Client/Status/Value"/>
                         </xsl:attribute>
-                    </ns:Success>
-                </ns:Status>
+                    </ns:SuccessClient>
+                </ns:StatusClient>
             </Status>
         </pfx:OutDeleteClient>
     </pd:returnBindings>

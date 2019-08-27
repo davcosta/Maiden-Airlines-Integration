@@ -5,19 +5,19 @@
         <part name="Backoffice" element="ns:Backoffices"/>
     </message>
     <message name="OutInsertBackoffice">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusBackoffice"/>
     </message>
     <message name="InUpdateBackoffice">
         <part name="Backoffice" element="ns:Backoffices"/>
     </message>
     <message name="OutUpdateBackoffice">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusBackoffice"/>
     </message>
     <message name="InDeleteBackoffice">
         <part name="Backoffice" element="ns:Backoffices"/>
     </message>
     <message name="OutDeleteBackoffice">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusBackoffice"/>
     </message>
     <message name="InGetAllBackoffice"/>
     <message name="OutGetAllBackoffice">

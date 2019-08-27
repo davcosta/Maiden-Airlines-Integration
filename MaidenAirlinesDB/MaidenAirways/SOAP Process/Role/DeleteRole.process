@@ -9,13 +9,13 @@
     <pd:returnBindings>
         <pfx:OutDeleteRole>
             <Status>
-                <ns:Status>
-                    <ns:Success>
+                <ns:StatusRole>
+                    <ns:SuccessRole>
                         <xsl:attribute name="Value">
                             <xsl:value-of select="$Call-Delete-Role/Status/Value"/>
                         </xsl:attribute>
-                    </ns:Success>
-                </ns:Status>
+                    </ns:SuccessRole>
+                </ns:StatusRole>
             </Status>
         </pfx:OutDeleteRole>
     </pd:returnBindings>

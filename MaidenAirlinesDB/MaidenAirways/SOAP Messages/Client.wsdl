@@ -5,19 +5,19 @@
         <part name="Client" element="ns:Clients"/>
     </message>
     <message name="OutInsertClient">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusClient"/>
     </message>
     <message name="InUpdateClient">
         <part name="Client" element="ns:Clients"/>
     </message>
     <message name="OutUpdateClient">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusClient"/>
     </message>
     <message name="InDeleteClient">
         <part name="Client" element="ns:Clients"/>
     </message>
     <message name="OutDeleteClient">
-        <part name="Status" element="ns:Status"/>
+        <part name="Status" element="ns:StatusClient"/>
     </message>
     <message name="InGetAllClients"/>
     <message name="OutGetAllClients">

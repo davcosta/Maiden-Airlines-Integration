@@ -147,7 +147,7 @@
         <wsdl:part name="Airport" element="ns0:Airports"/>
     </wsdl:message>
     <wsdl:message name="OutGetAirportByID">
-        <wsdl:part name="Airport" element="ns0:Airport"/>
+        <wsdl:part name="Airport" element="ns0:Airports"/>
     </wsdl:message>
     <wsdl:message name="InGetAirportBySearchToken">
         <wsdl:part name="Word" element="ns0:SearchToken"/>

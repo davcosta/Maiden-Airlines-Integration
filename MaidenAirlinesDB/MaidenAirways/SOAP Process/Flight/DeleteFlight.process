@@ -9,13 +9,13 @@
     <pd:returnBindings>
         <pfx:OutDeleteFlight>
             <part1>
-                <ns2:Status>
-                    <ns2:Success>
+                <ns2:StatusFlight>
+                    <ns2:SuccessFlight>
                         <xsl:attribute name="Value">
                             <xsl:value-of select="$Call-Delete-Flight/Status/Value"/>
                         </xsl:attribute>
-                    </ns2:Success>
-                </ns2:Status>
+                    </ns2:SuccessFlight>
+                </ns2:StatusFlight>
             </part1>
         </pfx:OutDeleteFlight>
     </pd:returnBindings>

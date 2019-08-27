@@ -9,13 +9,13 @@
     <pd:returnBindings>
         <pfx:OutUpdateAirplane>
             <Status>
-                <ns:Status>
-                    <ns:Success>
+                <ns:StatusAirplane>
+                    <ns:SuccessAirplane>
                         <xsl:attribute name="Value">
                             <xsl:value-of select="$Call-Update-Airplane/Status/Value"/>
                         </xsl:attribute>
-                    </ns:Success>
-                </ns:Status>
+                    </ns:SuccessAirplane>
+                </ns:StatusAirplane>
             </Status>
         </pfx:OutUpdateAirplane>
     </pd:returnBindings>
