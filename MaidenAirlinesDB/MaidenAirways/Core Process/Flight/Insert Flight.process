@@ -59,7 +59,7 @@
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT * FROM Flight WHERE Departure_Time = ? AND Departure_Airport = ? AND Arrival_Airport = ? AND Flight_Number = ?</statement>
+            <statement>SELECT * FROM Flight WHERE Departure_Date = ? AND Departure_Airport = ? AND Arrival_Airport = ? AND Flight_Number = ?</statement>
             <oraObjects/>
             <oraTables/>
             <QueryOutputCachedSchemaColumns>id</QueryOutputCachedSchemaColumns>
@@ -156,7 +156,7 @@
             <commit>false</commit>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>INSERT INTO Flight(Departure_Date,Arrival_Date,Departure_Airport,Arrival_Airport, Id_Airplane, Flight_Number) VALUES(?,?,?,?,?,?)</statement>
+            <statement>INSERT INTO Flight(Departure_Date,Arrival_Date,Departure_Airport,Arrival_Airport, Id_Airplane, Flight_Number,Price) VALUES(?,FORMAT(?, 'yyyy-MM-dd HH:mm:ss'),?,?,?,?,?)</statement>
             <Prepared_Param_DataType>
                 <parameter>
                     <parameterName>Departure_Date</parameterName>
@@ -181,6 +181,10 @@
                 <parameter>
                     <parameterName>Flight_Number</parameterName>
                     <dataType>VARCHAR</dataType>
+                </parameter>
+                <parameter>
+                    <parameterName>Price</parameterName>
+                    <dataType>FLOAT</dataType>
                 </parameter>
             </Prepared_Param_DataType>
         </config>
@@ -246,6 +250,16 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </Flight_Number>
+                <Price>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx2:Flight/@Price)">
+                            <xsl:value-of select="$Start/pfx2:Flight/@Price"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </Price>
             </jdbcUpdateActivityInput>
         </pd:inputBindings>
     </pd:activity>

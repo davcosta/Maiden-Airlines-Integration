@@ -43,6 +43,9 @@
                                     <xsl:value-of select="status"/>
                                 </xsl:attribute>
                             </xsl:if>
+                            <xsl:attribute name="Price">
+                                <xsl:value-of select="price"/>
+                            </xsl:attribute>
                         </pfx2:Flight>
                     </xsl:for-each>
                 </pfx2:Flights>
@@ -75,6 +78,9 @@
                             <xsl:value-of select="&quot;&quot;"/>
                         </xsl:attribute>
                         <xsl:attribute name="Status">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Price">
                             <xsl:value-of select="&quot;&quot;"/>
                         </xsl:attribute>
                     </pfx2:Flight>
@@ -150,6 +156,10 @@
             <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>OptionalElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>price</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>7</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>FLOAT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
         </config>
         <pd:inputBindings>
             <jdbcQueryActivityInput/>

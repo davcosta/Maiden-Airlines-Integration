@@ -27,13 +27,13 @@
         <part name="Client" element="ns:Clients"/>
     </message>
     <message name="OutGetClientByID">
-        <part name="Client" element="ns:Client"/>
+        <part name="Client" element="ns:Clients"/>
     </message>
     <message name="InGetClientByID_Number">
         <part name="Client" element="ns:Clients"/>
     </message>
     <message name="OutGetClientByID_Number">
-        <part name="Client" element="ns:Client"/>
+        <part name="Client" element="ns:Clients"/>
     </message>
     <portType name="PortTypeClient">
         <operation name="InsertClient">

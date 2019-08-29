@@ -51,6 +51,9 @@
                             <xsl:attribute name="Password">
                                 <xsl:value-of select="password"/>
                             </xsl:attribute>
+                            <xsl:attribute name="Id_Number">
+                                <xsl:value-of select="Id_Number"/>
+                            </xsl:attribute>
                         </pfx2:Client>
                     </xsl:for-each>
                 </pfx2:Clients>

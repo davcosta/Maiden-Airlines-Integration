@@ -26,6 +26,14 @@
 			<modTime>1566568525063</modTime>
 		</globalVariable>
 		<globalVariable>
+			<name>HTTPHost_Booking</name>
+			<value>localhost</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1567008236633</modTime>
+		</globalVariable>
+		<globalVariable>
 			<name>HTTPHost_Booking_Type</name>
 			<value>localhost</value>
 			<deploymentSettable>true</deploymentSettable>
@@ -40,6 +48,14 @@
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
 			<modTime>1566487751474</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>HTTPHost_Client_Type</name>
+			<value>localhost</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1567087522349</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPHost_Flight</name>
@@ -82,6 +98,14 @@
 			<modTime>1566829218898</modTime>
 		</globalVariable>
 		<globalVariable>
+			<name>HTTPPort_Booking</name>
+			<value>9087</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1567008236587</modTime>
+		</globalVariable>
+		<globalVariable>
 			<name>HTTPPort_Booking_Type</name>
 			<value>9086</value>
 			<deploymentSettable>true</deploymentSettable>
@@ -95,7 +119,15 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566829218914</modTime>
+			<modTime>1567088921270</modTime>
+		</globalVariable>
+		<globalVariable>
+			<name>HTTPPort_Client_Type</name>
+			<value>9088</value>
+			<deploymentSettable>true</deploymentSettable>
+			<serviceSettable>false</serviceSettable>
+			<type>String</type>
+			<modTime>1567087522398</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Flight</name>
@@ -103,7 +135,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566829218935</modTime>
+			<modTime>1567091931873</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Role</name>

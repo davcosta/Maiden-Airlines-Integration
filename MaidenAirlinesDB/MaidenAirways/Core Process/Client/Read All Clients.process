@@ -50,6 +50,9 @@
                             <xsl:attribute name="Password">
                                 <xsl:value-of select="password"/>
                             </xsl:attribute>
+                            <xsl:attribute name="Id_Number">
+                                <xsl:value-of select="Id_Number"/>
+                            </xsl:attribute>
                         </pfx2:Client>
                     </xsl:for-each>
                 </pfx2:Clients>
@@ -153,7 +156,7 @@
             <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>vat</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaColumns>Id_Number</QueryOutputCachedSchemaColumns>
             <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>

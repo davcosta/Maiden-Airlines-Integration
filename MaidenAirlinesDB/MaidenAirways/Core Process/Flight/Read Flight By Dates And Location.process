@@ -44,6 +44,9 @@
                                     <xsl:value-of select="status"/>
                                 </xsl:attribute>
                             </xsl:if>
+                            <xsl:attribute name="Price">
+                                <xsl:value-of select="price"/>
+                            </xsl:attribute>
                         </pfx2:Flight>
                     </xsl:for-each>
                 </pfx2:Flights>
@@ -78,6 +81,9 @@
                         <xsl:attribute name="Status">
                             <xsl:value-of select="&quot;&quot;"/>
                         </xsl:attribute>
+                        <xsl:attribute name="Price">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
                     </pfx2:Flight>
                 </pfx2:Flights>
             </xsl:otherwise>
@@ -98,6 +104,7 @@
                 </xsd:complexType>
             </xsd:element>
         </Status>
+        <FlightData/>
     </pd:processVariables>
     <pd:targetNamespace>http://xmlns.example.com/1565970135118</pd:targetNamespace>
     <pd:activity name="Query By Name, City or Country">
@@ -111,14 +118,14 @@
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT * FROM Flight WHERE Departure_Date = ? AND Arrival_Date = ? AND Departure_Airport = ? AND Arrival_Airport = ?</statement>
+            <statement>SELECT * FROM Flight WHERE Departure_Date &gt;=? AND Departure_Date &lt;= DATE_ADD(?, interval 24 hour)  AND Departure_Airport = ? AND Arrival_Airport = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
                     <parameterName>Departure_Date</parameterName>
                     <dataType>VARCHAR</dataType>
                 </parameter>
                 <parameter>
-                    <parameterName>Arrival_Date</parameterName>
+                    <parameterName>Departure_Date_Copy</parameterName>
                     <dataType>VARCHAR</dataType>
                 </parameter>
                 <parameter>
@@ -168,6 +175,10 @@
             <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>OptionalElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>price</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>7</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>FLOAT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
         </config>
         <pd:inputBindings>
             <jdbcQueryActivityInput>
@@ -181,16 +192,16 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </Departure_Date>
-                <Arrival_Date>
+                <Departure_Date_Copy>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx2:Flight/@Arrival_Date)">
-                            <xsl:value-of select="$Start/pfx2:Flight/@Arrival_Date"/>
+                        <xsl:when test="exists($Start/pfx2:Flight/@Departure_Date)">
+                            <xsl:value-of select="$Start/pfx2:Flight/@Departure_Date"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                </Arrival_Date>
+                </Departure_Date_Copy>
                 <Departure_Airport>
                     <xsl:choose>
                         <xsl:when test="exists($Start/pfx2:Flight/@Departure_Airport)">
