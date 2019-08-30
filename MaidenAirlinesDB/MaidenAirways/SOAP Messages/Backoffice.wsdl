@@ -27,13 +27,13 @@
         <part name="Backoffice" element="ns:Backoffices"/>
     </message>
     <message name="OutGetBackofficeByID">
-        <part name="Backoffice" element="ns:Backoffice"/>
+        <part name="Backoffice" element="ns:Backoffices"/>
     </message>
     <message name="InGetBackofficeByUsername">
         <part name="Backoffice" element="ns:Backoffices"/>
     </message>
     <message name="OutGetBackofficeByUsername">
-        <part name="Backoffice" element="ns:Backoffice"/>
+        <part name="Backoffice" element="ns:Backoffices"/>
     </message>
     <portType name="PortTypeackoffice">
         <operation name="InsertBackoffice">

@@ -60,11 +60,11 @@
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT * FROM Client_Type WHERE ID = ?</statement>
+            <statement>SELECT * FROM Client_Type WHERE Name = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
-                    <parameterName>ID</parameterName>
-                    <dataType>INTEGER</dataType>
+                    <parameterName>Name</parameterName>
+                    <dataType>VARCHAR</dataType>
                 </parameter>
             </Prepared_Param_DataType>
             <oraObjects/>
@@ -96,16 +96,16 @@
         </config>
         <pd:inputBindings>
             <jdbcQueryActivityInput>
-                <ID>
+                <Name>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx3:Client_Type/@ID)">
-                            <xsl:value-of select="$Start/pfx3:Client_Type/@ID"/>
+                        <xsl:when test="exists($Start/pfx3:Client_Type/@Name)">
+                            <xsl:value-of select="$Start/pfx3:Client_Type/@Name"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                </ID>
+                </Name>
             </jdbcQueryActivityInput>
         </pd:inputBindings>
     </pd:activity>

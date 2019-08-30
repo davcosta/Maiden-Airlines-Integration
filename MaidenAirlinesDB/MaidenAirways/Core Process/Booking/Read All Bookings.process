@@ -7,18 +7,34 @@
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
-        <pfx2:Bookings>
-            <xsl:for-each select="$Query-All/resultSet/Record">
-                <pfx2:Booking>
-                    <xsl:attribute name="ID">
-                        <xsl:value-of select="id"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Date">
-                        <xsl:value-of select="Date"/>
-                    </xsl:attribute>
-                </pfx2:Booking>
-            </xsl:for-each>
-        </pfx2:Bookings>
+        <xsl:choose>
+            <xsl:when test="$Query-All/resultSet/Record">
+                <pfx2:Bookings>
+                    <xsl:for-each select="$Query-All/resultSet/Record">
+                        <pfx2:Booking>
+                            <xsl:attribute name="ID">
+                                <xsl:value-of select="id"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Date">
+                                <xsl:value-of select="Date"/>
+                            </xsl:attribute>
+                        </pfx2:Booking>
+                    </xsl:for-each>
+                </pfx2:Bookings>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx2:Bookings>
+                    <pfx2:Booking>
+                        <xsl:attribute name="ID">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Date">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                    </pfx2:Booking>
+                </pfx2:Bookings>
+            </xsl:otherwise>
+        </xsl:choose>
     </pd:returnBindings>
     <pd:endName>End</pd:endName>
     <pd:endType ref="pfx2:Bookings"/>

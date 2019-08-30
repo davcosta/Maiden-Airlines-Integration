@@ -9,7 +9,9 @@
     <pd:returnBindings>
         <pfx:OutGetBackofficeByID>
             <Backoffice>
-                <xsl:copy-of select="$Call-Read-Backoffice-By-ID/ns:Backoffices/ns:Backoffice"/>
+                <ns:Backoffices>
+                    <xsl:copy-of select="$Call-Read-Backoffice-By-ID/ns:Backoffices/ns:Backoffice"/>
+                </ns:Backoffices>
             </Backoffice>
         </pfx:OutGetBackofficeByID>
     </pd:returnBindings>

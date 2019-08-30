@@ -103,7 +103,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1567008236587</modTime>
+			<modTime>1567176832614</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Booking_Type</name>
@@ -127,7 +127,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1567087522398</modTime>
+			<modTime>1567183086417</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Flight</name>
@@ -135,7 +135,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1567091931873</modTime>
+			<modTime>1567177456648</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Role</name>
@@ -143,7 +143,7 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566829218954</modTime>
+			<modTime>1567177456669</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>JDBCDBName</name>

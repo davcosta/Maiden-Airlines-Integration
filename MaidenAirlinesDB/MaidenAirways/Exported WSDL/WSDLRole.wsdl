@@ -16,14 +16,14 @@
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="Status">
+            <xs:element name="StatusRole">
                 <xs:complexType>
                     <xs:sequence>
-                        <xs:element ref="ns0:Success"/>
+                        <xs:element ref="ns0:SuccessRole"/>
                     </xs:sequence>
                 </xs:complexType>
             </xs:element>
-            <xs:element name="Success">
+            <xs:element name="SuccessRole">
                 <xs:complexType>
                     <xs:attribute name="Value" type="xs:string"/>
                 </xs:complexType>
@@ -32,17 +32,13 @@
     </wsdl:types>
     <wsdl:service name="ServiceRole">
         <wsdl:port name="Role" binding="tns:RoleBinding">
-            <soap:address location="http://localhost:9085/SOAP%2520Process/ServiceRole.serviceagent/Role"/>
+            <soap:address location="http://localhost:9185/SOAP%2520Process/ServiceRole.serviceagent/Role"/>
         </wsdl:port>
     </wsdl:service>
     <wsdl:portType name="PortTypeRole">
         <wsdl:operation name="UpdateRole">
             <wsdl:input message="tns:InUpdateRole"/>
             <wsdl:output message="tns:OutUpdateRole"/>
-        </wsdl:operation>
-        <wsdl:operation name="GetRoleByID">
-            <wsdl:input message="tns:InGetRoleByID"/>
-            <wsdl:output message="tns:OutGetRoleByID"/>
         </wsdl:operation>
         <wsdl:operation name="InsertRole">
             <wsdl:input message="tns:InInsertRole"/>
@@ -51,6 +47,10 @@
         <wsdl:operation name="GetAllRoles">
             <wsdl:input message="tns:InGetAllRoles"/>
             <wsdl:output message="tns:OutGetAllRoles"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetRoleByName">
+            <wsdl:input message="tns:InGetRoleByName"/>
+            <wsdl:output message="tns:OutGetRoleByName"/>
         </wsdl:operation>
         <wsdl:operation name="DeleteRole">
             <wsdl:input message="tns:InDeleteRole"/>
@@ -66,15 +66,6 @@
             </wsdl:input>
             <wsdl:output>
                 <soap:body use="literal" parts="Status"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="GetRoleByID">
-            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceRole.serviceagent//GetRoleByID"/>
-            <wsdl:input>
-                <soap:body use="literal" parts="Roles"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal" parts="Roles"/>
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="InsertRole">
@@ -95,6 +86,15 @@
                 <soap:body use="literal" parts="Roles"/>
             </wsdl:output>
         </wsdl:operation>
+        <wsdl:operation name="GetRoleByName">
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceRole.serviceagent//GetRoleByName"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Roles"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Roles"/>
+            </wsdl:output>
+        </wsdl:operation>
         <wsdl:operation name="DeleteRole">
             <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceRole.serviceagent//DeleteRole"/>
             <wsdl:input>
@@ -109,28 +109,28 @@
         <wsdl:part name="Role" element="ns0:Roles"/>
     </wsdl:message>
     <wsdl:message name="OutUpdateRole">
-        <wsdl:part name="Status" element="ns0:Status"/>
-    </wsdl:message>
-    <wsdl:message name="InGetRoleByID">
-        <wsdl:part name="Roles" element="ns0:Roles"/>
-    </wsdl:message>
-    <wsdl:message name="OutGetRoleByID">
-        <wsdl:part name="Roles" element="ns0:Roles"/>
+        <wsdl:part name="Status" element="ns0:StatusRole"/>
     </wsdl:message>
     <wsdl:message name="InInsertRole">
         <wsdl:part name="Role" element="ns0:Roles"/>
     </wsdl:message>
     <wsdl:message name="OutInsertRole">
-        <wsdl:part name="Status" element="ns0:Status"/>
+        <wsdl:part name="Status" element="ns0:StatusRole"/>
     </wsdl:message>
     <wsdl:message name="InGetAllRoles"/>
     <wsdl:message name="OutGetAllRoles">
+        <wsdl:part name="Roles" element="ns0:Roles"/>
+    </wsdl:message>
+    <wsdl:message name="InGetRoleByName">
+        <wsdl:part name="Roles" element="ns0:Roles"/>
+    </wsdl:message>
+    <wsdl:message name="OutGetRoleByName">
         <wsdl:part name="Roles" element="ns0:Roles"/>
     </wsdl:message>
     <wsdl:message name="InDeleteRole">
         <wsdl:part name="Role" element="ns0:Roles"/>
     </wsdl:message>
     <wsdl:message name="OutDeleteRole">
-        <wsdl:part name="Status" element="ns0:Status"/>
+        <wsdl:part name="Status" element="ns0:StatusRole"/>
     </wsdl:message>
 </wsdl:definitions>

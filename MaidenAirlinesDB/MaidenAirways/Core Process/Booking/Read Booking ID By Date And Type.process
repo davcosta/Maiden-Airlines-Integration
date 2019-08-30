@@ -1,44 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd6" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd8" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" schemaLocation="/Schemas/Airports.xsd"/>
-    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd6" schemaLocation="/Schemas/Role.xsd"/>
-    <pd:name>Core Process/Role/Read Role By Name.process</pd:name>
+    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd8" schemaLocation="/Schemas/Booking.xsd"/>
+    <pd:name>Core Process/Booking/Read Booking ID By Date And Type.process</pd:name>
     <pd:startName>Start</pd:startName>
-    <pd:startType ref="pfx2:Role"/>
+    <pd:startType ref="pfx2:Bookings"/>
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
         <xsl:choose>
-            <xsl:when test="$Query-By-Name/resultSet/Record">
-                <pfx2:Roles>
-                    <xsl:for-each select="$Query-By-Name/resultSet/Record">
-                        <pfx2:Role>
+            <xsl:when test="$Query-By-Date-And-Booking_Type/resultSet/Record">
+                <pfx2:Bookings>
+                    <xsl:for-each select="$Query-By-Date-And-Booking_Type/resultSet/Record">
+                        <pfx2:Booking>
                             <xsl:attribute name="ID">
                                 <xsl:value-of select="id"/>
                             </xsl:attribute>
-                            <xsl:attribute name="Name">
-                                <xsl:value-of select="name"/>
+                            <xsl:attribute name="Date">
+                                <xsl:value-of select="Date"/>
                             </xsl:attribute>
-                        </pfx2:Role>
+                            <xsl:attribute name="Booking_Type">
+                                <xsl:value-of select="id_booking_type"/>
+                            </xsl:attribute>
+                        </pfx2:Booking>
                     </xsl:for-each>
-                </pfx2:Roles>
+                </pfx2:Bookings>
             </xsl:when>
             <xsl:otherwise>
-                <pfx2:Roles>
-                    <pfx2:Role>
+                <pfx2:Bookings>
+                    <pfx2:Booking>
                         <xsl:attribute name="ID">
                             <xsl:value-of select="&quot;&quot;"/>
                         </xsl:attribute>
-                        <xsl:attribute name="Name">
+                        <xsl:attribute name="Date">
                             <xsl:value-of select="&quot;&quot;"/>
                         </xsl:attribute>
-                    </pfx2:Role>
-                </pfx2:Roles>
+                        <xsl:attribute name="Booking_Type">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="ID_Client">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                    </pfx2:Booking>
+                </pfx2:Bookings>
             </xsl:otherwise>
         </xsl:choose>
     </pd:returnBindings>
     <pd:endName>End</pd:endName>
-    <pd:endType ref="pfx2:Roles"/>
+    <pd:endType ref="pfx2:Bookings"/>
     <pd:endX>440</pd:endX>
     <pd:endY>261</pd:endY>
     <pd:errorSchemas/>
@@ -54,22 +63,26 @@
         </Status>
     </pd:processVariables>
     <pd:targetNamespace>http://xmlns.example.com/1565970135118</pd:targetNamespace>
-    <pd:activity name="Query By Name">
+    <pd:activity name="Query By Date And Booking_Type">
         <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
         <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
-        <pd:x>287</pd:x>
-        <pd:y>63</pd:y>
+        <pd:x>361</pd:x>
+        <pd:y>75</pd:y>
         <config>
             <timeout>10</timeout>
             <commit>false</commit>
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT * FROM Role WHERE Name = ?</statement>
+            <statement>SELECT * FROM Booking WHERE Date = ? AND Id_Booking_Type = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
-                    <parameterName>Name</parameterName>
+                    <parameterName>Date</parameterName>
                     <dataType>VARCHAR</dataType>
+                </parameter>
+                <parameter>
+                    <parameterName>Id_Booking_Type</parameterName>
+                    <dataType>INTEGER</dataType>
                 </parameter>
             </Prepared_Param_DataType>
             <oraObjects/>
@@ -78,23 +91,37 @@
             <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>name</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaColumns>Date</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>93</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>DATETIME</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>id_booking_type</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
         </config>
         <pd:inputBindings>
             <jdbcQueryActivityInput>
-                <Name>
+                <Date>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx2:Role/@Name)">
-                            <xsl:value-of select="$Start/pfx2:Role/@Name"/>
+                        <xsl:when test="exists($Start/pfx2:Bookings/pfx2:Booking[1]/@Date)">
+                            <xsl:value-of select="$Start/pfx2:Bookings/pfx2:Booking[1]/@Date"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                </Name>
+                </Date>
+                <Id_Booking_Type>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx2:Bookings/pfx2:Booking[1]/@Booking_Type)">
+                            <xsl:value-of select="$Start/pfx2:Bookings/pfx2:Booking[1]/@Booking_Type"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </Id_Booking_Type>
             </jdbcQueryActivityInput>
         </pd:inputBindings>
     </pd:activity>
@@ -108,20 +135,20 @@
     </pd:activity>
     <pd:transition>
         <pd:from>Start</pd:from>
-        <pd:to>Query By Name</pd:to>
+        <pd:to>Query By Date And Booking_Type</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>Query By Name</pd:from>
+        <pd:from>Query By Date And Booking_Type</pd:from>
         <pd:to>End</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>Query By Name</pd:from>
+        <pd:from>Query By Date And Booking_Type</pd:from>
         <pd:to>Null</pd:to>
         <pd:xpathDescription>Error</pd:xpathDescription>
         <pd:lineType>Default</pd:lineType>

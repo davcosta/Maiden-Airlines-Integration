@@ -100,7 +100,7 @@
         <pd:type>com.tibco.plugin.jdbc.JDBCUpdateActivity</pd:type>
         <pd:resourceType>ae.activities.JDBCUpdateActivity</pd:resourceType>
         <pd:x>405</pd:x>
-        <pd:y>164</pd:y>
+        <pd:y>163</pd:y>
         <config>
             <timeout>10</timeout>
             <commit>false</commit>
