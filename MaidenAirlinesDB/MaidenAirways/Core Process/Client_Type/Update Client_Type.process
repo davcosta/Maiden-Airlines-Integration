@@ -168,7 +168,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="$Start/pfx3:Client_Type/@Annual_Fee > 0">
+                    <xsl:when test="$Start/pfx3:Client_Type/@Annual_Fee >= 0">
                         <Annual_Fee>
                             <xsl:choose>
                                 <xsl:when test="exists($Start/pfx3:Client_Type/@Annual_Fee)">
@@ -194,7 +194,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="$Start/pfx3:Client_Type/@Monthly_Miles > 0">
+                    <xsl:when test="$Start/pfx3:Client_Type/@Monthly_Miles >= 0">
                         <Monthly_Miles>
                             <xsl:choose>
                                 <xsl:when test="exists($Start/pfx3:Client_Type/@Monthly_Miles)">
@@ -220,7 +220,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="$Start/pfx3:Client_Type/@Welcome_Bonus > 0">
+                    <xsl:when test="$Start/pfx3:Client_Type/@Welcome_Bonus >= 0">
                         <Welcome_Bonus>
                             <xsl:choose>
                                 <xsl:when test="exists($Start/pfx3:Client_Type/@Welcome_Bonus)">
@@ -246,7 +246,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
                 <xsl:choose>
-                    <xsl:when test="$Start/pfx3:Client_Type/@Bonus_Miles > 0">
+                    <xsl:when test="$Start/pfx3:Client_Type/@Bonus_Miles >= 0">
                         <Bonus_Miles>
                             <xsl:choose>
                                 <xsl:when test="exists($Start/pfx3:Client_Type/@Bonus_Miles)">

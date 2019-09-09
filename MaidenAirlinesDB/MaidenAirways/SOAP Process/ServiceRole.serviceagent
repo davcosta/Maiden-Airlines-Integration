@@ -8,7 +8,7 @@
         <groups>
             <row isDefault="true" groupName="Default"/>
         </groups>
-        <serviceChange>Tue Aug 27 15:56:25 BST 2019</serviceChange>
+        <serviceChange>Mon Sep 09 16:15:17 BST 2019</serviceChange>
         <name>ServiceRole</name>
         <resourceType>service.definition</resourceType>
         <interfaceImpl>
@@ -28,6 +28,7 @@
                                     <row opName="DeleteRole" opImpl="/SOAP Process/Role/DeleteRole.process"/>
                                     <row opName="GetAllRoles" opImpl="/SOAP Process/Role/GetAllRoles.process"/>
                                     <row opName="GetRoleByName" opImpl="/SOAP Process/Role/GetRoleByName.process"/>
+                                    <row opName="GetRoleByID" opImpl="/SOAP Process/Role/GetRoleByID.process"/>
                                 </operations>
                             </config>
                         </tab>
@@ -99,6 +100,15 @@
                                                                 <general>
                                                                     <config>
                                                                         <soapAction>/SOAP%2520Process/ServiceRole.serviceagent//GetRoleByName</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                            <operation name="GetRoleByID">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>/SOAP%2520Process/ServiceRole.serviceagent//GetRoleByID</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                     </config>

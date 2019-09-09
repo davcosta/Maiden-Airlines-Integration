@@ -100,6 +100,10 @@
             <QueryOutputCachedSchemaDataTypes>7</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>FLOAT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>miles</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
         </config>
         <pd:inputBindings>
             <jdbcQueryActivityInput>
@@ -126,7 +130,7 @@
             <commit>false</commit>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>UPDATE  Flight SET Departure_Date = ?, Arrival_Date =?, Departure_Airport = ?, Arrival_Airport = ?, Id_Airplane = ?, Flight_Number = ?, Gate = ?, Status = ?, Price = ? WHERE ID = ?</statement>
+            <statement>UPDATE  Flight SET Departure_Date = ?, Arrival_Date =?, Departure_Airport = ?, Arrival_Airport = ?, Id_Airplane = ?, Flight_Number = ?, Gate = ?, Status = ?, Price = ?, Miles = ? WHERE ID = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
                     <parameterName>Departure_Date</parameterName>
@@ -163,6 +167,10 @@
                 <parameter>
                     <parameterName>Price</parameterName>
                     <dataType>FLOAT</dataType>
+                </parameter>
+                <parameter>
+                    <parameterName>Miles</parameterName>
+                    <dataType>INTEGER</dataType>
                 </parameter>
                 <parameter>
                     <parameterName>ID</parameterName>
@@ -406,6 +414,32 @@
                         </Price>
                     </xsl:otherwise>
                 </xsl:choose>
+                <xsl:choose>
+                    <xsl:when test="$Start/pfx2:Flight/@Miles > 0">
+                        <Miles>
+                            <xsl:choose>
+                                <xsl:when test="exists($Start/pfx2:Flight/@Miles)">
+                                    <xsl:value-of select="$Start/pfx2:Flight/@Miles"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </Miles>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <Miles>
+                            <xsl:choose>
+                                <xsl:when test="exists($FlightData/pfx2:Flight/@Miles)">
+                                    <xsl:value-of select="$FlightData/pfx2:Flight/@Miles"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </Miles>
+                    </xsl:otherwise>
+                </xsl:choose>
                 <ID>
                     <xsl:choose>
                         <xsl:when test="exists($Start/pfx2:Flight/@ID)">
@@ -471,6 +505,9 @@
                     </xsl:if>
                     <xsl:attribute name="Price">
                         <xsl:value-of select="price"/>
+                    </xsl:attribute>
+                    <xsl:attribute name="Miles">
+                        <xsl:value-of select="miles"/>
                     </xsl:attribute>
                 </pfx2:Flight>
             </xsl:for-each>

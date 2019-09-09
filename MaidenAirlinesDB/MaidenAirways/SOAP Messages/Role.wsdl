@@ -29,6 +29,12 @@
     <message name="OutGetRoleByName">
         <part name="Roles" element="ns:Roles"/>
     </message>
+    <message name="InGetRoleByID">
+        <part name="Role" element="ns:Roles"/>
+    </message>
+    <message name="OutGetRoleByID">
+        <part name="Role" element="ns:Roles"/>
+    </message>
     <portType name="PortTypeRole">
         <operation name="InsertRole">
             <input message="tns:InInsertRole"/>
@@ -49,6 +55,10 @@
         <operation name="GetRoleByName">
             <input message="tns:InGetRoleByName"/>
             <output message="tns:OutGetRoleByName"/>
+        </operation>
+        <operation name="GetRoleByID">
+            <input message="tns:InGetRoleByID"/>
+            <output message="tns:OutGetRoleByID"/>
         </operation>
     </portType>
 </definitions>

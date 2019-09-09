@@ -33,7 +33,7 @@
             </xsd:complexType>
         </xsd:element>
     </pd:endType>
-    <pd:endX>1463</pd:endX>
+    <pd:endX>1550</pd:endX>
     <pd:endY>434</pd:endY>
     <pd:errorSchemas/>
     <pd:processVariables>
@@ -106,6 +106,7 @@
         <pd:transition>
             <pd:from>Call Read Booking ID By Date And Type Before</pd:from>
             <pd:to>Insert Booking</pd:to>
+            <pd:xpathDescription>!Exists</pd:xpathDescription>
             <pd:lineType>Default</pd:lineType>
             <pd:lineColor>-16777216</pd:lineColor>
             <pd:conditionType>xpath</pd:conditionType>
@@ -145,6 +146,13 @@
             <pd:lineType>Default</pd:lineType>
             <pd:lineColor>-16777216</pd:lineColor>
             <pd:conditionType>always</pd:conditionType>
+        </pd:transition>
+        <pd:transition>
+            <pd:from>Call Read Booking ID By Date And Booking_Type</pd:from>
+            <pd:to>Exceptions</pd:to>
+            <pd:lineType>Default</pd:lineType>
+            <pd:lineColor>-16777216</pd:lineColor>
+            <pd:conditionType>error</pd:conditionType>
         </pd:transition>
         <pd:activity name="Insert Booking">
             <pd:type>com.tibco.plugin.jdbc.JDBCUpdateActivity</pd:type>
@@ -218,10 +226,10 @@
         <pd:group name="Iterate Passengers">
             <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
             <pd:resourceType>ae.process.group</pd:resourceType>
-            <pd:x>184</pd:x>
-            <pd:y>234</pd:y>
-            <pd:width>921</pd:width>
-            <pd:height>374</pd:height>
+            <pd:x>175</pd:x>
+            <pd:y>243</pd:y>
+            <pd:width>939</pd:width>
+            <pd:height>480</pd:height>
             <pd:collapsedWidth>57</pd:collapsedWidth>
             <pd:collapsedHeight>70</pd:collapsedHeight>
             <pd:groupVariables/>
@@ -288,11 +296,18 @@
                 <pd:lineColor>-16777216</pd:lineColor>
                 <pd:conditionType>always</pd:conditionType>
             </pd:transition>
+            <pd:transition>
+                <pd:from>Call Get Client By ID_Number</pd:from>
+                <pd:to>Error</pd:to>
+                <pd:lineType>Default</pd:lineType>
+                <pd:lineColor>-16777216</pd:lineColor>
+                <pd:conditionType>error</pd:conditionType>
+            </pd:transition>
             <pd:activity name="Call Insert Client">
                 <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
                 <pd:resourceType>ae.process.subprocess</pd:resourceType>
-                <pd:x>318</pd:x>
-                <pd:y>429</pd:y>
+                <pd:x>326</pd:x>
+                <pd:y>438</pd:y>
                 <config>
                     <processName>/Core Process/Client/Insert Client.process</processName>
                 </config>
@@ -307,8 +322,8 @@
             <pd:activity name="Call Get Client By ID_Number">
                 <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
                 <pd:resourceType>ae.process.subprocess</pd:resourceType>
-                <pd:x>559</pd:x>
-                <pd:y>436</pd:y>
+                <pd:x>567</pd:x>
+                <pd:y>445</pd:y>
                 <config>
                     <processName>/Core Process/Client/Read Client By ID_Number.process</processName>
                 </config>
@@ -325,10 +340,10 @@
             <pd:group name="Iterate Flights">
                 <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
                 <pd:resourceType>ae.process.group</pd:resourceType>
-                <pd:x>669</pd:x>
-                <pd:y>342</pd:y>
-                <pd:width>174</pd:width>
-                <pd:height>155</pd:height>
+                <pd:x>725</pd:x>
+                <pd:y>266</pd:y>
+                <pd:width>184</pd:width>
+                <pd:height>262</pd:height>
                 <pd:collapsedWidth>57</pd:collapsedWidth>
                 <pd:collapsedHeight>70</pd:collapsedHeight>
                 <pd:groupVariables/>
@@ -352,17 +367,31 @@
                     <pd:conditionType>always</pd:conditionType>
                 </pd:transition>
                 <pd:transition>
+                    <pd:from>Error3</pd:from>
+                    <pd:to>end</pd:to>
+                    <pd:lineType>Default</pd:lineType>
+                    <pd:lineColor>-16777216</pd:lineColor>
+                    <pd:conditionType>always</pd:conditionType>
+                </pd:transition>
+                <pd:transition>
                     <pd:from>Insert Booking_Client_Flight</pd:from>
                     <pd:to>end</pd:to>
                     <pd:lineType>Default</pd:lineType>
                     <pd:lineColor>-16777216</pd:lineColor>
                     <pd:conditionType>always</pd:conditionType>
                 </pd:transition>
+                <pd:transition>
+                    <pd:from>Insert Booking_Client_Flight</pd:from>
+                    <pd:to>Error3</pd:to>
+                    <pd:lineType>Default</pd:lineType>
+                    <pd:lineColor>-16777216</pd:lineColor>
+                    <pd:conditionType>error</pd:conditionType>
+                </pd:transition>
                 <pd:activity name="Insert Booking_Client_Flight">
                     <pd:type>com.tibco.plugin.jdbc.JDBCUpdateActivity</pd:type>
                     <pd:resourceType>ae.activities.JDBCUpdateActivity</pd:resourceType>
-                    <pd:x>749</pd:x>
-                    <pd:y>431</pd:y>
+                    <pd:x>810</pd:x>
+                    <pd:y>457</pd:y>
                     <config>
                         <timeout>10</timeout>
                         <commit>false</commit>
@@ -426,20 +455,28 @@
                         </jdbcUpdateActivityInput>
                     </pd:inputBindings>
                 </pd:activity>
+                <pd:activity name="Error3">
+                    <pd:type>com.tibco.plugin.timer.NullActivity</pd:type>
+                    <pd:resourceType>ae.activities.null</pd:resourceType>
+                    <pd:x>815</pd:x>
+                    <pd:y>330</pd:y>
+                    <config/>
+                    <pd:inputBindings/>
+                </pd:activity>
             </pd:group>
             <pd:activity name="Error">
                 <pd:type>com.tibco.plugin.timer.NullActivity</pd:type>
                 <pd:resourceType>ae.activities.null</pd:resourceType>
-                <pd:x>484</pd:x>
-                <pd:y>541</pd:y>
+                <pd:x>492</pd:x>
+                <pd:y>550</pd:y>
                 <config/>
                 <pd:inputBindings/>
             </pd:activity>
             <pd:activity name="Error1">
                 <pd:type>com.tibco.plugin.timer.NullActivity</pd:type>
                 <pd:resourceType>ae.activities.null</pd:resourceType>
-                <pd:x>987</pd:x>
-                <pd:y>542</pd:y>
+                <pd:x>995</pd:x>
+                <pd:y>551</pd:y>
                 <config/>
                 <pd:inputBindings/>
             </pd:activity>
@@ -463,8 +500,8 @@
         <pd:activity name="Call Read Booking ID By Date And Booking_Type">
             <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
             <pd:resourceType>ae.process.subprocess</pd:resourceType>
-            <pd:x>755</pd:x>
-            <pd:y>170</pd:y>
+            <pd:x>792</pd:x>
+            <pd:y>179</pd:y>
             <config>
                 <processName>/Core Process/Booking/Read Booking ID By Date And Type.process</processName>
             </config>
@@ -477,10 +514,10 @@
         <pd:group name="Iterate Flights for Reservation Owner">
             <pd:type>com.tibco.pe.core.LoopGroup</pd:type>
             <pd:resourceType>ae.process.group</pd:resourceType>
-            <pd:x>1182</pd:x>
+            <pd:x>1183</pd:x>
             <pd:y>356</pd:y>
             <pd:width>172</pd:width>
-            <pd:height>140</pd:height>
+            <pd:height>252</pd:height>
             <pd:collapsedWidth>57</pd:collapsedWidth>
             <pd:collapsedHeight>70</pd:collapsedHeight>
             <pd:groupVariables/>
@@ -504,16 +541,30 @@
                 <pd:conditionType>always</pd:conditionType>
             </pd:transition>
             <pd:transition>
+                <pd:from>Error4</pd:from>
+                <pd:to>end</pd:to>
+                <pd:lineType>Default</pd:lineType>
+                <pd:lineColor>-16777216</pd:lineColor>
+                <pd:conditionType>always</pd:conditionType>
+            </pd:transition>
+            <pd:transition>
                 <pd:from>Insert-Booking_Client_Flight-1</pd:from>
                 <pd:to>end</pd:to>
                 <pd:lineType>Default</pd:lineType>
                 <pd:lineColor>-16777216</pd:lineColor>
                 <pd:conditionType>always</pd:conditionType>
             </pd:transition>
+            <pd:transition>
+                <pd:from>Insert-Booking_Client_Flight-1</pd:from>
+                <pd:to>Error4</pd:to>
+                <pd:lineType>Default</pd:lineType>
+                <pd:lineColor>-16777216</pd:lineColor>
+                <pd:conditionType>error</pd:conditionType>
+            </pd:transition>
             <pd:activity name="Insert-Booking_Client_Flight-1">
                 <pd:type>com.tibco.plugin.jdbc.JDBCUpdateActivity</pd:type>
                 <pd:resourceType>ae.activities.JDBCUpdateActivity</pd:resourceType>
-                <pd:x>1257</pd:x>
+                <pd:x>1258</pd:x>
                 <pd:y>420</pd:y>
                 <config>
                     <timeout>10</timeout>
@@ -577,6 +628,14 @@
                         </Check_In>
                     </jdbcUpdateActivityInput>
                 </pd:inputBindings>
+            </pd:activity>
+            <pd:activity name="Error4">
+                <pd:type>com.tibco.plugin.timer.NullActivity</pd:type>
+                <pd:resourceType>ae.activities.null</pd:resourceType>
+                <pd:x>1257</pd:x>
+                <pd:y>554</pd:y>
+                <config/>
+                <pd:inputBindings/>
             </pd:activity>
         </pd:group>
     </pd:group>

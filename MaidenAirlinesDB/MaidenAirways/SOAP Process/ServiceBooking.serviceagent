@@ -8,7 +8,9 @@
         <groups>
             <row isDefault="true" groupName="Default"/>
         </groups>
-        <serviceChange>Thu Aug 29 14:07:50 BST 2019</serviceChange>
+        <serviceChange>Mon Sep 09 17:45:32 BST 2019</serviceChange>
+        <name>ServiceBooking</name>
+        <resourceType>service.definition</resourceType>
         <interfaceImpl>
             <tab>
                 <tabName>PortTypeBooking</tabName>
@@ -26,7 +28,9 @@
                                     <row opName="DeleteBooking" opImpl="/SOAP Process/Booking/DeleteBooking.process"/>
                                     <row opName="GetAllBookings" opImpl="/SOAP Process/Booking/GetAllBookings.process"/>
                                     <row opName="GetBookingByID" opImpl="/SOAP Process/Booking/GetBookingByID.process"/>
-                                    <row opName="UpdateBooking_Client_Flight" opImpl="/SOAP Process/Booking/UpdateBooking_Client_Flight.process"/>
+                                    <row opName="UpdateBooking_Client_Flight" opImpl="/SOAP Process/Booking/UpdateBooking_Client_FlightCheck_In.process"/>
+                                    <row opName="UpdateBooking_Client_FlightId_Flight" opImpl="/SOAP Process/Booking/UpdateBooking_Client_FlightChangeFlight.process"/>
+                                    <row opName="GetBooking_Client_FlightByBooking_Client_Flight" opImpl="/SOAP Process/Booking/GetBooking_Client_FlightByBooking_Client_Flight.process"/>
                                 </operations>
                             </config>
                         </tab>
@@ -111,6 +115,24 @@
                                                                 <general>
                                                                     <config>
                                                                         <soapAction>/SOAP%2520Process/Service.serviceagent/Booking/UpdateBooking_Client_Flight</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                            <operation name="UpdateBooking_Client_FlightId_Flight">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>/SOAP%2520Process/ServiceBooking.serviceagent//UpdateBooking_Client_FlightId_Flight</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
+                                                            <operation name="GetBooking_Client_FlightByBooking_Client_Flight">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>/SOAP%2520Process/ServiceBooking.serviceagent//GetBooking_Client_FlightByBooking_Client_Flight</soapAction>
                                                                         <operationStyle/>
                                                                         <soapUse>literal</soapUse>
                                                                     </config>

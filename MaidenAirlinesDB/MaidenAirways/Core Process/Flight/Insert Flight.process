@@ -156,7 +156,7 @@
             <commit>false</commit>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>INSERT INTO Flight(Departure_Date,Arrival_Date,Departure_Airport,Arrival_Airport, Id_Airplane, Flight_Number,Price) VALUES(?,?,?,?,?,?,?)</statement>
+            <statement>INSERT INTO Flight(Departure_Date,Arrival_Date,Departure_Airport,Arrival_Airport, Id_Airplane, Flight_Number,Price, Miles) VALUES(?,?,?,?,?,?,?,?)</statement>
             <Prepared_Param_DataType>
                 <parameter>
                     <parameterName>Departure_Date</parameterName>
@@ -185,6 +185,10 @@
                 <parameter>
                     <parameterName>Price</parameterName>
                     <dataType>FLOAT</dataType>
+                </parameter>
+                <parameter>
+                    <parameterName>Miles</parameterName>
+                    <dataType>INTEGER</dataType>
                 </parameter>
             </Prepared_Param_DataType>
         </config>
@@ -260,6 +264,16 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </Price>
+                <Miles>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx2:Flight/@Miles)">
+                            <xsl:value-of select="$Start/pfx2:Flight/@Miles"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </Miles>
             </jdbcUpdateActivityInput>
         </pd:inputBindings>
     </pd:activity>

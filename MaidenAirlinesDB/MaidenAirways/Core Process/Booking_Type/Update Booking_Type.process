@@ -2,7 +2,7 @@
 <pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd7" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" schemaLocation="/Schemas/Airports.xsd"/>
     <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd7" schemaLocation="/Schemas/Booking_Type.xsd"/>
-    <pd:name>Core Process/Booking_Role/Update Booking_Type.process</pd:name>
+    <pd:name>Core Process/Booking_Type/Update Booking_Type.process</pd:name>
     <pd:startName>Start</pd:startName>
     <pd:startType ref="pfx2:Booking_Type"/>
     <pd:startX>150</pd:startX>
@@ -114,7 +114,7 @@
             <commit>false</commit>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>UPDATE  Booking_Type SET Name =?, Hand_Baggage =?, Checked_Baggage =?, Change_Date =?, Cancel_Booking =?, Cost =?) WHERE ID = ?</statement>
+            <statement>UPDATE  Booking_Type SET Name =?, Hand_Baggage =?, Checked_Baggage =?, Change_Date =?, Cancel_Booking =?, Cost =? WHERE ID = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
                     <parameterName>Name</parameterName>

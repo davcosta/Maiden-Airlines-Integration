@@ -35,6 +35,12 @@
     <message name="OutGetClientByID_Number">
         <part name="Client" element="ns:Clients"/>
     </message>
+    <message name="InGetClientByEmail">
+        <part name="Client" element="ns:Clients"/>
+    </message>
+    <message name="OutGetClientByEmail">
+        <part name="Client" element="ns:Clients"/>
+    </message>
     <portType name="PortTypeClient">
         <operation name="InsertClient">
             <input message="tns:InInsertClient"/>
@@ -59,6 +65,10 @@
         <operation name="GetClientByID_Number">
             <input message="tns:InGetClientByID_Number"/>
             <output message="tns:OutGetClientByID_Number"/>
+        </operation>
+        <operation name="GetClientByEmail">
+            <input message="tns:InGetClientByEmail"/>
+            <output message="tns:OutGetClientByEmail"/>
         </operation>
     </portType>
 </definitions>

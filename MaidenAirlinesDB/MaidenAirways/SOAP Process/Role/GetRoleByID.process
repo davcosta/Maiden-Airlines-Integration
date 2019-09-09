@@ -8,11 +8,11 @@
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
         <pfx:OutGetRoleByID>
-            <Roles>
+            <Role>
                 <ns:Roles>
-                    <xsl:copy-of select="$Call-Read-Role-By-Name/ns:Roles/ns:Role"/>
+                    <xsl:copy-of select="$Call-Read-Role-By-ID/ns:Roles/ns:Role"/>
                 </ns:Roles>
-            </Roles>
+            </Role>
         </pfx:OutGetRoleByID>
     </pd:returnBindings>
     <pd:endName>End</pd:endName>
@@ -22,27 +22,27 @@
     <pd:errorSchemas/>
     <pd:processVariables/>
     <pd:targetNamespace>http://xmlns.example.com/1566574939155</pd:targetNamespace>
-    <pd:activity name="Call Read Role By Name">
+    <pd:activity name="Call Read Role By ID">
         <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
         <pd:resourceType>ae.process.subprocess</pd:resourceType>
         <pd:x>293</pd:x>
         <pd:y>98</pd:y>
         <config>
-            <processName>/Core Process/Role/Read Role By Name.process</processName>
+            <processName>/Core Process/Role/Read Role By ID.process</processName>
         </config>
         <pd:inputBindings>
-            <xsl:copy-of select="$Start/pfx:InGetRoleByID/Roles/ns:Roles/ns:Role"/>
+            <xsl:copy-of select="$Start/pfx:InGetRoleByID/Role/ns:Roles/ns:Role"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>
         <pd:from>Start</pd:from>
-        <pd:to>Call Read Role By Name</pd:to>
+        <pd:to>Call Read Role By ID</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>Call Read Role By Name</pd:from>
+        <pd:from>Call Read Role By ID</pd:from>
         <pd:to>End</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>

@@ -8,7 +8,8 @@
         <groups>
             <row isDefault="true" groupName="Default"/>
         </groups>
-        <serviceChange>Thu Aug 22 17:33:26 BST 2019</serviceChange>
+        <serviceChange>Mon Sep 09 16:23:36 BST 2019</serviceChange>
+        <name>ServiceClient</name>
         <interfaceImpl>
             <tab>
                 <tabName>PortType</tabName>
@@ -27,6 +28,7 @@
                                     <row opName="GetAllClients" opImpl="/SOAP Process/Client/GetAllClients.process"/>
                                     <row opName="GetClientByID" opImpl="/SOAP Process/Client/GetClientByID.process"/>
                                     <row opName="GetClientByID_Number" opImpl="/SOAP Process/Client/GetClientByID_Number.process"/>
+                                    <row opName="GetClientByEmail" opImpl="/SOAP Process/Client/GetClientByEmail.process"/>
                                 </operations>
                             </config>
                         </tab>
@@ -136,6 +138,15 @@
                                                                     </config>
                                                                 </general>
                                                             </operation>
+                                                            <operation name="GetClientByEmail">
+                                                                <general>
+                                                                    <config>
+                                                                        <soapAction>/SOAP%2520Process/ServiceClient.serviceagent//GetClientByEmail</soapAction>
+                                                                        <operationStyle/>
+                                                                        <soapUse>literal</soapUse>
+                                                                    </config>
+                                                                </general>
+                                                            </operation>
                                                         </soap>
                                                     </config>
                                                 </tab>
@@ -149,5 +160,6 @@
                 </config>
             </tab>
         </interfaceImpl>
+        <resourceType>service.definition</resourceType>
     </config>
 </serviceResource>

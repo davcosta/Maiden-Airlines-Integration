@@ -24,6 +24,7 @@
 			<xs:attribute name="Gate" type="xs:string"/>
 			<xs:attribute name="Status" type="xs:string"/>
 			<xs:attribute name="Price" type="xs:string"/>
+			<xs:attribute name="Miles" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
 	<xs:element name="StatusFlight">

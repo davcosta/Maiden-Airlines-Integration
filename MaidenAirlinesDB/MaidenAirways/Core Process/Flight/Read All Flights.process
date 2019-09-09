@@ -46,6 +46,9 @@
                             <xsl:attribute name="Price">
                                 <xsl:value-of select="price"/>
                             </xsl:attribute>
+                            <xsl:attribute name="Miles">
+                                <xsl:value-of select="miles"/>
+                            </xsl:attribute>
                         </pfx2:Flight>
                     </xsl:for-each>
                 </pfx2:Flights>
@@ -159,6 +162,10 @@
             <QueryOutputCachedSchemaColumns>price</QueryOutputCachedSchemaColumns>
             <QueryOutputCachedSchemaDataTypes>7</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>FLOAT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>miles</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
         </config>
         <pd:inputBindings>

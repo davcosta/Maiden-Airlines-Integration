@@ -30,10 +30,22 @@
         <part name="Booking" element="ns:Bookings"/>
     </message>
     <message name="InUpdateBooking_Client_Flight">
-        <part name="Booking_Client_Flight" element="ns:Booking_Client_Flight"/>
+        <part name="Booking_Client_Flight" element="ns:Booking_Client_Flights"/>
     </message>
     <message name="OutUpdateBooking_Client_Flight">
         <part name="Status" element="ns:StatusBooking"/>
+    </message>
+    <message name="InUpdateBooking_Client_FlightChange_Flight">
+        <part name="Booking_Client_Flight" element="ns:Booking_Client_Flights"/>
+    </message>
+    <message name="OutUpdateBooking_Client_FlightChange_Flight">
+        <part name="Status" element="ns:StatusBooking"/>
+    </message>
+    <message name="InGetBooking_Client_FlightByBooking_Client_Flight">
+        <part name="Booking_Client_Flight" element="ns:Booking_Client_Flights"/>
+    </message>
+    <message name="OutGetBooking_Client_FlightByBooking_Client_Flight">
+        <part name="Booking_Client_Flight" element="ns:Booking_Client_Flights"/>
     </message>
     <portType name="PortTypeBooking">
         <operation name="InsertBooking">
@@ -59,6 +71,14 @@
         <operation name="UpdateBooking_Client_Flight">
             <input message="tns:InUpdateBooking_Client_Flight"/>
             <output message="tns:OutUpdateBooking_Client_Flight"/>
+        </operation>
+        <operation name="UpdateBooking_Client_FlightId_Flight">
+            <input message="tns:InUpdateBooking_Client_FlightChange_Flight"/>
+            <output message="tns:OutUpdateBooking_Client_FlightChange_Flight"/>
+        </operation>
+        <operation name="GetBooking_Client_FlightByBooking_Client_Flight">
+            <input message="tns:InGetBooking_Client_FlightByBooking_Client_Flight"/>
+            <output message="tns:OutGetBooking_Client_FlightByBooking_Client_Flight"/>
         </operation>
     </portType>
 </definitions>

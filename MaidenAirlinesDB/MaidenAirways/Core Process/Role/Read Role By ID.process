@@ -1,59 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd5" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd6" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" schemaLocation="/Schemas/Airports.xsd"/>
-    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd5" schemaLocation="/Schemas/Backoffice.xsd"/>
-    <pd:name>Core Process/Backoffice/Read Backoffice By ID.process</pd:name>
+    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd6" schemaLocation="/Schemas/Role.xsd"/>
+    <pd:name>Core Process/Role/Read Role By ID.process</pd:name>
     <pd:startName>Start</pd:startName>
-    <pd:startType ref="pfx2:Backoffice"/>
+    <pd:startType ref="pfx2:Role"/>
     <pd:startX>150</pd:startX>
     <pd:startY>64</pd:startY>
     <pd:returnBindings>
         <xsl:choose>
-            <xsl:when test="$Query-By-ID/resultSet/Record">
-                <pfx2:Backoffices>
-                    <xsl:for-each select="$Query-By-ID/resultSet/Record">
-                        <pfx2:Backoffice>
+            <xsl:when test="$Query-By-Name/resultSet/Record">
+                <pfx2:Roles>
+                    <xsl:for-each select="$Query-By-Name/resultSet/Record">
+                        <pfx2:Role>
                             <xsl:attribute name="ID">
                                 <xsl:value-of select="id"/>
                             </xsl:attribute>
                             <xsl:attribute name="Name">
                                 <xsl:value-of select="name"/>
                             </xsl:attribute>
-                            <xsl:attribute name="Username">
-                                <xsl:value-of select="username"/>
-                            </xsl:attribute>
-                            <xsl:attribute name="Id_Role">
-                                <xsl:value-of select="id_role"/>
-                            </xsl:attribute>
-                        </pfx2:Backoffice>
+                        </pfx2:Role>
                     </xsl:for-each>
-                </pfx2:Backoffices>
+                </pfx2:Roles>
             </xsl:when>
             <xsl:otherwise>
-                <pfx2:Backoffices>
-                    <pfx2:Backoffice>
+                <pfx2:Roles>
+                    <pfx2:Role>
                         <xsl:attribute name="ID">
                             <xsl:value-of select="&quot;&quot;"/>
                         </xsl:attribute>
                         <xsl:attribute name="Name">
                             <xsl:value-of select="&quot;&quot;"/>
                         </xsl:attribute>
-                        <xsl:attribute name="Username">
-                            <xsl:value-of select="&quot;&quot;"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="Password">
-                            <xsl:value-of select="&quot;&quot;"/>
-                        </xsl:attribute>
-                        <xsl:attribute name="Id_Role">
-                            <xsl:value-of select="&quot;&quot;"/>
-                        </xsl:attribute>
-                    </pfx2:Backoffice>
-                </pfx2:Backoffices>
+                    </pfx2:Role>
+                </pfx2:Roles>
             </xsl:otherwise>
         </xsl:choose>
     </pd:returnBindings>
     <pd:endName>End</pd:endName>
-    <pd:endType ref="pfx2:Backoffices"/>
+    <pd:endType ref="pfx2:Roles"/>
     <pd:endX>440</pd:endX>
     <pd:endY>261</pd:endY>
     <pd:errorSchemas/>
@@ -69,7 +54,7 @@
         </Status>
     </pd:processVariables>
     <pd:targetNamespace>http://xmlns.example.com/1565970135118</pd:targetNamespace>
-    <pd:activity name="Query By ID">
+    <pd:activity name="Query By Name">
         <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
         <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
         <pd:x>287</pd:x>
@@ -80,7 +65,7 @@
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT ID, Name, Username,  Id_Role FROM Backoffice WHERE ID = ?</statement>
+            <statement>SELECT * FROM Role WHERE ID = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
                     <parameterName>ID</parameterName>
@@ -97,19 +82,18 @@
             <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>username</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
-            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>id_role</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
-            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
         </config>
         <pd:inputBindings>
             <jdbcQueryActivityInput>
                 <ID>
-                    <xsl:value-of select="$Start/pfx2:Backoffice/@ID"/>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx2:Role/@ID)">
+                            <xsl:value-of select="$Start/pfx2:Role/@ID"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </ID>
             </jdbcQueryActivityInput>
         </pd:inputBindings>
@@ -124,20 +108,20 @@
     </pd:activity>
     <pd:transition>
         <pd:from>Start</pd:from>
-        <pd:to>Query By ID</pd:to>
+        <pd:to>Query By Name</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>Query By ID</pd:from>
+        <pd:from>Query By Name</pd:from>
         <pd:to>End</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
         <pd:conditionType>always</pd:conditionType>
     </pd:transition>
     <pd:transition>
-        <pd:from>Query By ID</pd:from>
+        <pd:from>Query By Name</pd:from>
         <pd:to>Null</pd:to>
         <pd:xpathDescription>Error</pd:xpathDescription>
         <pd:lineType>Default</pd:lineType>

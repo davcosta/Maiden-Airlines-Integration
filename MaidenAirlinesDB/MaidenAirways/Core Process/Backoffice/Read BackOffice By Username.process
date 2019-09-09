@@ -22,9 +22,6 @@
                             <xsl:attribute name="Username">
                                 <xsl:value-of select="username"/>
                             </xsl:attribute>
-                            <xsl:attribute name="Password">
-                                <xsl:value-of select="password"/>
-                            </xsl:attribute>
                             <xsl:attribute name="Id_Role">
                                 <xsl:value-of select="id_role"/>
                             </xsl:attribute>
@@ -83,7 +80,7 @@
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT * FROM Backoffice WHERE Username = ?</statement>
+            <statement>SELECT ID, Name, Username,  Id_Role FROM Backoffice WHERE Username = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
                     <parameterName>Username</parameterName>
@@ -101,10 +98,6 @@
             <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
             <QueryOutputCachedSchemaColumns>username</QueryOutputCachedSchemaColumns>
-            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
-            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
-            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
-            <QueryOutputCachedSchemaColumns>password</QueryOutputCachedSchemaColumns>
             <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
             <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
