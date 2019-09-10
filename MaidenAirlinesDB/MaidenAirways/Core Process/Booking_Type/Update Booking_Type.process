@@ -122,19 +122,19 @@
                 </parameter>
                 <parameter>
                     <parameterName>Hand_Baggage</parameterName>
-                    <dataType>TINYINT</dataType>
+                    <dataType>VARCHAR</dataType>
                 </parameter>
                 <parameter>
                     <parameterName>Checked_Baggage</parameterName>
-                    <dataType>TINYINT</dataType>
+                    <dataType>VARCHAR</dataType>
                 </parameter>
                 <parameter>
                     <parameterName>Change_Date</parameterName>
-                    <dataType>TINYINT</dataType>
+                    <dataType>VARCHAR</dataType>
                 </parameter>
                 <parameter>
                     <parameterName>Cancel_Booking</parameterName>
-                    <dataType>TINYINT</dataType>
+                    <dataType>VARCHAR</dataType>
                 </parameter>
                 <parameter>
                     <parameterName>Cost</parameterName>
@@ -328,7 +328,7 @@
     <pd:activity name="Assign Data From Airport">
         <pd:type>com.tibco.pe.core.AssignActivity</pd:type>
         <pd:resourceType>ae.activities.assignActivity</pd:resourceType>
-        <pd:x>534</pd:x>
+        <pd:x>535</pd:x>
         <pd:y>74</pd:y>
         <config>
             <variableName>Booking_TypeData</variableName>
@@ -342,18 +342,54 @@
                     <xsl:attribute name="Name">
                         <xsl:value-of select="name"/>
                     </xsl:attribute>
-                    <xsl:attribute name="Hand_Baggage">
-                        <xsl:value-of select="hand_baggage"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Checked_Baggage">
-                        <xsl:value-of select="checked_baggage"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Change_Date">
-                        <xsl:value-of select="change_date"/>
-                    </xsl:attribute>
-                    <xsl:attribute name="Cancel_Booking">
-                        <xsl:value-of select="cancel_booking"/>
-                    </xsl:attribute>
+                    <xsl:choose>
+                        <xsl:when test="hand_baggage = &quot;false&quot;">
+                            <xsl:attribute name="Hand_Baggage">
+                                <xsl:value-of select="&quot;0&quot;"/>
+                            </xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="Hand_Baggage">
+                                <xsl:value-of select="&quot;1&quot;"/>
+                            </xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:choose>
+                        <xsl:when test="checked_baggage = &quot;false&quot;">
+                            <xsl:attribute name="Checked_Baggage">
+                                <xsl:value-of select="&quot;0&quot;"/>
+                            </xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="Checked_Baggage">
+                                <xsl:value-of select="&quot;1&quot;"/>
+                            </xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:choose>
+                        <xsl:when test="change_date = &quot;false&quot;">
+                            <xsl:attribute name="Change_Date">
+                                <xsl:value-of select="&quot;0&quot;"/>
+                            </xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="Change_Date">
+                                <xsl:value-of select="&quot;1&quot;"/>
+                            </xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:choose>
+                        <xsl:when test="cancel_booking = &quot;false&quot;">
+                            <xsl:attribute name="Cancel_Booking">
+                                <xsl:value-of select="&quot;0&quot;"/>
+                            </xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="Cancel_Booking">
+                                <xsl:value-of select="&quot;1&quot;"/>
+                            </xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:attribute name="Cost">
                         <xsl:value-of select="cost"/>
                     </xsl:attribute>

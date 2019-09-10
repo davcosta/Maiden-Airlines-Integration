@@ -10,7 +10,7 @@
             <authorProperty>david.costa</authorProperty>
             <processProperty>/SOAP Process/ServiceAirplane.serviceagent,/SOAP Process/ServiceAirport.serviceagent,/SOAP Process/ServiceBackoffice.serviceagent,/SOAP Process/ServiceBooking.serviceagent,/SOAP Process/ServiceBooking_Type.serviceagent,/SOAP Process/ServiceClient.serviceagent,/SOAP Process/ServiceClient_Type.serviceagent,/SOAP Process/ServiceFlight.serviceagent,/SOAP Process/ServiceRole.serviceagent</processProperty>
         </processArchive>
-        <versionProperty>15</versionProperty>
+        <versionProperty>17</versionProperty>
         <authorProperty>david.costa</authorProperty>
         <addServiceSettableGvars>true</addServiceSettableGvars>
         <name>MaidenAirways</name>

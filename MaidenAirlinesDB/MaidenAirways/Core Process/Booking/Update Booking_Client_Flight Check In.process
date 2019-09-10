@@ -52,18 +52,10 @@
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT * FROM Booking_Client_Flight WHERE Id_Booking = ? AND Id_Client = ? AND Id_Flight = ?</statement>
+            <statement>SELECT * FROM Booking_Client_Flight WHERE Id = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
-                    <parameterName>Id_Booking</parameterName>
-                    <dataType>INTEGER</dataType>
-                </parameter>
-                <parameter>
-                    <parameterName>Id_Client</parameterName>
-                    <dataType>INTEGER</dataType>
-                </parameter>
-                <parameter>
-                    <parameterName>Id_Flight</parameterName>
+                    <parameterName>Id</parameterName>
                     <dataType>INTEGER</dataType>
                 </parameter>
             </Prepared_Param_DataType>
@@ -88,7 +80,7 @@
             <QueryOutputCachedSchemaColumns>seat</QueryOutputCachedSchemaColumns>
             <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
-            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaStatus>OptionalElement</QueryOutputCachedSchemaStatus>
             <QueryOutputCachedSchemaColumns>check_in</QueryOutputCachedSchemaColumns>
             <QueryOutputCachedSchemaDataTypes>-7</QueryOutputCachedSchemaDataTypes>
             <QueryOutputCachedSchemaDataTypesName>TINYINT</QueryOutputCachedSchemaDataTypesName>
@@ -96,36 +88,16 @@
         </config>
         <pd:inputBindings>
             <jdbcQueryActivityInput>
-                <Id_Booking>
+                <Id>
                     <xsl:choose>
-                        <xsl:when test="exists($Start/pfx:Booking_Client_Flight/@Id_Booking)">
-                            <xsl:value-of select="$Start/pfx:Booking_Client_Flight/@Id_Booking"/>
+                        <xsl:when test="exists($Start/pfx:Booking_Client_Flight/@ID)">
+                            <xsl:value-of select="$Start/pfx:Booking_Client_Flight/@ID"/>
                         </xsl:when>
                         <xsl:otherwise>
                             <xsl:attribute name="xsi:nil">true</xsl:attribute>
                         </xsl:otherwise>
                     </xsl:choose>
-                </Id_Booking>
-                <Id_Client>
-                    <xsl:choose>
-                        <xsl:when test="exists($Start/pfx:Booking_Client_Flight/@Id_Client)">
-                            <xsl:value-of select="$Start/pfx:Booking_Client_Flight/@Id_Client"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </Id_Client>
-                <Id_Flight>
-                    <xsl:choose>
-                        <xsl:when test="exists($Start/pfx:Booking_Client_Flight/@Id_Flight)">
-                            <xsl:value-of select="$Start/pfx:Booking_Client_Flight/@Id_Flight"/>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </Id_Flight>
+                </Id>
             </jdbcQueryActivityInput>
         </pd:inputBindings>
     </pd:activity>

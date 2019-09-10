@@ -51,6 +51,11 @@
                             <xsl:attribute name="Id_Number">
                                 <xsl:value-of select="Id_Number"/>
                             </xsl:attribute>
+                            <xsl:if test="password">
+                                <xsl:attribute name="Password">
+                                    <xsl:value-of select="password"/>
+                                </xsl:attribute>
+                            </xsl:if>
                         </pfx2:Client>
                     </xsl:for-each>
                 </pfx2:Clients>
@@ -130,7 +135,7 @@
             <maxRows>100</maxRows>
             <emptyStrAsNil>false</emptyStrAsNil>
             <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
-            <statement>SELECT  Id, First_Name, Last_Name, Date_Of_Birth, Gender, Id_Number, Address, Contact_Number, Photo, Number_Miles, Id_Type_Client, Email FROM Client WHERE Email = ?</statement>
+            <statement>SELECT  * FROM Client WHERE Email = ?</statement>
             <Prepared_Param_DataType>
                 <parameter>
                     <parameterName>Email</parameterName>

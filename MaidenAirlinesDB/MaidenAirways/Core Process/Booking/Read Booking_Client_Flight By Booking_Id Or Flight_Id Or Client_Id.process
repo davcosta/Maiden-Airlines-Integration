@@ -139,7 +139,7 @@
     <pd:activity name="Query By Booking ID">
         <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
         <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
-        <pd:x>425</pd:x>
+        <pd:x>426</pd:x>
         <pd:y>68</pd:y>
         <config>
             <timeout>10</timeout>

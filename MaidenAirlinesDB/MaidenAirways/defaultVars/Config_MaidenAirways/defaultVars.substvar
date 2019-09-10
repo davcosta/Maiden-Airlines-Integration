@@ -99,11 +99,11 @@
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Booking</name>
-			<value>9187</value>
+			<value>9087</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1567518645622</modTime>
+			<modTime>1568134220189</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Booking_Type</name>
@@ -111,23 +111,23 @@
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1566910969815</modTime>
+			<modTime>1568134220213</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Client</name>
-			<value>9183</value>
+			<value>9083</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1567442159385</modTime>
+			<modTime>1568134220239</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Client_Type</name>
-			<value>9188</value>
+			<value>9088</value>
 			<deploymentSettable>true</deploymentSettable>
 			<serviceSettable>false</serviceSettable>
 			<type>String</type>
-			<modTime>1568040833555</modTime>
+			<modTime>1568120887575</modTime>
 		</globalVariable>
 		<globalVariable>
 			<name>HTTPPort_Flight</name>

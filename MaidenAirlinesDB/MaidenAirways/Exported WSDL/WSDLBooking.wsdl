@@ -25,6 +25,13 @@
                     <xs:attribute name="Seat" type="xs:string"/>
                 </xs:complexType>
             </xs:element>
+            <xs:element name="Booking_Client_Flights">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns0:Booking_Client_Flight" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="Bookings">
                 <xs:complexType>
                     <xs:sequence>
@@ -74,6 +81,10 @@
         </wsdl:port>
     </wsdl:service>
     <wsdl:portType name="PortTypeBooking">
+        <wsdl:operation name="UpdateBooking_Client_FlightId_Flight">
+            <wsdl:input message="tns:InUpdateBooking_Client_FlightChange_Flight"/>
+            <wsdl:output message="tns:OutUpdateBooking_Client_FlightChange_Flight"/>
+        </wsdl:operation>
         <wsdl:operation name="GetAllBookings">
             <wsdl:input message="tns:InGetAllBookings"/>
             <wsdl:output message="tns:OutGetAllBookings"/>
@@ -85,6 +96,10 @@
         <wsdl:operation name="UpdateBooking_Client_Flight">
             <wsdl:input message="tns:InUpdateBooking_Client_Flight"/>
             <wsdl:output message="tns:OutUpdateBooking_Client_Flight"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetBooking_Client_FlightByBooking_Client_Flight">
+            <wsdl:input message="tns:InGetBooking_Client_FlightByBooking_Client_Flight"/>
+            <wsdl:output message="tns:OutGetBooking_Client_FlightByBooking_Client_Flight"/>
         </wsdl:operation>
         <wsdl:operation name="InsertBooking">
             <wsdl:input message="tns:InInsertBooking"/>
@@ -101,6 +116,15 @@
     </wsdl:portType>
     <wsdl:binding name="BookingBinding" type="tns:PortTypeBooking">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="UpdateBooking_Client_FlightId_Flight">
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceBooking.serviceagent//UpdateBooking_Client_FlightId_Flight"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Booking_Client_Flight"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Status"/>
+            </wsdl:output>
+        </wsdl:operation>
         <wsdl:operation name="GetAllBookings">
             <soap:operation style="document" soapAction="/SOAP%2520Process/Service.serviceagent/Booking/GetAllBookings"/>
             <wsdl:input>
@@ -126,6 +150,15 @@
             </wsdl:input>
             <wsdl:output>
                 <soap:body use="literal" parts="Status"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetBooking_Client_FlightByBooking_Client_Flight">
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceBooking.serviceagent//GetBooking_Client_FlightByBooking_Client_Flight"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Booking_Client_Flight"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Booking_Client_Flight"/>
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="InsertBooking">
@@ -156,6 +189,12 @@
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
+    <wsdl:message name="InUpdateBooking_Client_FlightChange_Flight">
+        <wsdl:part name="Booking_Client_Flight" element="ns0:Booking_Client_Flights"/>
+    </wsdl:message>
+    <wsdl:message name="OutUpdateBooking_Client_FlightChange_Flight">
+        <wsdl:part name="Status" element="ns0:StatusBooking"/>
+    </wsdl:message>
     <wsdl:message name="InGetAllBookings"/>
     <wsdl:message name="OutGetAllBookings">
         <wsdl:part name="Bookings" element="ns0:Bookings"/>
@@ -167,10 +206,16 @@
         <wsdl:part name="Status" element="ns0:StatusBooking"/>
     </wsdl:message>
     <wsdl:message name="InUpdateBooking_Client_Flight">
-        <wsdl:part name="Booking_Client_Flight" element="ns0:Booking_Client_Flight"/>
+        <wsdl:part name="Booking_Client_Flight" element="ns0:Booking_Client_Flights"/>
     </wsdl:message>
     <wsdl:message name="OutUpdateBooking_Client_Flight">
         <wsdl:part name="Status" element="ns0:StatusBooking"/>
+    </wsdl:message>
+    <wsdl:message name="InGetBooking_Client_FlightByBooking_Client_Flight">
+        <wsdl:part name="Booking_Client_Flight" element="ns0:Booking_Client_Flights"/>
+    </wsdl:message>
+    <wsdl:message name="OutGetBooking_Client_FlightByBooking_Client_Flight">
+        <wsdl:part name="Booking_Client_Flight" element="ns0:Booking_Client_Flights"/>
     </wsdl:message>
     <wsdl:message name="InInsertBooking">
         <wsdl:part name="Bookings" element="ns0:Bookings"/>

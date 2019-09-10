@@ -35,7 +35,7 @@
             <processName>/Core Process/Booking/Update Booking_Client_Flight Change Flight.process</processName>
         </config>
         <pd:inputBindings>
-            <ns:Booking_Client_Flight/>
+            <xsl:copy-of select="$Start/pfx:InUpdateBooking_Client_FlightChange_Flight/Booking_Client_Flight/ns:Booking_Client_Flights/ns:Booking_Client_Flight"/>
         </pd:inputBindings>
     </pd:activity>
     <pd:transition>
