@@ -29,7 +29,7 @@
     <pd:activity name="Call Insert Client">
         <pd:type>com.tibco.pe.core.CallProcessActivity</pd:type>
         <pd:resourceType>ae.process.subprocess</pd:resourceType>
-        <pd:x>303</pd:x>
+        <pd:x>302</pd:x>
         <pd:y>71</pd:y>
         <config>
             <processName>/Core Process/Client/Insert Client.process</processName>

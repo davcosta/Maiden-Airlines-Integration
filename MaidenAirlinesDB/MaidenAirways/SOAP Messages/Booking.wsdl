@@ -47,6 +47,10 @@
     <message name="OutGetBooking_Client_FlightByBooking_Client_Flight">
         <part name="Booking_Client_Flight" element="ns:Booking_Client_Flights"/>
     </message>
+    <message name="InGetAllBooking_Client_Flight"/>
+    <message name="OutGetAllBooking_Client_Flight">
+        <part name="Booking_Client_Flight" element="ns:Booking_Client_Flights"/>
+    </message>
     <portType name="PortTypeBooking">
         <operation name="InsertBooking">
             <input message="tns:InInsertBooking"/>
@@ -79,6 +83,10 @@
         <operation name="GetBooking_Client_FlightByBooking_Client_Flight">
             <input message="tns:InGetBooking_Client_FlightByBooking_Client_Flight"/>
             <output message="tns:OutGetBooking_Client_FlightByBooking_Client_Flight"/>
+        </operation>
+        <operation name="GetAllBooking_Client_Flights">
+            <input message="tns:InGetAllBooking_Client_Flight"/>
+            <output message="tns:OutGetAllBooking_Client_Flight"/>
         </operation>
     </portType>
 </definitions>

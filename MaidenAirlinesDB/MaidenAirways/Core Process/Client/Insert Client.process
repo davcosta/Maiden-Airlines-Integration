@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd4" xmlns:ns="http://www.tibco.com/namespaces/tnt/plugins/mail" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:pfx2="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd4" xmlns:ns="http://www.tibco.com/namespaces/tnt/plugins/mail" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xmlns.tibco.com/body" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd" schemaLocation="/Schemas/Airports.xsd"/>
     <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd4" schemaLocation="/Schemas/Clients.xsd"/>
     <pd:name>Core Process/Client/Insert Client.process</pd:name>
@@ -339,6 +339,59 @@
         <config/>
         <pd:inputBindings/>
     </pd:activity>
+    <pd:activity name="Send Mail">
+        <pd:type>com.tibco.plugin.mail.MailPubActivity</pd:type>
+        <pd:resourceType>ae.activities.MailActivityResource</pd:resourceType>
+        <pd:x>440</pd:x>
+        <pd:y>248</pd:y>
+        <config>
+            <newMimeSupport>true</newMimeSupport>
+            <inputOutputVersion>5.2.0</inputOutputVersion>
+            <host>in-v3.mailjet.com:25</host>
+            <useSsl>false</useSsl>
+            <authenticate>true</authenticate>
+            <username>f5cfadd6b10aed5d8c9cf1219ac765c4</username>
+            <password>d50feaf3eedf3a0bc02a6749d33c209b</password>
+            <ns0:ssl xmlns:ns0="http://www.tibco.com/xmlns/aemeta/services/2002">
+                <ns0:strongCipherSuitesOnly>false</ns0:strongCipherSuitesOnly>
+                <ns0:cert isRef="true">/Certificates/.folder</ns0:cert>
+                <ns0:verifyHostName>true</ns0:verifyHostName>
+            </ns0:ssl>
+            <InputHeaders>
+                <xsd:element name="root">
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Content-Type" type="xsd:string" minOccurs="0"/>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+            </InputHeaders>
+        </config>
+        <pd:inputBindings>
+            <ns:mailActivityInput>
+                <username>
+                    <xsl:value-of select="&quot;f5cfadd6b10aed5d8c9cf1219ac765c4&quot;"/>
+                </username>
+                <password>
+                    <xsl:value-of select="&quot;d50feaf3eedf3a0bc02a6749d33c209b&quot;"/>
+                </password>
+                <from>
+                    <xsl:value-of select="&quot;david.costa@polarising.com&quot;"/>
+                </from>
+                <to>
+                    <xsl:value-of select="&quot;david.costa@polarising.com&quot;"/>
+                </to>
+                <subject>
+                    <xsl:value-of select="&quot;WELCOME TO MAIDEN AIRWAYS&quot;"/>
+                </subject>
+                <ns2:bodyElement>
+                    <bodyText>
+                        <xsl:value-of select="concat(concat(concat (concat (concat (&quot;Hi &quot;, $Start/pfx2:Client/@First_Name),  $Start/pfx2:Client/@Last_Name), &quot;&#xD;&#xA; Welcome to our airways company! &#xD;&#xA; Login with your email:  &quot;), $Start/pfx2:Client/@Email), &quot; and your defined password to access your client area.&quot;)"/>
+                    </bodyText>
+                </ns2:bodyElement>
+            </ns:mailActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
     <pd:transition>
         <pd:from>Start</pd:from>
         <pd:to>Query Id_Number</pd:to>
@@ -395,6 +448,13 @@
     </pd:transition>
     <pd:transition>
         <pd:from>Insert</pd:from>
+        <pd:to>Send Mail</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Send Mail</pd:from>
         <pd:to>End</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>

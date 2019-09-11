@@ -8,17 +8,17 @@
     <pd:startY>70</pd:startY>
     <pd:returnBindings>
         <xsl:choose>
-            <xsl:when test="$Update/jdbcUpdateActivityOutput/noOfUpdates = 0 or $Update/jdbcUpdateActivityOutput/noOfUpdates">
+            <xsl:when test="$Update/jdbcUpdateActivityOutput/noOfUpdates = 1 or $Update/jdbcUpdateActivityOutput/noOfUpdates">
                 <Status>
                     <value>
-                        <xsl:value-of select="-1"/>
+                        <xsl:value-of select="0"/>
                     </value>
                 </Status>
             </xsl:when>
             <xsl:otherwise>
                 <Status>
                     <value>
-                        <xsl:value-of select="0"/>
+                        <xsl:value-of select="-1"/>
                     </value>
                 </Status>
             </xsl:otherwise>
@@ -225,9 +225,18 @@
                     <xsl:attribute name="Id_Flight">
                         <xsl:value-of select="id_flight"/>
                     </xsl:attribute>
-                    <xsl:attribute name="Seat">
-                        <xsl:value-of select="seat"/>
-                    </xsl:attribute>
+                    <xsl:choose>
+                        <xsl:when test="seat = &quot;false&quot;">
+                            <xsl:attribute name="Seat">
+                                <xsl:value-of select="&quot;0&quot;"/>
+                            </xsl:attribute>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="Seat">
+                                <xsl:value-of select="&quot;1&quot;"/>
+                            </xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
                     <xsl:attribute name="Check_In">
                         <xsl:value-of select="check_in"/>
                     </xsl:attribute>
