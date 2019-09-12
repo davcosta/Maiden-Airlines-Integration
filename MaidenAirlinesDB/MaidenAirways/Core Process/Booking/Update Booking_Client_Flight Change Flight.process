@@ -8,17 +8,17 @@
     <pd:startY>70</pd:startY>
     <pd:returnBindings>
         <xsl:choose>
-            <xsl:when test="$Update/jdbcUpdateActivityOutput/noOfUpdates = 0 or $Update/jdbcUpdateActivityOutput/noOfUpdates">
+            <xsl:when test="$Update/jdbcUpdateActivityOutput/noOfUpdates = 1 or $Update/jdbcUpdateActivityOutput/noOfUpdates">
                 <Status>
                     <value>
-                        <xsl:value-of select="-1"/>
+                        <xsl:value-of select="0"/>
                     </value>
                 </Status>
             </xsl:when>
             <xsl:otherwise>
                 <Status>
                     <value>
-                        <xsl:value-of select="0"/>
+                        <xsl:value-of select="-1"/>
                     </value>
                 </Status>
             </xsl:otherwise>
@@ -201,9 +201,18 @@
                                 <xsl:value-of select="seat"/>
                             </xsl:attribute>
                         </xsl:if>
-                        <xsl:attribute name="Check_In">
-                            <xsl:value-of select="check_in"/>
-                        </xsl:attribute>
+                        <xsl:choose>
+                            <xsl:when test="check_in = &quot;false&quot;">
+                                <xsl:attribute name="Check_In">
+                                    <xsl:value-of select="0"/>
+                                </xsl:attribute>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:attribute name="Check_In">
+                                    <xsl:value-of select="1"/>
+                                </xsl:attribute>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </pfx:Booking_Client_Flight>
                 </xsl:for-each>
             </pfx:Booking_Client_Flights>
@@ -222,7 +231,8 @@
         <pd:xpathDescription>Exists</pd:xpathDescription>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
+        <pd:conditionType>xpath</pd:conditionType>
+        <pd:xpath>$Query-ID/resultSet/Record</pd:xpath>
     </pd:transition>
     <pd:transition>
         <pd:from>Assign Data From Booking_Client_Flight</pd:from>

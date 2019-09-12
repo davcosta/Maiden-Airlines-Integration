@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pd:ProcessDefinition xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:pfx="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd8" xmlns:pd="http://xmlns.tibco.com/bw/process/2003" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <xsd:import namespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd8" schemaLocation="/Schemas/Booking.xsd"/>
+    <pd:name>Core Process/Booking/Generate Ticket By Booking ID.process</pd:name>
+    <pd:startName>Start</pd:startName>
+    <pd:startType ref="pfx:Booking_Client_Flight"/>
+    <pd:startX>150</pd:startX>
+    <pd:startY>64</pd:startY>
+    <pd:returnBindings>
+        <xsl:choose>
+            <xsl:when test="$JDBC-Query/resultSet/Record">
+                <pfx:BoardingPasses>
+                    <xsl:for-each select="$JDBC-Query/resultSet/Record">
+                        <pfx:BoardingPass>
+                            <xsl:attribute name="First_Name">
+                                <xsl:value-of select="First_Name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Last_Name">
+                                <xsl:value-of select="Last_Name"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Flight_Number">
+                                <xsl:value-of select="Flight_Number"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Departure_Date">
+                                <xsl:value-of select="Departure_Date"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Departure_Airport_City">
+                                <xsl:value-of select="Departure"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Arrival_Airport_City">
+                                <xsl:value-of select="Arrival"/>
+                            </xsl:attribute>
+                        </pfx:BoardingPass>
+                    </xsl:for-each>
+                </pfx:BoardingPasses>
+            </xsl:when>
+            <xsl:otherwise>
+                <pfx:BoardingPasses>
+                    <pfx:BoardingPass>
+                        <xsl:attribute name="First_Name">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Last_Name">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Flight_Number">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Departure_Date">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Departure_Airport_City">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                        <xsl:attribute name="Arrival_Airport_City">
+                            <xsl:value-of select="&quot;&quot;"/>
+                        </xsl:attribute>
+                    </pfx:BoardingPass>
+                </pfx:BoardingPasses>
+            </xsl:otherwise>
+        </xsl:choose>
+    </pd:returnBindings>
+    <pd:endName>End</pd:endName>
+    <pd:endType ref="pfx:BoardingPasses"/>
+    <pd:endX>482</pd:endX>
+    <pd:endY>67</pd:endY>
+    <pd:errorSchemas/>
+    <pd:processVariables/>
+    <pd:targetNamespace>http://xmlns.example.com/1568295353759</pd:targetNamespace>
+    <pd:activity name="JDBC Query">
+        <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
+        <pd:x>303</pd:x>
+        <pd:y>63</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <commit>false</commit>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <statement>SELECT B.First_Name, B.Last_Name, B.Flight_Number, B.Departure_Date, Departure, Arrival 
+FROM (
+SELECT Client.First_Name, Client.Last_Name, Flight.Flight_Number, Flight.Departure_Date, AirportA.City AS Departure, AirportB.City AS Arrival
+FROM Booking_Client_Flight, Flight, Client, Airport AirportA, Airport AirportB
+WHERE Booking_Client_Flight.Id = ?
+AND Booking_Client_Flight.Id_Client = Client.Id 
+AND Booking_Client_Flight.Id_Flight = Flight.Id 
+AND Flight.Departure_Airport = AirportA.Id
+AND Flight.Arrival_Airport = AirportB.Id
+) as B</statement>
+            <Prepared_Param_DataType>
+                <parameter>
+                    <parameterName>ID</parameterName>
+                    <dataType>INTEGER</dataType>
+                </parameter>
+            </Prepared_Param_DataType>
+            <wizardData/>
+            <oraObjects/>
+            <oraTables/>
+            <QueryOutputCachedSchemaColumns>First_Name</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>Last_Name</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>Flight_Number</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>Departure_Date</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>93</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>DATETIME</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>Departure</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>Arrival</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+        </config>
+        <pd:inputBindings>
+            <jdbcQueryActivityInput>
+                <ID>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx:Booking_Client_Flights/pfx:Booking_Client_Flight[1]/@ID)">
+                            <xsl:value-of select="$Start/pfx:Booking_Client_Flights/pfx:Booking_Client_Flight[1]/@ID"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </ID>
+            </jdbcQueryActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Null">
+        <pd:type>com.tibco.plugin.timer.NullActivity</pd:type>
+        <pd:resourceType>ae.activities.null</pd:resourceType>
+        <pd:x>307</pd:x>
+        <pd:y>207</pd:y>
+        <config/>
+        <pd:inputBindings/>
+    </pd:activity>
+    <pd:transition>
+        <pd:from>JDBC Query</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>JDBC Query</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>JDBC Query</pd:from>
+        <pd:to>Null</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>error</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Null</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+</pd:ProcessDefinition>

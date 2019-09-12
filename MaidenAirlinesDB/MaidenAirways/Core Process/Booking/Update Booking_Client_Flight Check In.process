@@ -257,7 +257,8 @@
         <pd:xpathDescription>Exists</pd:xpathDescription>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
-        <pd:conditionType>always</pd:conditionType>
+        <pd:conditionType>xpath</pd:conditionType>
+        <pd:xpath>$Query-ID/resultSet/Record</pd:xpath>
     </pd:transition>
     <pd:transition>
         <pd:from>Assign Data From Booking_Client_Flight</pd:from>
