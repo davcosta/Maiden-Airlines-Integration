@@ -51,6 +51,12 @@
     <message name="OutGetAllBooking_Client_Flight">
         <part name="Booking_Client_Flight" element="ns:Booking_Client_Flights"/>
     </message>
+    <message name="InGenerateBoardingPass">
+        <part name="Booking_Client_Flight" element="ns:Booking_Client_Flights"/>
+    </message>
+    <message name="OutGenerateBoardingPass">
+        <part name="BoardingPass" element="ns:BoardingPasses"/>
+    </message>
     <portType name="PortTypeBooking">
         <operation name="InsertBooking">
             <input message="tns:InInsertBooking"/>
@@ -87,6 +93,10 @@
         <operation name="GetAllBooking_Client_Flights">
             <input message="tns:InGetAllBooking_Client_Flight"/>
             <output message="tns:OutGetAllBooking_Client_Flight"/>
+        </operation>
+        <operation name="GenerateBoardingPass">
+            <input message="tns:InGenerateBoardingPass"/>
+            <output message="tns:OutGenerateBoardingPass"/>
         </operation>
     </portType>
 </definitions>

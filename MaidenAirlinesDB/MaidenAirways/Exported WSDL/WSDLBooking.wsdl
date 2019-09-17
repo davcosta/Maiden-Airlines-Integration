@@ -3,6 +3,23 @@
 <wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://xmlns.example.com/1567008376005" xmlns:ns0="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd8" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="Untitled" targetNamespace="http://xmlns.example.com/1567008376005">
     <wsdl:types>
         <xs:schema xmlns="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd8" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.tibco.com/schemas/MaidenAirways/Schemas/Schema.xsd8" elementFormDefault="qualified" attributeFormDefault="unqualified">
+            <xs:element name="BoardingPass">
+                <xs:complexType>
+                    <xs:attribute name="Arrival_Airport_City" type="xs:string"/>
+                    <xs:attribute name="Departure_Airport_City" type="xs:string"/>
+                    <xs:attribute name="Departure_Date" type="xs:string"/>
+                    <xs:attribute name="First_Name" type="xs:string"/>
+                    <xs:attribute name="Flight_Number" type="xs:string"/>
+                    <xs:attribute name="Last_Name" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="BoardingPasses">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element ref="ns0:BoardingPass" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="Booking">
                 <xs:complexType>
                     <xs:sequence>
@@ -77,10 +94,18 @@
     </wsdl:types>
     <wsdl:service name="ServiceBooking">
         <wsdl:port name="Booking" binding="tns:BookingBinding">
-            <soap:address location="http://localhost:9087/SOAP%2520Process/Service.serviceagent/Booking"/>
+            <soap:address location="http://localhost:9187/SOAP%2520Process/Service.serviceagent/Booking"/>
         </wsdl:port>
     </wsdl:service>
     <wsdl:portType name="PortTypeBooking">
+        <wsdl:operation name="GenerateBoardingPass">
+            <wsdl:input message="tns:InGenerateBoardingPass"/>
+            <wsdl:output message="tns:OutGenerateBoardingPass"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetAllBooking_Client_Flights">
+            <wsdl:input message="tns:InGetAllBooking_Client_Flight"/>
+            <wsdl:output message="tns:OutGetAllBooking_Client_Flight"/>
+        </wsdl:operation>
         <wsdl:operation name="UpdateBooking_Client_FlightId_Flight">
             <wsdl:input message="tns:InUpdateBooking_Client_FlightChange_Flight"/>
             <wsdl:output message="tns:OutUpdateBooking_Client_FlightChange_Flight"/>
@@ -116,6 +141,24 @@
     </wsdl:portType>
     <wsdl:binding name="BookingBinding" type="tns:PortTypeBooking">
         <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GenerateBoardingPass">
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceBooking.serviceagent//GenerateBoardingPass"/>
+            <wsdl:input>
+                <soap:body use="literal" parts="Booking_Client_Flight"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="BoardingPass"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetAllBooking_Client_Flights">
+            <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceBooking.serviceagent//GetAllBooking_Client_Flights"/>
+            <wsdl:input>
+                <soap:body use="literal" parts=""/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" parts="Booking_Client_Flight"/>
+            </wsdl:output>
+        </wsdl:operation>
         <wsdl:operation name="UpdateBooking_Client_FlightId_Flight">
             <soap:operation style="document" soapAction="/SOAP%2520Process/ServiceBooking.serviceagent//UpdateBooking_Client_FlightId_Flight"/>
             <wsdl:input>
@@ -189,6 +232,16 @@
             </wsdl:output>
         </wsdl:operation>
     </wsdl:binding>
+    <wsdl:message name="InGenerateBoardingPass">
+        <wsdl:part name="Booking_Client_Flight" element="ns0:Booking_Client_Flights"/>
+    </wsdl:message>
+    <wsdl:message name="OutGenerateBoardingPass">
+        <wsdl:part name="BoardingPass" element="ns0:BoardingPasses"/>
+    </wsdl:message>
+    <wsdl:message name="InGetAllBooking_Client_Flight"/>
+    <wsdl:message name="OutGetAllBooking_Client_Flight">
+        <wsdl:part name="Booking_Client_Flight" element="ns0:Booking_Client_Flights"/>
+    </wsdl:message>
     <wsdl:message name="InUpdateBooking_Client_FlightChange_Flight">
         <wsdl:part name="Booking_Client_Flight" element="ns0:Booking_Client_Flights"/>
     </wsdl:message>

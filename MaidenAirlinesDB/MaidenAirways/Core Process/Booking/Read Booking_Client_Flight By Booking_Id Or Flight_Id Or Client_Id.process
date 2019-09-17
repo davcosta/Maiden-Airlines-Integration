@@ -93,6 +93,34 @@
                     </xsl:for-each>
                 </pfx2:Booking_Client_Flights>
             </xsl:when>
+            <xsl:when test="$Query-By-Booking_Client_Flight-ID/resultSet/Record">
+                <pfx2:Booking_Client_Flights>
+                    <xsl:for-each select="$Query-By-Booking_Client_Flight-ID/resultSet/Record">
+                        <pfx2:Booking_Client_Flight>
+                            <xsl:attribute name="ID">
+                                <xsl:value-of select="id"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Id_Booking">
+                                <xsl:value-of select="id_booking"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Id_Client">
+                                <xsl:value-of select="id_client"/>
+                            </xsl:attribute>
+                            <xsl:attribute name="Id_Flight">
+                                <xsl:value-of select="id_flight"/>
+                            </xsl:attribute>
+                            <xsl:if test="seat">
+                                <xsl:attribute name="Seat">
+                                    <xsl:value-of select="seat"/>
+                                </xsl:attribute>
+                            </xsl:if>
+                            <xsl:attribute name="Check_In">
+                                <xsl:value-of select="check_in"/>
+                            </xsl:attribute>
+                        </pfx2:Booking_Client_Flight>
+                    </xsl:for-each>
+                </pfx2:Booking_Client_Flights>
+            </xsl:when>
             <xsl:otherwise>
                 <pfx2:Booking_Client_Flights>
                     <pfx2:Booking_Client_Flight>
@@ -332,6 +360,74 @@
         <config/>
         <pd:inputBindings/>
     </pd:activity>
+    <pd:activity name="Query By Booking_Client_Flight ID">
+        <pd:type>com.tibco.plugin.jdbc.JDBCQueryActivity</pd:type>
+        <pd:resourceType>ae.activities.JDBCQueryActivity</pd:resourceType>
+        <pd:x>436</pd:x>
+        <pd:y>557</pd:y>
+        <config>
+            <timeout>10</timeout>
+            <commit>false</commit>
+            <maxRows>100</maxRows>
+            <emptyStrAsNil>false</emptyStrAsNil>
+            <jdbcSharedConfig>/Connections/JDBC Connection.sharedjdbc</jdbcSharedConfig>
+            <statement>SELECT * FROM Booking_Client_Flight WHERE Id = ?</statement>
+            <Prepared_Param_DataType>
+                <parameter>
+                    <parameterName>Id</parameterName>
+                    <dataType>INTEGER</dataType>
+                </parameter>
+            </Prepared_Param_DataType>
+            <oraObjects/>
+            <oraTables/>
+            <QueryOutputCachedSchemaColumns>id</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>id_booking</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>id_client</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>id_flight</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>4</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>INT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>seat</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>12</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>VARCHAR</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>OptionalElement</QueryOutputCachedSchemaStatus>
+            <QueryOutputCachedSchemaColumns>check_in</QueryOutputCachedSchemaColumns>
+            <QueryOutputCachedSchemaDataTypes>-7</QueryOutputCachedSchemaDataTypes>
+            <QueryOutputCachedSchemaDataTypesName>TINYINT</QueryOutputCachedSchemaDataTypesName>
+            <QueryOutputCachedSchemaStatus>RequiredElement</QueryOutputCachedSchemaStatus>
+        </config>
+        <pd:inputBindings>
+            <jdbcQueryActivityInput>
+                <Id>
+                    <xsl:choose>
+                        <xsl:when test="exists($Start/pfx2:Booking_Client_Flights/pfx2:Booking_Client_Flight[1]/@ID)">
+                            <xsl:value-of select="$Start/pfx2:Booking_Client_Flights/pfx2:Booking_Client_Flight[1]/@ID"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:attribute name="xsi:nil">true</xsl:attribute>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </Id>
+            </jdbcQueryActivityInput>
+        </pd:inputBindings>
+    </pd:activity>
+    <pd:activity name="Null-1-1">
+        <pd:type>com.tibco.plugin.timer.NullActivity</pd:type>
+        <pd:resourceType>ae.activities.null</pd:resourceType>
+        <pd:x>956</pd:x>
+        <pd:y>550</pd:y>
+        <config/>
+        <pd:inputBindings/>
+    </pd:activity>
     <pd:transition>
         <pd:from>Start</pd:from>
         <pd:to>Query By Booking ID</pd:to>
@@ -409,6 +505,37 @@
     </pd:transition>
     <pd:transition>
         <pd:from>Null-1</pd:from>
+        <pd:to>End</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Start</pd:from>
+        <pd:to>Query By Booking_Client_Flight ID</pd:to>
+        <pd:xpathDescription>By ID</pd:xpathDescription>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>xpath</pd:conditionType>
+        <pd:xpath>$Start/pfx2:Booking_Client_Flights/pfx2:Booking_Client_Flight/@ID &gt;= 0</pd:xpath>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Query By Booking_Client_Flight ID</pd:from>
+        <pd:to>Null-1-1</pd:to>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>always</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Query By Booking_Client_Flight ID</pd:from>
+        <pd:to>Null-1</pd:to>
+        <pd:xpathDescription>Error</pd:xpathDescription>
+        <pd:lineType>Default</pd:lineType>
+        <pd:lineColor>-16777216</pd:lineColor>
+        <pd:conditionType>error</pd:conditionType>
+    </pd:transition>
+    <pd:transition>
+        <pd:from>Null-1-1</pd:from>
         <pd:to>End</pd:to>
         <pd:lineType>Default</pd:lineType>
         <pd:lineColor>-16777216</pd:lineColor>
